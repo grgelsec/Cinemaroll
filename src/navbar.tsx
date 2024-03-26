@@ -1,23 +1,21 @@
 export default function NavBar() {
-
-    const navItems = [
-      {
-        buttonLabel: 'Sign In',
-      }, 
-      {
-        buttonLabel: 'Create Account',
-      }, 
-      {
-        buttonLabel: 'Films',
-      }, 
-      {
-        buttonLabel: 'Lists',
-      }, 
-      {
-        buttonLabel: 'Members',
-      }, 
-    ]
-
+  const navItems = [
+    {
+      buttonLabel: "Sign In",
+    },
+    {
+      buttonLabel: "Create Account",
+    },
+    {
+      buttonLabel: "Films",
+    },
+    {
+      buttonLabel: "Lists",
+    },
+    {
+      buttonLabel: "Members",
+    },
+  ];
 
   return (
     <header className="w-screen">
@@ -39,7 +37,29 @@ export default function NavBar() {
           </svg>
           Cinemaroll
         </div>
-        <div className="flex gap-x-3">
+        <form className="flex items-center gap-x-3">
+          <input
+            type="text"
+            className="px-4 py-2 w-full border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+          />
+          <button type="submit" className="px-4 py-2 bg-white border rounded-lg focus:outline-none focus:">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+              />
+            </svg>
+          </button>
+        </form>
+        <div className="flex space-x-3">
           {navItems.map((x) => (
             <button className="text-white font-medium p-3 hover:bg-gray-900 rounded-xl">
               {x.buttonLabel}
