@@ -20,7 +20,7 @@ export default function NavBar() {
   return (
     <header className="w-screen">
       <nav className="flex row w-full items-center justify-center mt-5 gap-x-10">
-        <div className="flex row items-center text-white text-3xl gap-x-1 font-semibold">
+        <div className="flex row items-center text-white text-3xl gap-x-1 font-semibold ring-4 ring-indigo-500 rounded-xl p-2 hover:shadow-lg hover:shadow-white transition duration-300 ease-in-out">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -37,12 +37,22 @@ export default function NavBar() {
           </svg>
           Cinemaroll
         </div>
+        <div className="flex space-x-3">
+          {navItems.map((x) => (
+            <button className="text-white font-medium p-3 hover:opacity-100 rounded-xl opacity-70 transition duration-300 ease-in-out">
+              {x.buttonLabel}
+            </button>
+          ))}
+        </div>
         <form className="flex items-center gap-x-3">
           <input
             type="text"
-            className="px-4 py-2 w-full border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+            className="px-4 py-1 w-ful rounded-lg opacity-70 hover:opacity-100 hover:ring-4 hover:outline-none hover:border-transparent hover:ring-indigo-500 transition duration-300 ease-in-out"
           />
-          <button type="submit" className="px-4 py-2 bg-white border rounded-lg focus:outline-none focus:">
+          <button
+            type="submit"
+            className="px-2 py-1 bg-white border rounded-lg opacity-70 hover:opacity-100 hover:ring-4 hover:outline-none hover:border-transparent hover:ring-indigo-500 transition duration-300 ease-in-out"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -59,13 +69,6 @@ export default function NavBar() {
             </svg>
           </button>
         </form>
-        <div className="flex space-x-3">
-          {navItems.map((x) => (
-            <button className="text-white font-medium p-3 hover:bg-gray-900 rounded-xl">
-              {x.buttonLabel}
-            </button>
-          ))}
-        </div>
       </nav>
     </header>
   );
