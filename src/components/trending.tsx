@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react";
 
 export function Movies() {
+
+//These type declarations are purely for practice of clean code
+//Techincally you could just return JSON and grab a certain endpoint
+//But typing this is clean and maintainable
   type Movie = {
     poster_path: string;
   };
 
-  type MovieApiResponse = {
-    results: Movie[];
-  };
+//   type MovieApiResponse = {
+//     results: Movie[];
+//   };
 
+  //movieList is of type Movie[] which is an array of poster paths
   const [movieList, setMovieList] = useState<Movie[]>([]);
 
   useEffect(() => {
@@ -18,9 +23,7 @@ export function Movies() {
         //Uses await to pause the execution of async function until the promise returned by fetch is resolved
         //fetch always returns a promise
         //in the future type async functions with Promise<>
-        const response = await fetch(
-          import.meta.env.VITE_API_URL
-        );
+        const response = await fetch(import.meta.env.VITE_API_URL);
         // that indicates if the HTTP request was successful
         if (!response.ok) {
           throw new Error(`HTTP error: ${response.status}`);
@@ -31,9 +34,12 @@ export function Movies() {
         // In this case, await response.json() means that TypeScript knows the resolved value
         // of the Promise is the data returned by response.json(),
         // which is typically a JavaScript object or array representing the parsed JSON data.
-        const data: MovieApiResponse = await response.json();
-        setMovieList(data.results);
-        console.log(data.results.slice(0, 20))
+
+        //here, returning type MovieApiResponse which is results (array of Movies (poster_paths))
+        const data = await response.json();
+        //this is essentially data.poster_paths
+        setMovieList(data.poster_path);
+        console.log(data.results.slice(0, 20));
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -65,13 +71,15 @@ export function Movies() {
       */
 
   return (
-    <div>
-      {movieList.slice(0, 5).map((movie) => (
-        <img
-          className="flex w-1/3 h-1/3 m-10"
-          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-        />
-      ))}
+    <div className="felx col lg:mt-20 lg:mr-80 lg:ml-80 md:m-20 sm:m-20">
+      <div className="flex row flex-wrap justify-center gap-3">
+        {movieList.slice(0, 15).map((movie) => (
+          <img
+            className="flex w-1/6 rounded-md hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition duration-300 ease-in-out"
+            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+          />
+        ))}
+      </div>
     </div>
   );
 }
