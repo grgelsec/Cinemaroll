@@ -9,9 +9,9 @@ export function Movies() {
     poster_path: string;
   };
 
-//   type MovieApiResponse = {
-//     results: Movie[];
-//   };
+  type MovieApiResponse = {
+    results: Movie[];
+  };
 
   //movieList is of type Movie[] which is an array of poster paths
   const [movieList, setMovieList] = useState<Movie[]>([]);
@@ -36,9 +36,8 @@ export function Movies() {
         // which is typically a JavaScript object or array representing the parsed JSON data.
 
         //here, returning type MovieApiResponse which is results (array of Movies (poster_paths))
-        const data = await response.json();
-        //this is essentially data.poster_paths
-        setMovieList(data.poster_path);
+        const data: MovieApiResponse = await response.json();
+        setMovieList(data.results);
         console.log(data.results.slice(0, 20));
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -71,9 +70,10 @@ export function Movies() {
       */
 
   return (
-    <div className="felx col lg:mt-20 lg:mr-80 lg:ml-80 md:m-20 sm:m-20">
+    <div className="felx col flex-shrink-0 lg:mt-20 lg:mr-80 lg:ml-80 md:m-20 sm:m-20">
+    <h1 className="flex text-white opacity-70 font-semibold p-5 justify-center">Trending</h1>
       <div className="flex row flex-wrap justify-center gap-3">
-        {movieList.slice(0, 15).map((movie) => (
+        {movieList.slice(0, 10).map((movie) => (
           <img
             className="flex w-1/6 rounded-md hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition duration-300 ease-in-out"
             src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
