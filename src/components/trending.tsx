@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 
 export function Movies() {
-
-//These type declarations are purely for practice of clean code
-//Techincally you could just return JSON and grab a certain endpoint
-//But typing this is clean and maintainable
+  //These type declarations are purely for practice of clean code
+  //Techincally you could just return JSON and grab a certain endpoint
+  //But typing this is clean and maintainable
   type Movie = {
     poster_path: string;
   };
@@ -70,12 +69,14 @@ export function Movies() {
       */
 
   return (
-    <div className="felx col flex-shrink-0 lg:mt-20 lg:mr-80 lg:ml-80 md:m-20 sm:m-20">
-    <h1 className="flex text-white opacity-70 font-semibold p-5 justify-center">Trending</h1>
-      <div className="flex row flex-wrap justify-center gap-3">
-        {movieList.slice(0, 10).map((movie) => (
+    <div className="flex flex-col items-center lg:pr-40 md:pl-40 md:pr-40 sm:pl-40 sm:pr-40">
+      <header className="text-white font-semibold opacity-70 p-3">
+        Trending
+      </header>
+      <div className="flex row flex-wrap gap-3 justify-center flex-shrink-0">
+        {movieList.slice(0, 8).map((movie) => (
           <img
-            className="flex w-1/6 rounded-md hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition duration-300 ease-in-out"
+            className="flex lg:w-1/12 md:w-3/12 sm:w-3/12 rounded-md hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition duration-300 ease-in-out"
             src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
           />
         ))}
