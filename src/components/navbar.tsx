@@ -19,7 +19,7 @@ export default function NavBar() {
 
   return (
     <header className="w-screen">
-      <nav className="flex row w-full items-center justify-center mt-5 gap-x-10 ">
+      <nav className="flex row w-full items-center justify-center mt-5 gap-x-10">
         <div className="flex row items-center text-white text-3xl gap-x-1 font-semibold ring-4 ring-indigo-500 rounded-xl p-2 hover:shadow-lg hover:shadow-white transition duration-300 ease-in-out">
           <svg
             xmlns="http://www.w3.org/2000/svg"

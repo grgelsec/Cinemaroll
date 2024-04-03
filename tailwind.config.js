@@ -7,7 +7,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        'black-onyx': '#353935',
+        'codBlack': '#121212',
+        'lightPurp': '#A5A3FE',
+        'mediumPurp': '#8C7FFA',
+        'whitePurp': '#DFE1FF',
+        'darkPurp': '#4C2EA5',
       },
     },
   },
