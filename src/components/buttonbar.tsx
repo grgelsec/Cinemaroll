@@ -19,6 +19,23 @@ export default function Showcase() {
       ),
     },
     {
+      //star
+      icon: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          className="w-6 h-6"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      ),
+    },
+    {
       //heart
       icon: (
         <svg
@@ -65,9 +82,9 @@ export default function Showcase() {
 
   return (
     <div className="flex justify-center px-40 py-10">
-      <nav className="flex justify-center lg:w-3/12 md:w-6/12 sm:w-8/12 py-2 rounded-xl bg-lightPurp overflow-x-scroll">
+      <nav className="flex justify-center space-x-3 lg:w-5/12 md:w-7/12 sm:w-11/12 xs-w-6/12 py-2 rounded-xl bg-lightPurp overflow-x-scroll hide-scrollbar">
         {buttonIcons.map((x) => (
-          <button className="flex row items-center rounded-xl p-5 border-white hover:bg-indigo-600">
+          <button className="flex row items-start rounded-xl p-5 border-white hover:bg-indigo-600">
             {x.icon}
           </button>
         ))}
