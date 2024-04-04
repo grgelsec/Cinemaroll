@@ -38,7 +38,7 @@ export default function UserFeatures() {
     <div className="flex col flex-wrap justify-center lg:px-40 md:px-40 sm:px-40 space-y-20 ring-8 ring-red-500">
       <div className="flex col flex-wrap just text-whitePurp font-semibold py-2 ring-4 ring-green-500 w-8/12">
         What have you watched?
-        <p className="flex flex-wrap justify-center text-center text-whitePurp border-t opacity-70 font-sans font-light left-0 py-3 ring-2 ring-yellow-500">
+        <p className="flex flex-wrap justify-center text-center text-whitePurp border-t opacity-70 font-sans font-light left-0 py-3 ring-2 ring-yellow-500 ">
           Let us know what you've seen! Cinemaroll allows you to keep track of
           every movie that you've watched. Build your library and keep a running
           log!
@@ -47,7 +47,7 @@ export default function UserFeatures() {
           {posterList.slice(0, 3).map((movie) => (
             <img
               src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-              className="rounded-xl lg:w-3/12"
+              className="rounded-xl lg:w-3/12 hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy"
             />
           ))}
         </div>
