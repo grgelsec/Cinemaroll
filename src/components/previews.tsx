@@ -115,22 +115,21 @@ export default function UserFeatures() {
           to others what floats your boat.
         </p>
         <div className="flex flex-wrap row space-x-5 justify-center items-center">
-          {posterList.slice(14, 15).map((movie) => (
+          {posterList.slice(9, 10).map((movie) => (
             <img
               src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-              className="relative flex items-center rounded-xl lg:w-6/12 md:w-6/12 hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy mt-3"
+              className="relative flex items-center rounded-xl lg:w-6/12 md:w-6/12 opacity-50 outline-none border-transparent ring-4 ring-indigo-500 transition-sexy mt-3"
             ></img>
           ))}
-          <div className="flex col flex-wrap p-3 gap-3 bg-mediumPurp rounded-xl">
+          <div className="absolute p-3  bg-red-500 rounded-xl">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              fill="lightindigo"
+              fill="white"
               className="flex w-14 h-14 rounded-xl"
             >
               <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
             </svg>
-            
           </div>
         </div>
       </div>
