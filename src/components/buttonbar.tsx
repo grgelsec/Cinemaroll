@@ -1,4 +1,4 @@
-
+//this file is declared dead. RIP buttonBar March 2024 - April 2024. You will live on in previews.tsx.
 
 export default function Showcase() {
   const buttonIcons = [
