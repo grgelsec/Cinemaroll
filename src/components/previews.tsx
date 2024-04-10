@@ -5,6 +5,7 @@ export default function UserFeatures() {
     type refType = HTMLDivElement | null;
 
     //React hook, allows you to reference the DOM without rerenders 
+    //useRef allows you to set a reference to something in the dom and manipulate it w/o rerenders
     const eye = useRef<refType>(null)
     const star = useRef<refType>(null)
     const heart = useRef<refType>(null)
@@ -176,7 +177,7 @@ export default function UserFeatures() {
             {posterList.slice(19, 20).map((movie) => (
               <img
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                className="flex items-center rounded-xl lg:w-6/12 md:w-6/12 hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy mt-3"
+                className="flex items-center rounded-xl lg:w-6/12 md:w-6/12 hover:opacity-50 hover:outline-none hover:border-transparent ring-4 ring-lightPurp transition-sexy mt-3"
               ></img>
             ))}
             <h1 className="flex row items-center text-indigo-500 font-semibold p-5 bg-whitePurp rounded-xl ring-2">
