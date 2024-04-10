@@ -1,4 +1,4 @@
-import { useRef } from "react";
+
 
 export default function Showcase() {
   const buttonIcons = [
@@ -83,15 +83,7 @@ export default function Showcase() {
   ];
 
   //button needs a ref that when it is clicked goes to the preview with the same ref
-  /*
-  const previewsRef = useRef({})
 
-    function scrollToPreview(previewKey: string) {
-      previewsRef.current[previewKey]?.scrollIntoView({
-        behavior: "smooth",
-      });
-    }
-*/
   return (
     <div className="flex justify-center px-40 py-10">
       <nav className="flex justify-center space-x-3 lg:w-5/12 2xl:w-4/12 md:w-7/12 sm:w-11/12 xs-w-6/12 py-2 rounded-xl bg-lightPurp overflow-x-scroll hide-scrollbar">

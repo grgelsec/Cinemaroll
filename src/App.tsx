@@ -1,7 +1,7 @@
 import NavBar from "./components/navbar";
 import { Movies } from "./components/trending";
 import HomeHeader from "./components/welcome";
-import Showcase from "./components/buttonbar";
+//import Showcase from "./components/buttonbar";
 import UserFeatures from "./components/previews";
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
         <NavBar />
         <HomeHeader />
         <Movies />
-        <Showcase />
+
         <UserFeatures />
       </div>
     </>
