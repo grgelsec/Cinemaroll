@@ -1,19 +1,26 @@
+import { Link } from "react-router-dom";
+
 export default function NavBar() {
   const navItems = [
     {
       buttonLabel: "Sign In",
+      route: '/sign-in',
     },
     {
       buttonLabel: "Create Account",
+      route: 'create-account',
     },
     {
       buttonLabel: "Films",
+      route: 'films'
     },
     {
       buttonLabel: "Lists",
+      route: 'lists',
     },
     {
       buttonLabel: "Members",
+      route: 'members',
     },
   ];
 
@@ -39,9 +46,11 @@ export default function NavBar() {
         </div>
         <div className="flex space-x-3">
           {navItems.map((x) => (
+            <Link to={x.route}>
             <button className="text-white font-medium p-3 hover:opacity-100 rounded-xl opacity-70 transition duration-300 ease-in-out">
               {x.buttonLabel}
             </button>
+            </Link>
           ))}
         </div>
         <form className="flex items-center gap-x-3">
