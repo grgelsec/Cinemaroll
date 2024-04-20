@@ -37,7 +37,7 @@ export default function Films() {
 
   return (
     <>
-      <div>
+      <div className="text-white size-10">
         Hello
       </div>
     </>
