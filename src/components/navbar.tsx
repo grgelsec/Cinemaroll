@@ -3,24 +3,28 @@ import { Link } from "react-router-dom";
 export default function NavBar() {
   const navItems = [
     {
+      buttonLabel: "Home",
+      route: '/'
+    },
+    {
       buttonLabel: "Sign In",
       route: '/sign-in',
     },
     {
       buttonLabel: "Create Account",
-      route: 'create-account',
+      route: '/create-account',
     },
     {
       buttonLabel: "Films",
-      route: 'films'
+      route: '/films'
     },
     {
       buttonLabel: "Lists",
-      route: 'lists',
+      route: '/lists',
     },
     {
       buttonLabel: "Members",
-      route: 'members',
+      route: '/members',
     },
   ];
 
