@@ -6,11 +6,11 @@ export default function UserFeatures() {
 
     //React hook, allows you to reference the DOM without rerenders 
     //useRef allows you to set a reference to something in the dom and manipulate it w/o rerenders
-    const eye = useRef<refType>(null)
-    const star = useRef<refType>(null)
-    const heart = useRef<refType>(null)
-    const list = useRef<refType>(null)
-    const flames = useRef<refType>(null)
+    const eye = useRef<HTMLDivElement>(null)
+    const star = useRef<HTMLDivElement>(null)
+    const heart = useRef<HTMLDivElement>(null)
+    const list = useRef<HTMLDivElement>(null)
+    const flames = useRef<HTMLDivElement>(null)
 
   const buttonIcons = [
     {
