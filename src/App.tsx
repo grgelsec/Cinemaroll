@@ -5,7 +5,10 @@ import { Route, Routes } from "react-router-dom";
 function App() {
   return (
     <>
-      <Home/>
+      <Routes>
+        <Route key={'home'} path="/" element={<Home/>}/>
+        <Route path="/films" element={<Films/>} />
+      </Routes>
     </>
   );
 }
