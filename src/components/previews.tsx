@@ -1,6 +1,29 @@
 import { useEffect, useRef, useState } from "react";
 
 export default function UserFeatures() {
+
+// this is completely unrelated, i was just learning ts generics
+/*
+interface Animal {
+  name: string
+}
+
+interface Human {
+  firstName: string
+  lastName: string
+}
+
+export const getDisplayName = <TItem extends Animal | Human>(
+  item: Animal | Human
+): TItem extends Human ? { humanName: string } : { animal: string } => {
+  if ("name" in item) {
+    return {
+      animalName: item.name,
+    }
+  }
+}
+*/
+
     //type for refs 
     type refType = HTMLDivElement | null;
 

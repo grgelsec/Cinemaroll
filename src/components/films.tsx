@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import NavBar from "./navbar";
+import { Movies } from "./trending";
 
 export default function Films() {
   type Movie = {
@@ -8,6 +9,8 @@ export default function Films() {
     vote_average: number;
     vote_count: number;
     genre_ids: number[];
+    page: number;
+    popularity: number
   };
 
   type MovieAPIResponse = {
@@ -27,7 +30,7 @@ export default function Films() {
 
         const data: MovieAPIResponse = await response.json();
         setFilmList(data.results);
-        console.log(data.results.slice(0, 100));
+        console.log(data.results.slice(0, 20));
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -47,12 +50,14 @@ export default function Films() {
         </header>
         <body>
         <div className="flex flex-wrap row justify-center gap-3 px-40">
-            {filmList.slice(0, 100).map((movie) => (
+            {filmList.filter(movie => movie.popularity > 1000).map((movie) => (
+              
               <img
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                 className="flex items-center rounded-xl lg:w-1/12 md:w-2/12 sm:w-2/12 xs:w-1/12 hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy mt-3"
               ></img>
-            ))}
+            ))
+            }
           </div>
         </body>
       </div>

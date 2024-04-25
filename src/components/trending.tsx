@@ -76,7 +76,7 @@ export function Movies() {
       <div className="flex row flex-wrap gap-3 justify-center px-20">
         {movieList.slice(0, 8).map((movie) => (
           <img
-            className="flex lg:w-1/12 md:w-4/12 sm:w-5/12 rounded-md hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy mt-3"
+            className="flex lg:w-2/12 md:w-4/12 sm:w-5/12 rounded-md hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy mt-3"
             src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
           />
         ))}
