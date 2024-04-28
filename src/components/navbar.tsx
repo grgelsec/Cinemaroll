@@ -5,7 +5,7 @@ export default function NavBar() {
   return (
     <header className="w-screen">
       <nav className="flex row w-full lg:w-full items-center justify-center mt-5 gap-x-10">
-        <div className="flex row items-center text-white text-3xl gap-x-1 font-semibold ring-4 ring-indigo-500 rounded-xl p-2 hover:shadow-lg hover:shadow-white transition-sexy">
+        <Link to="/" className="flex row items-center text-white text-3xl gap-x-1 font-semibold ring-4 ring-indigo-500 rounded-xl p-2 hover:shadow-lg hover:shadow-white transition-sexy">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -21,12 +21,9 @@ export default function NavBar() {
             />
           </svg>
           Cinemaroll
-        </div>
+        </Link>
         <div className="">
           <ul className="flex row space-x-3">
-            <li key={'home'} className="text-white font-medium p-3 hover:opacity-100 rounded-xl opacity-70 transition duration-300 ease-in-out">
-              <Link to={'/'}>Home</Link>
-            </li>
             <li key={'signin'} className="text-white font-medium p-3 hover:opacity-100 rounded-xl opacity-70 transition duration-300 ease-in-out">
               <Link to={'/sign-in'}>Sign In</Link>
             </li>

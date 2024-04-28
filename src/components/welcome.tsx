@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function HomeHeader() {
   return (
     <div className="">
@@ -7,9 +9,9 @@ export default function HomeHeader() {
         </header>
       </div>
       <div className="flex justify-center">
-        <button className="p-5 bg-indigo-500 rounded-xl text-whitePurp font-extrabold shadow-xl shadow-indigo-500 hover:shadow-indigo-700 transition-sexy">
+        <Link to="/createaccount" className="p-5 bg-indigo-500 rounded-xl text-whitePurp font-extrabold shadow-xl shadow-indigo-500 hover:shadow-indigo-700 transition-sexy">
           Sign up
-        </button>
+        </Link>
       </div>
     </div>
   );
