@@ -47,7 +47,7 @@ export default function NavBar() {
         <form className="flex items-center gap-x-3">
           <input
             type="text"
-            className="px-4 py-1 w-ful rounded-lg opacity-70 hover:opacity-100 hover:ring-4 hover:outline-none hover:border-transparent hover:ring-indigo-500 transition-sexy"
+            className="px-4 py-1 rounded-lg opacity-70 hover:opacity-100 hover:ring-4 hover:outline-none hover:border-transparent hover:ring-indigo-500 transition-sexy"
           />
           <button
             type="submit"
