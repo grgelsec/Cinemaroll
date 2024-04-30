@@ -3,6 +3,8 @@ import Films from "./components/films";
 import { Route, Routes } from "react-router-dom";
 import Create from "./components/createaccount";
 import SignIn from "./components/signin";
+import FilmLists from "./components/list";
+import Members from "./components/members";
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
         <Route path="/films" element={<Films/>} />
         <Route path="/createaccount" element={<Create/>} />
         <Route path="/sign-in" element={<SignIn/>}/>
+        <Route path="/lists" element={<FilmLists/>}/>
+        <Route path="/members" element={<Members/>}/>
       </Routes>
     </>
   );
