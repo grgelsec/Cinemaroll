@@ -45,7 +45,7 @@ export default function Films() {
       <div>
         <header>
           <div className="flex justify-center py-6">
-            <div className="text-white text-3xl font-semibold">Films</div>
+            <div className="text-white text-3xl font-extrabold">Films</div>
           </div>
         </header>
         <div className="">
@@ -54,7 +54,7 @@ export default function Films() {
               <h1 className="py-1 border-b font-extrabold">Popular</h1>
               <div className="flex col flex-wrap justify-center gap-3 ring- ring-white ">
                 {filmList
-                  .slice(2, 8)
+                  .slice(2, 7)
                   .filter((movie) => movie.popularity > 1000)
                   .map((movie) => (
                     <img

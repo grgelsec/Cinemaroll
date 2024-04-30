@@ -26,7 +26,7 @@ export default function SignIn() {
               <div className="flex justify-center py-2">
                 <button
                   type="submit"
-                  className="px-10 py-3 bg-whitePurp text-mediumPurp rounded-xl"
+                  className="px-10 py-3 bg-white text-mediumPurp rounded-xl"
                 >
                   Sign In
                 </button>
