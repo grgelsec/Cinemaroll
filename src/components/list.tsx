@@ -4,7 +4,7 @@ import NavBar from "./navbar";
 export default function FilmLists() {
   type Movie = {
     poster_path: string;
-    genre_ids: number;
+    genre_ids: number[];
     page: number;
   };
 
@@ -43,7 +43,7 @@ export default function FilmLists() {
           <div className="flex row p-10 py-10 justify-start gap-3 ring-2 ring-white">
           {list
                   .slice(2, 7)
-                  .filter((movie) => movie.genre_ids = 9648)
+                  .filter((movie) => movie.genre_ids = [878])
                   .map((movie) => (
                     <img
                       src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
