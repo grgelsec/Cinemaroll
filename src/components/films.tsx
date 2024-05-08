@@ -81,6 +81,13 @@ export default function Films() {
               </div>
             </div>
           </body>
+          <body className="flex col justify-center flex-wrap lg:px-40 md:px-40 sm:px-40 space-y-10 ring-2 ring-red-500">
+            <div className="flex col flex-wrap justify-center text-xl py-2 text-whitePurp w-11/12 ring-4 ring-white">
+              <h1 className="py-1 font-extrabold">More coming soon...</h1>
+              <div className="flex col flex-wrap justify-center gap-3 ring-2 ring-white">
+              </div>
+            </div>
+          </body>
         </div>
       </div>
     </>
