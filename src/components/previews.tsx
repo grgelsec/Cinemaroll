@@ -251,14 +251,14 @@ export const getDisplayName = <TItem extends Animal | Human>(
             loved it! If you really liked it, give the film a 'heart' indicating
             to others what floats your boat.
           </p>
-          <div className="flex flex-wrap row space-x-5 justify-center items-center">
+          <div className="flex row space-x-5 justify-center items-center">
             {posterList.slice(9, 10).map((movie) => (
               <img
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                 className="relative flex items-center rounded-xl lg:w-6/12 md:w-6/12 opacity-50 outline-none border-transparent ring-4 ring-indigo-500 transition-sexy mt-3"
               ></img>
             ))}
-            <div className="absolute p-3  bg-red-500 rounded-xl">
+            <div className="sticky p-3  bg-red-500 rounded-xl ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
