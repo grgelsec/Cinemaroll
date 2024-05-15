@@ -10,14 +10,16 @@ const questions = ["What is color?", "What is a Dog?", "What is a cat?"]
 
 async function main() {
 
-    const completion = await openai.chat.completions.create({
-        messages: [{ role: "system", content: `${questions[1]}` }],
+    const stream = await openai.chat.completions.create({
+        messages: [{ role: "user", content: `${questions[1]}` }],
         model: "gpt-3.5-turbo",
+        stream: true,
     })
 
-    const messageContent: string | null = completion.choices[0].message.content
 
-    console.log(messageContent)
+    for await (const chunk of stream) {
+        process.stdout.write(chunk.choices[0]?.delta?.content || "");
+    }
 }
 
 main();
