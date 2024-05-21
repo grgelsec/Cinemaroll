@@ -21,14 +21,27 @@ export default function Films() {
 
   const [filmList, setFilmList] = useState<Movie[]>([]);
 
+  const [pageNum, setPage ] = useState(1);
 
+  const decrementPage = () => {
+    if(pageNum > 0) {
+      setPage((page) => page - 1)
+    } 
+  }
+
+  const incrementPage = () => {
+    setPage((page) => page + 1)
+  }
 
   useEffect(() => {
     
     const getFilm = async () => {
+      //TODO: kms
+      const apikey = import.meta.env.VITE_API_URL3
+      const baseUrl = 'https://api.themoviedb.org/3/discover/movie'
 
       try {
-        const response = await fetch(import.meta.env.VITE_API_URL);
+        const response = await fetch(`${baseUrl}?api_key=${apikey}&page=${pageNum}`);
 
         if (!response.ok) {
           throw new Error(`HTTP error: ${response.status}`);
@@ -43,7 +56,7 @@ export default function Films() {
     };
 
     getFilm();
-  }, []);
+  }, [pageNum]);
 
   return (
     <>
@@ -68,8 +81,9 @@ export default function Films() {
                   ></img>
                 ))}
               </div>
-              <div className="flex gap-2 space-y-4 mb-5">
-                <button className="flex p-2 bg-whitePurp mt-4 rounded-lg">
+              <div className="flex justify-center gap-2 space-y-3 mb-3 flex-wrap w-1/12">
+                <button className="flex p-2 bg-whitePurp mt-3 rounded-lg"
+                onClick={() => decrementPage()}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -83,7 +97,8 @@ export default function Films() {
                     />
                   </svg>
                 </button>
-                <button className="flex p-2 bg-whitePurp rounded-lg">
+                <button className="flex p-2 bg-whitePurp rounded-lg"
+                onClick={() => incrementPage()}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -97,6 +112,9 @@ export default function Films() {
                     />
                   </svg>
                 </button>
+                <h3 className="flex font-mono text-sm">
+                  Page {pageNum}
+                </h3>
               </div>
             </div>
           </body>
