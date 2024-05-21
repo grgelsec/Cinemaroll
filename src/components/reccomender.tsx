@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import NavBar from "./navbar";
 import OpenAI from "openai";
 
-export default function Reccomend() {
+export default function Reccomend(this: unknown) {
   type Message = {
     content: string;
   };

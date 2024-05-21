@@ -4,9 +4,9 @@ export default function Create() {
   return (
     <>
       <NavBar></NavBar>
-      <div className="flex col justify-center py-40 lg:px-40 md:px-40 sm:px-40 ">
+      <div className="flex col justify-center py-40 lg:px-40 md:px-40 sm:px-40">
         <div 
-        className="flex col flex-wrap justify-center items-center xl:w-4/12 lg:w-5/12 md:w-7/12 sm:w-11/12 py-8 text-white font-extrabold bg-indigo-500 rounded-xl">
+        className="flex col flex-wrap justify-center items-center xl:w-4/12 lg:w-5/12 md:w-7/12 sm:w-11/12 py-8 text-white font-extrabold bg-indigo-500 rounded-xl font-mono">
           <div 
           className="space-y-2">
             <div 

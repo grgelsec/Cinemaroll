@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function NavBar() {
   return (
-    <header className="w-screen">
+    <header className="w-screen font-mono">
       <nav className="flex row w-full lg:w-full items-center justify-center mt-5 gap-x-10">
         <Link
           to="/"

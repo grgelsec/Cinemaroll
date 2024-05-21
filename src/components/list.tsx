@@ -16,6 +16,7 @@ export default function FilmLists() {
 
   useEffect(() => {
     const getFilm = async () => {
+
       try {
         const response = await fetch(import.meta.env.VITE_API_URL2);
 
@@ -36,7 +37,7 @@ export default function FilmLists() {
     <>
       <NavBar></NavBar>
       <header className="flex ring-2 ring-white py-6 justify-center">
-        <h1 className="text-white font-extrabold text-3xl">Lists</h1>
+        <h1 className="text-whitePurp font-extrabold text-3xl border-b font-mono">Lists</h1>
       </header>
       <body className="flex col flex-wrap lg:px-40 md:px-40 sm:px-40 space-y-10 ring-white ring-2">
         <h1 className="text-white font-extrabold text-xl">Coming Soon...</h1>
