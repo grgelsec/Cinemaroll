@@ -35,7 +35,7 @@ export default function Create() {
                   type="submit"
                   className="px-10 py-3 bg-white text-mediumPurp rounded-xl"
                 >
-                  Submit
+                  Create
                 </button>
               </div>
             </form>

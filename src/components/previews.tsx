@@ -172,7 +172,7 @@ export const getDisplayName = <TItem extends Animal | Human>(
           ))}
         </nav>
       </div>
-      <div className="flex col flex-wrap justify-center lg:px-40 md:px-40 sm:px-40 space-y-10">
+      <div className="flex col flex-wrap justify-center lg:px-40 md:px-20 sm:px-20 space-y-10">
         <div className="flex col flex-wrap justify-center text-whitePurp font-semibold py-2 w-8/12" ref={eye}>
           <h1 className="py-2">What have you watched?</h1>
           <p className="flex flex-wrap justify-center text-center text-whitePurp border-t opacity-70 font-sans font-light left-0 py-3">

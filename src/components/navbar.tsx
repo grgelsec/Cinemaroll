@@ -50,12 +50,6 @@ export default function NavBar() {
             >
               <Link to={"/lists"}>Lists</Link>
             </li>
-            <li
-              key={"members"}
-              className="text-white font-medium p-3 hover:opacity-100 rounded-xl opacity-70 transition duration-300 ease-in-out"
-            >
-              <Link to={"/members"}>Members</Link>
-            </li>
           </ul>
         </div>
         <form className="flex items-center gap-x-3">
