@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export function Movies() {
+export default function Movies() {
   //These type declarations are purely for practice of clean code
   //Techincally you could just return JSON and grab a certain endpoint
   //But typing this is clean and maintainable

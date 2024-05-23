@@ -1,3 +1,4 @@
+/*
 import { useEffect, useState } from "react";
 
 export default function GetMovie() {
@@ -25,7 +26,7 @@ export default function GetMovie() {
           //"https://api.themoviedb.org/3/movie/1011985/lists?api_key="
     
           try {
-            const response = await fetch(`${baseURL}${movieID}/lists?api_key=${api_key}`);
+            const response = await fetch(`${baseURL}${movieID}?api_key=${api_key}`);
     
             if (!response.ok) {
               throw new Error(`HTTP error: ${response.status}`);
@@ -37,6 +38,10 @@ export default function GetMovie() {
             console.error("Error fetching data:", error);
           }
         };
+
+        getMovie(1011985)
       }, []);
 
 }
+
+*/
