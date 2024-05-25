@@ -6,6 +6,10 @@ export default function Movies() {
   //But typing this is clean and maintainable
   type Movie = {
     poster_path: string;
+    genre_ids: number[];
+    page: number;
+    name: string;
+    id: number;
   };
 
   type MovieApiResponse = {

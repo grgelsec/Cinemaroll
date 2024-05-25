@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import NavBar from "./navbar";
 import getMovie from "./trending";
+import movieList from "./trending";
 
-//TODO: render a list, save id's to an array, call get movie one each movie id and map the poster paths
+//TODO: START SMALL get movie ID from Movies. Put the movie ID into List containing MovieID and snag the ID and store. Then find the list details and
 
-export default function FilmLists() {
+export default function MovieData() {
   type Movie = {
     poster_path: string;
     genre_ids: number[];
@@ -19,7 +20,12 @@ export default function FilmLists() {
 
   const [list, setList] = useState<Movie[]>([]);
 
-  console.log(getMovie())
+  async function fetchData() {
+  const data: Movie = await getMovie().props
+  console.log(data.id)
+  }
+
+  console.log(fetchData())
 
   useEffect(() => {
     const getList = async () => {
@@ -36,7 +42,7 @@ export default function FilmLists() {
 
         const data: MovieAPIResponse = await response.json();
         setList(data.results);
-        console.log(data)
+        //console.log(data)
       } catch (error) {
         console.error("Error fetching data:", error);
       }
