@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import NavBar from "./navbar";
-import getMovie from "./trending";
-import movieList from "./trending";
 
 //TODO: START SMALL get movie ID from Movies. Put the movie ID into List containing MovieID and snag the ID and store. Then find the list details and
 
@@ -18,14 +16,12 @@ export default function MovieData() {
     results: Movie[];
   };
 
+  /*
+  fetchData().then(data => {
+    console.log(data.id)
+  })
+  */
   const [list, setList] = useState<Movie[]>([]);
-
-  async function fetchData() {
-  const data: Movie = await getMovie().props
-  console.log(data.id)
-  }
-
-  console.log(fetchData())
 
   useEffect(() => {
     const getList = async () => {
