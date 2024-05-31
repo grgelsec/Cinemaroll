@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import useMovies from "../hooks/fetchMovies";
 
 export default function UserFeatures() {
 
@@ -121,44 +122,12 @@ export const getDisplayName = <TItem extends Animal | Human>(
     },
   ];
 
-  type Movie = {
-    poster_path: string;
-    title: string;
-    vote_average: number;
-    vote_count: number;
-    genre_ids: number[];
-  };
-
-  type MovieAPIResponse = {
-    results: Movie[];
-  };
-
-  const [posterList, setPosterList] = useState<Movie[]>([]);
+  const { filmList } = useMovies(1);
 
   //function that scrolls smoothly to ref
   const scrollToRef = (ref: React.RefObject<refType> ) => {
     ref.current?.scrollIntoView({ behavior: 'smooth' });
   };
-
-  useEffect(() => {
-    const getPoster = async () => {
-      try {
-        const response = await fetch(import.meta.env.VITE_API_URL);
-
-        if (!response.ok) {
-          throw new Error(`HTTP error: ${response.status}`);
-        }
-
-        const data: MovieAPIResponse = await response.json();
-        setPosterList(data.results);
-        console.log(data.results.slice(0, 40));
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    getPoster();
-  }, []);
 
   return (
     <body className="font-mono">
@@ -181,7 +150,7 @@ export const getDisplayName = <TItem extends Animal | Human>(
             running log!
           </p>
           <div className="flex flex-wrap row justify-center gap-3">
-            {posterList.slice(17, 20).map((movie) => (
+            {filmList.slice(17, 20).map((movie) => (
               <img
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                 className="flex items-center rounded-xl lg:w-3/12 md:w-3/12 hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy mt-3"
@@ -197,7 +166,7 @@ export const getDisplayName = <TItem extends Animal | Human>(
             hopefully.
           </p>
           <div className="flex flex-wrap row items-center justify-center gap-3 ">
-            {posterList.slice(19, 20).map((movie) => (
+            {filmList.slice(19, 20).map((movie) => (
               <img
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                 className="flex items-center rounded-xl lg:w-6/12 md:w-6/12 hover:opacity-50 hover:outline-none hover:border-transparent ring-4 ring-lightPurp transition-sexy mt-3"
@@ -252,7 +221,7 @@ export const getDisplayName = <TItem extends Animal | Human>(
             to others what floats your boat.
           </p>
           <div className="flex row space-x-5 justify-center items-center">
-            {posterList.slice(9, 10).map((movie) => (
+            {filmList.slice(9, 10).map((movie) => (
               <img
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                 className="relative flex items-center rounded-xl lg:w-6/12 md:w-6/12 opacity-50 outline-none border-transparent ring-4 ring-indigo-500 transition-sexy mt-3"
@@ -282,7 +251,7 @@ export const getDisplayName = <TItem extends Animal | Human>(
             Trending Action
           </h1>
           <div className="flex flex-wrap row items-center justify-center gap-3 py-2 ">
-            {posterList.slice(10, 14).map((movie) => (
+            {filmList.slice(10, 14).map((movie) => (
               <img
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                 className="flex items-center rounded-xl lg:w-2/12 md:w-4/12 sm:w-5/12 hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy mt-3"
@@ -291,7 +260,7 @@ export const getDisplayName = <TItem extends Animal | Human>(
           </div>
           <h1 className="border-b border-mediumPurp font-light">Must See</h1>
           <div className="flex flex-wrap row items-center justify-center gap-3 py-2 ">
-            {posterList.slice(14, 18).map((movie) => (
+            {filmList.slice(14, 18).map((movie) => (
               <img
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                 className="flex items-center rounded-xl lg:w-2/12 md:w-4/12 sm:w-5/12 hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy mt-3"
@@ -300,7 +269,7 @@ export const getDisplayName = <TItem extends Animal | Human>(
           </div>
           <h1 className="border-b border-mediumPurp font-light">Hidden Gems</h1>
           <div className="flex flex-wrap row items-center justify-center gap-3 py-2 ">
-            {posterList.slice(5, 9).map((movie) => (
+            {filmList.slice(5, 9).map((movie) => (
               <img
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                 className="flex items-center rounded-xl lg:w-2/12 md:w-4/12 sm:w-5/12 hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy mt-3"
@@ -317,7 +286,7 @@ export const getDisplayName = <TItem extends Animal | Human>(
             everyone is going to love.
           </p>
           <div className="flex flex-wrap row items-center justify-center py-2 gap-3">
-            {posterList.slice(16, 17).map((movie) => (
+            {filmList.slice(16, 17).map((movie) => (
               <img
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                 className="flex items-center rounded-xl lg:w-3/12 md:w-3/12 hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy mt-3"
