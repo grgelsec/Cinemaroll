@@ -11,26 +11,30 @@ type ListAPIResponse = {
 };
 
 const useListDetails = (pageNum: number, listID: number) => {
-    const [listInfo, setListInfo] = useState<List[]>([]);
+  const [listDetails, setListDetails] = useState<List[]>([]);
 
   useEffect(() => {
     const getList = async () => {
-        const baseURL = "https://api.themoviedb.org/3/list/"
-        const api_key = import.meta.env.VITE_API_URL3
+      const baseURL = "https://api.themoviedb.org/3/list/";
+      const api_key = import.meta.env.VITE_API_URL3;
 
-        const response = await fetch(`${baseURL}${listID}?api_key=${api_key}`)
+      try {
+        const response = await fetch(`${baseURL}${listID}?api_key=${api_key}`);
 
-        if(!response.ok){
-            throw new Error(`HTTP request error: ${response.status}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error: ${response.status}`);
         }
 
         const data: ListAPIResponse = await response.json();
-        setListInfo(data.results)
+        setListDetails(data.results);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     };
     getList();
   }, [pageNum, listID]);
 
-  return { listInfo }
+  return { listDetails };
 };
 
-export default useListDetails
+export default useListDetails;

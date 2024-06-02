@@ -1,52 +1,50 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import NavBar from "./navbar";
+import useMovies from "../hooks/fetchMovies";
+import useListContainsMovie from "../hooks/fetchListInMovies";
+import useListDetails from "../hooks/fetchListDetails";
 
 //TODO: START SMALL get movie ID from Movies. Put the movie ID into List containing MovieID and snag the ID and store. Then find the list details and
 
-export default function MovieData() {
-  type Movie = {
-    poster_path: string;
-    genre_ids: number[];
-    page: number;
-    name: string;
-    id: number;
+export default function BrowseLists() {
+  //keeps track of page #
+  const [pageNum, setPage] = useState(1);
+  //contains all latest movies
+  const { filmList } = useMovies(pageNum);
+  //contains info (name, list id) of lists that contain a certain movie
+  // takes page # and movieID
+  const { listInfo } = useListContainsMovie(pageNum, 0);
+  //contains list details (created_by, description, item_count)
+  // takes page # and listID
+  const { listDetails } = useListDetails(pageNum, 0);
+
+  const decrementPage = () => {
+    if (pageNum > 0) {
+      setPage((page) => page - 1);
+    }
   };
 
-  type MovieAPIResponse = {
-    results: Movie[];
+  const incrementPage = () => {
+    setPage((page) => page + 1);
   };
 
-  /*
-  fetchData().then(data => {
-    console.log(data.id)
-  })
-  */
-  const [list, setList] = useState<Movie[]>([]);
+  const id: number[] = filmList.slice(0, 20).map((movie) => (movie.id))
+  console.log(id)
 
-  useEffect(() => {
-    const getList = async () => {
-      const api_key = import.meta.env.VITE_API_URL3;
-      const baseURL =
-        "https://api.themoviedb.org/3/movie/1011985/lists?api_key=";
+  // for (const num in id) {
+  //   console.log(num)
 
-      try {
-        const response = await fetch(`${baseURL}${api_key}`);
+  // }
 
-        if (!response.ok) {
-          throw new Error(`HTTP error: ${response.status}`);
-        }
 
-        const data: MovieAPIResponse = await response.json();
-        setList(data.results);
-        //console.log(data)
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    getList();
-    //"flex items-center rounded-xl lg:w-2/12 md:w-2/12 sm:w-2/12 xs:w-1/12 hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy mt-3"
-    //src={`https://image.tmdb.org/t/p/w500/${movie.name}`}
-  }, []);
+  // id
+  // .forEach(movieID => {
+  //   // eslint-disable-next-line react-hooks/rules-of-hooks
+  //   const { listInfo } = useListContainsMovie(pageNum, movieID)
+  //   const idList: number[] = listInfo.slice(0,20).map((movie) => (movie.id))
+  //   console.log(idList)
+  // });
+
 
   return (
     <>
@@ -59,9 +57,9 @@ export default function MovieData() {
       <body className="flex col flex-wrap lg:px-40 md:px-40 sm:px-40 space-y-10 ring-white ring-2">
         <div>
           <div className="flex row justify-center flex-wrap p-10 py-10 gap-3 ring-2 ring-white">
-            {list.slice(0, 1).map((movie) => (
+            {filmList.slice(0, 1).map((movie) => (
               <div>
-                <h1 className="font-mono text-white">{movie.name}</h1>
+                <h1 className="font-mono text-white">{movie.title}</h1>
                 <img className="flex items-center rounded-xl lg:w-2/12 md:w-2/12 sm:w-2/12 xs:w-1/12 hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy mt-3"
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}>
                 </img>
