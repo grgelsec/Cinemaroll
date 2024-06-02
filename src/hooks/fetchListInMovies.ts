@@ -12,7 +12,7 @@ type ListAPIResponse = {
   results: List[];
 };
 
-const useListContainsMovie = (pageNum: number, movieID: string) => {
+const useListContainsMovie = (pageNum: number, movieID: number) => {
 
   const [listInfo, setListInfo] = useState<List[]>();
 
