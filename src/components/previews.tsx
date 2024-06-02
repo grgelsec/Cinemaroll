@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import useMovies from "../hooks/fetchMovies";
 
 export default function UserFeatures() {
