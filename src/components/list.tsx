@@ -28,13 +28,14 @@ export default function BrowseLists() {
     setPage((page) => page + 1);
   };
 
+  //array of movie ids that need to be used to find lists containing the movie id
   const id: number[] = filmList.slice(0, 20).map((movie) => (movie.id))
-  console.log(id)
+  //console.log(id)
 
-  // for (const num in id) {
-  //   console.log(num)
-
-  // }
+  //individually prints each movie id in array "id"
+  id.forEach(movieID => {
+    console.log(movieID)
+  });
 
 
   // id
