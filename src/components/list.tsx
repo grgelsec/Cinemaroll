@@ -1,4 +1,5 @@
-import { useState } from "react";
+/* eslint-disable react-hooks/rules-of-hooks */
+import { useEffect, useState } from "react";
 import NavBar from "./navbar";
 import useMovies from "../hooks/fetchMovies";
 import useListContainsMovie from "../hooks/fetchListInMovies";
@@ -7,45 +8,49 @@ import useListDetails from "../hooks/fetchListDetails";
 //TODO: START SMALL get movie ID from Movies. Put the movie ID into List containing MovieID and snag the ID and store. Then find the list details and
 
 export default function BrowseLists() {
+  
   //keeps track of page #
   const [pageNum, setPage] = useState(1);
+  
   //contains all latest movies
   const { filmList } = useMovies(pageNum);
+  
   //contains info (name, list id) of lists that contain a certain movie
   // takes page # and movieID
-  const { listInfo } = useListContainsMovie(pageNum, 0);
+  //const { listInfo } = useListContainsMovie(pageNum, 0);
+  
   //contains list details (created_by, description, item_count)
   // takes page # and listID
   const { listDetails } = useListDetails(pageNum, 0);
-
+  
+  //goes back one page
   const decrementPage = () => {
     if (pageNum > 0) {
       setPage((page) => page - 1);
     }
   };
-
+  //go foward one page
   const incrementPage = () => {
     setPage((page) => page + 1);
   };
 
   //array of movie ids that need to be used to find lists containing the movie id
-  const id: number[] = filmList.slice(0, 20).map((movie) => (movie.id))
+  const movieIds: number[] = filmList.slice(0, 20).map((movie) => (movie.id))
   //console.log(id)
 
-  //individually prints each movie id in array "id"
-  id.forEach(movieID => {
-    console.log(movieID)
-  });
+  const [ idResults, setIdResults ] = useState({});
 
-
-  // id
-  // .forEach(movieID => {
-  //   // eslint-disable-next-line react-hooks/rules-of-hooks
-  //   const { listInfo } = useListContainsMovie(pageNum, movieID)
-  //   const idList: number[] = listInfo.slice(0,20).map((movie) => (movie.id))
-  //   console.log(idList)
-  // });
-
+  useEffect(() => {
+    const FetchIDResults = async () => {
+      const data = {};
+      for(const movieID of movieIds) {
+        const newData = await useListContainsMovie(pageNum, movieID)
+        newData[movieID] = data
+      }
+      setIdResults(data)
+    }
+    FetchIDResults()
+  }, [pageNum, movieIds])
 
   return (
     <>
