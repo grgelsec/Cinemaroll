@@ -15,39 +15,56 @@ export default function BrowseLists() {
   //contains all latest movies
   const { filmList } = useMovies(pageNum);
   
-  //contains info (name, list id) of lists that contain a certain movie
+  // contains info (name, list id) of lists that contain a certain movie
   // takes page # and movieID
-  //const { listInfo } = useListContainsMovie(pageNum, 0);
+  // const { listInfo } = useListContainsMovie(pageNum, 0);
   
-  //contains list details (created_by, description, item_count)
+  // contains list details (created_by, description, item_count)
   // takes page # and listID
   const { listDetails } = useListDetails(pageNum, 0);
   
-  //goes back one page
+  // goes back one page
   const decrementPage = () => {
     if (pageNum > 0) {
       setPage((page) => page - 1);
     }
   };
-  //go foward one page
+  // go foward one page
   const incrementPage = () => {
     setPage((page) => page + 1);
   };
 
-  //array of movie ids that need to be used to find lists containing the movie id
+  type List = {
+    id: number;
+    name: string;
+  };
+
+  // Define the type for the hook response
+type ListContainsMovieResponse = {
+  listInfo: List[];
+};
+
+// Define the type for your data object
+// Key: MovieID Value: Retrieved data 
+type IdResults = {
+  [movieId: number]: ListContainsMovieResponse;
+};
+
+  // array of movie ids that need to be used to find lists containing the movie id
   const movieIds: number[] = filmList.slice(0, 20).map((movie) => (movie.id))
-  //console.log(id)
 
-  const [ idResults, setIdResults ] = useState({});
+   const [ idResults, setIdResults ] = useState<IdResults>({});
 
+  // iterates through movieIds and calls the hook for each id to get lists containing the movie movieID
   useEffect(() => {
     const FetchIDResults = async () => {
-      const data = {};
+      const data: IdResults = {};
       for(const movieID of movieIds) {
         const newData = await useListContainsMovie(pageNum, movieID)
-        newData[movieID] = data
+        data[movieID] = newData
       }
       setIdResults(data)
+      console.log(data)
     }
     FetchIDResults()
   }, [pageNum, movieIds])
