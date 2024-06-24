@@ -34,40 +34,9 @@ export default function BrowseLists() {
     setPage((page) => page + 1);
   };
 
-  type List = {
-    id: number;
-    name: string;
-  };
-
-  // Define the type for the hook response
-type ListContainsMovieResponse = {
-  listInfo: List[];
-};
-
-// Define the type for your data object
-// Key: MovieID Value: Retrieved data 
-type IdResults = {
-  [movieId: number]: ListContainsMovieResponse;
-};
-
   // array of movie ids that need to be used to find lists containing the movie id
   const movieIds: number[] = filmList.slice(0, 20).map((movie) => (movie.id))
 
-   const [ idResults, setIdResults ] = useState<IdResults>({});
-
-  // iterates through movieIds and calls the hook for each id to get lists containing the movie movieID
-  useEffect(() => {
-    const FetchIDResults = async () => {
-      const data: IdResults = {};
-      for(const movieID of movieIds) {
-        const newData = await useListContainsMovie(pageNum, movieID)
-        data[movieID] = newData
-      }
-      setIdResults(data)
-      console.log(data)
-    }
-    FetchIDResults()
-  }, [pageNum, movieIds])
 
   return (
     <>
