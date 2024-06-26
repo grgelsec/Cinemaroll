@@ -6,23 +6,34 @@ import useListContainsMovie from "../hooks/fetchListInMovies";
 import useListDetails from "../hooks/fetchListDetails";
 
 //TODO: START SMALL get movie ID from Movies. Put the movie ID into List containing MovieID and snag the ID and store. Then find the list details and
+//TODO: Big picture: useMovies returns a list of movies => Store all of the movie ids on that page into an array => use promise.all to map each id to an API call that returns all of the lists that all of those movies appear in => Store the list id in an array => Map each list id to the api call that returns list details which can then be used to create the lists in the frontend.
+
+//each list contains id and name
+type List = {
+  id: number;
+  name: string;
+};
+
+//Array of list ids and names
+type ListAPIResponse = {
+  results: List[];
+};
 
 export default function BrowseLists() {
-  
   //keeps track of page #
   const [pageNum, setPage] = useState(1);
-  
+
   //contains all latest movies
   const { filmList } = useMovies(pageNum);
-  
+
   // contains info (name, list id) of lists that contain a certain movie
   // takes page # and movieID
   // const { listInfo } = useListContainsMovie(pageNum, 0);
-  
+
   // contains list details (created_by, description, item_count)
   // takes page # and listID
-  const { listDetails } = useListDetails(pageNum, 0);
-  
+  //const { listDetails } = useListDetails(pageNum, 0);
+
   // goes back one page
   const decrementPage = () => {
     if (pageNum > 0) {
@@ -35,8 +46,30 @@ export default function BrowseLists() {
   };
 
   // array of movie ids that need to be used to find lists containing the movie id
-  const movieIds: number[] = filmList.slice(0, 20).map((movie) => (movie.id))
+  const movieIds: number[] = filmList.slice(0, 20).map((movie) => movie.id);
 
+  const [multipleMovieLists, setMultipleMovieList] = useState<unknown>([]);
+
+  const useMultipleMovieData = () => {
+    const baseURL = "https://api.themoviedb.org/3/movie/";
+    const api_key = import.meta.env.VITE_API_URL3;
+
+    useEffect(() => {
+      const fetchAllMoviesData = async () => {
+        try {
+          const response = await Promise.all(
+            movieIds.map((id) => fetch(`${baseURL}${id}/lists${api_key}`))
+          );
+
+          setMultipleMovieList(response);
+        } catch (error) {
+          console.error("Error fetching data", error);
+        }
+      };
+      fetchAllMoviesData();
+    });
+    return;
+  };
 
   return (
     <>
@@ -52,9 +85,10 @@ export default function BrowseLists() {
             {filmList.slice(0, 1).map((movie) => (
               <div>
                 <h1 className="font-mono text-white">{movie.title}</h1>
-                <img className="flex items-center rounded-xl lg:w-2/12 md:w-2/12 sm:w-2/12 xs:w-1/12 hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy mt-3"
-                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}>
-                </img>
+                <img
+                  className="flex items-center rounded-xl lg:w-2/12 md:w-2/12 sm:w-2/12 xs:w-1/12 hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy mt-3"
+                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                ></img>
               </div>
             ))}
           </div>
