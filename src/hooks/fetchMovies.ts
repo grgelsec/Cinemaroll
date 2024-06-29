@@ -30,7 +30,9 @@ const useMovies = (pageNum: number) => {
       const baseUrl = "https://api.themoviedb.org/3/discover/movie";
 
       try {
-        const response = await fetch(`${baseUrl}?api_key=${apikey}&page=${pageNum}`);
+        const response = await fetch(
+          `${baseUrl}?api_key=${apikey}&page=${pageNum}`
+        );
 
         if (!response.ok) {
           throw new Error(`HTTP error: ${response.status}`);

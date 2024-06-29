@@ -1,23 +1,22 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import NavBar from "./navbar";
 import useMovies from "../hooks/fetchMovies";
-import useListContainsMovie from "../hooks/fetchListInMovies";
-import useListDetails from "../hooks/fetchListDetails";
+import useMultipleMovieData from "../hooks/fetchListInMultiple";
 
 //TODO: START SMALL get movie ID from Movies. Put the movie ID into List containing MovieID and snag the ID and store. Then find the list details and
 //TODO: Big picture: useMovies returns a list of movies => Store all of the movie ids on that page into an array => use promise.all to map each id to an API call that returns all of the lists that all of those movies appear in => Store the list id in an array => Map each list id to the api call that returns list details which can then be used to create the lists in the frontend.
 
-//each list contains id and name
-type List = {
-  id: number;
-  name: string;
-};
+// //each list contains id and name
+// type List = {
+//   id: number;
+//   name: string;
+// };
 
-//Array of list ids and names
-type ListAPIResponse = {
-  results: List[];
-};
+// //Array of list ids and names
+// type ListAPIResponse = {
+//   results: List[];
+// };
 
 export default function BrowseLists() {
   //keeps track of page #
@@ -46,30 +45,9 @@ export default function BrowseLists() {
   };
 
   // array of movie ids that need to be used to find lists containing the movie id
-  const movieIds: number[] = filmList.slice(0, 20).map((movie) => movie.id);
-
-  const [multipleMovieLists, setMultipleMovieList] = useState<unknown>([]);
-
-  const useMultipleMovieData = () => {
-    const baseURL = "https://api.themoviedb.org/3/movie/";
-    const api_key = import.meta.env.VITE_API_URL3;
-
-    useEffect(() => {
-      const fetchAllMoviesData = async () => {
-        try {
-          const response = await Promise.all(
-            movieIds.map((id) => fetch(`${baseURL}${id}/lists${api_key}`))
-          );
-
-          setMultipleMovieList(response);
-        } catch (error) {
-          console.error("Error fetching data", error);
-        }
-      };
-      fetchAllMoviesData();
-    });
-    return;
-  };
+  const movieIds: number[] = filmList.slice(0, 1).map((movie) => movie.id);
+  //const { multipleMovieLists } = useMultipleMovieData(movieIds, pageNum);
+  //console.log(multipleMovieLists);
 
   return (
     <>
