@@ -45,9 +45,10 @@ export default function BrowseLists() {
   };
 
   // array of movie ids that need to be used to find lists containing the movie id
-  const movieIds: number[] = filmList.slice(0, 1).map((movie) => movie.id);
+  const movieIds: number[] = filmList.slice(0, 2).map((movie) => movie.id);
+  console.log(movieIds);
   //const { multipleMovieLists } = useMultipleMovieData(movieIds, pageNum);
-  //console.log(multipleMovieLists);
+  //console.log(multipleMovieLists.slice(0, 10));
 
   return (
     <>
@@ -57,7 +58,7 @@ export default function BrowseLists() {
           Lists
         </h1>
       </header>
-      <body className="flex col flex-wrap lg:px-40 md:px-40 sm:px-40 space-y-10 ring-white ring-2">
+      <div className="flex col flex-wrap lg:px-40 md:px-40 sm:px-40 space-y-10 ring-white ring-2">
         <div>
           <div className="flex row justify-center flex-wrap p-10 py-10 gap-3 ring-2 ring-white">
             {filmList.slice(0, 1).map((movie) => (
@@ -71,7 +72,7 @@ export default function BrowseLists() {
             ))}
           </div>
         </div>
-      </body>
+      </div>
     </>
   );
 }

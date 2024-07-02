@@ -7,7 +7,6 @@ import { useState, useEffect } from "react";
 type List = {
   id: number;
   page: number;
-  name: string;
 };
 
 //Array of list ids and names
@@ -23,19 +22,17 @@ const useMultipleMovieData = (movieIds: number[], pageNum: number) => {
     ListAPIResponse[]
   >([]);
 
-  const limit = pLimit(2);
-
   useEffect(() => {
     const fetchAllMoviesData = async () => {
       try {
         const response = await Promise.all(
-          movieIds.map((id) =>
-            limit(() =>
+          movieIds
+            .slice(0, 1)
+            .map((id) =>
               fetch(
                 `https://api.themoviedb.org/3/movie/${id}/lists?api_key=${apikey}&page=${pageNum}`
               )
             )
-          )
         );
         //need to see if this is even needed
         const data: ListAPIResponse[] = await Promise.all(
