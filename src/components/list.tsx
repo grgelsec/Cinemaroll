@@ -45,10 +45,11 @@ export default function BrowseLists() {
   };
 
   // array of movie ids that need to be used to find lists containing the movie id
-  const movieIds: number[] = filmList.slice(0, 2).map((movie) => movie.id);
-  console.log(movieIds);
+  //maybe use flat map idk
+  const movieIds: number[] = filmList.map((movie) => movie.id);
+  //console.log(movieIds);
   //const { multipleMovieLists } = useMultipleMovieData(movieIds, pageNum);
-  //console.log(multipleMovieLists.slice(0, 10));
+  //console.log(multipleMovieLists);
 
   return (
     <>
