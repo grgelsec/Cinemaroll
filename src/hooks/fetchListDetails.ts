@@ -2,9 +2,6 @@ import { useEffect, useState } from "react";
 
 type List = {
   created_by: string;
-  description: string;
-  item_count: number;
-  id: number;
 };
 
 type ListAPIResponse = {
@@ -22,9 +19,7 @@ const useListDetails = (listID: number[], pageNum: number) => {
       try {
         const response = await Promise.all(
           listID.map((id) =>
-            fetch(
-              `https://api.themoviedb.org/3/list/${id}?api_key=${api_key}&page=1`
-            )
+            fetch(`https://api.themoviedb.org/3/list/${id}?api_key=${api_key}`)
           )
         );
 
@@ -38,7 +33,7 @@ const useListDetails = (listID: number[], pageNum: number) => {
       }
     };
     getList();
-  }, [pageNum, listID]);
+  }, [listID, pageNum]);
 
   return { listDetails };
 };

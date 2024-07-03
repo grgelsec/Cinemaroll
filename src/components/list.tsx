@@ -34,14 +34,17 @@ export default function BrowseLists() {
     () => filmList.map((movie) => movie.id),
     [filmList]
   );
+  console.log(movieIds);
   const { multipleMovieLists } = useMultipleMovieData(movieIds, 1);
   const listIds: number[] = useMemo(
-    () => multipleMovieLists.slice(0, 1).map((list) => list.id),
+    () => multipleMovieLists.slice(0, 20).map((list) => list.id),
     [multipleMovieLists]
   );
   console.log(listIds);
   const { listDetails } = useListDetails(listIds, 1);
-  const listInfo = listDetails.slice(0, 1).map((list) => list.id);
+  const listInfo = listDetails
+    .slice(0, 1)
+    .map((listtest) => listtest.created_by);
   console.log(listInfo);
 
   //problem fixed: first render, useMovies is called and results are saved to the state which triggers a re-render
