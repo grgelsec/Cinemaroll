@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 type List = {
-  created_by: string;
+  item_count: number;
 };
 
 type ListAPIResponse = {

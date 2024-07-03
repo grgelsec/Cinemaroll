@@ -42,9 +42,7 @@ export default function BrowseLists() {
   );
   console.log(listIds);
   const { listDetails } = useListDetails(listIds, 1);
-  const listInfo = listDetails
-    .slice(0, 1)
-    .map((listtest) => listtest.created_by);
+  const listInfo = useMemo(() => listDetails.slice(0, 20), [listDetails]);
   console.log(listInfo);
 
   //problem fixed: first render, useMovies is called and results are saved to the state which triggers a re-render
