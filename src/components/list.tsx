@@ -1,22 +1,12 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import NavBar from "./navbar";
 import useMovies from "../hooks/fetchMovies";
 import useMultipleMovieData from "../hooks/fetchListInMultiple";
+import useListDetails from "../hooks/fetchListDetails";
 
 //TODO: START SMALL get movie ID from Movies. Put the movie ID into List containing MovieID and snag the ID and store. Then find the list details and
 //TODO: Big picture: useMovies returns a list of movies => Store all of the movie ids on that page into an array => use promise.all to map each id to an API call that returns all of the lists that all of those movies appear in => Store the list id in an array => Map each list id to the api call that returns list details which can then be used to create the lists in the frontend.
-
-// //each list contains id and name
-// type List = {
-//   id: number;
-//   name: string;
-// };
-
-// //Array of list ids and names
-// type ListAPIResponse = {
-//   results: List[];
-// };
 
 export default function BrowseLists() {
   //keeps track of page #
@@ -25,13 +15,8 @@ export default function BrowseLists() {
   //contains all latest movies
   const { filmList } = useMovies(pageNum);
 
-  // contains info (name, list id) of lists that contain a certain movie
-  // takes page # and movieID
-  // const { listInfo } = useListContainsMovie(pageNum, 0);
-
   // contains list details (created_by, description, item_count)
   // takes page # and listID
-  //const { listDetails } = useListDetails(pageNum, 0);
 
   // goes back one page
   const decrementPage = () => {
@@ -45,11 +30,23 @@ export default function BrowseLists() {
   };
 
   // array of movie ids that need to be used to find lists containing the movie id
-  //maybe use flat map idk
-  const movieIds: number[] = filmList.map((movie) => movie.id);
-  //console.log(movieIds);
-  //const { multipleMovieLists } = useMultipleMovieData(movieIds, pageNum);
-  //console.log(multipleMovieLists);
+  const movieIds: number[] = useMemo(
+    () => filmList.map((movie) => movie.id),
+    [filmList]
+  );
+  const { multipleMovieLists } = useMultipleMovieData(movieIds, 1);
+  const listIds: number[] = useMemo(
+    () => multipleMovieLists.slice(0, 1).map((list) => list.id),
+    [multipleMovieLists]
+  );
+  console.log(listIds);
+  const { listDetails } = useListDetails(listIds, 1);
+  const listInfo = listDetails.slice(0, 1).map((list) => list.id);
+  console.log(listInfo);
+
+  //problem fixed: first render, useMovies is called and results are saved to the state which triggers a re-render
+  // second  re-render triggered the second api call which saves to the state causing another re-reder
+  // the last re-render restarted the whole process which is why each repeated result returned the first data.
 
   return (
     <>
