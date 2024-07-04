@@ -3,12 +3,15 @@ import { useEffect, useState } from "react";
 type List = {
   item_count: number;
 };
+/*
+Lesson Learned: Not every api url is going to have a results array in their JSON
 
 type ListAPIResponse = {
   results: List[];
 };
+*/
 
-const useListDetails = (listID: number[], pageNum: number) => {
+const useListDetails = (listID: number[]) => {
   const [listDetails, setListDetails] = useState<List[]>([]);
 
   useEffect(() => {
@@ -23,17 +26,17 @@ const useListDetails = (listID: number[], pageNum: number) => {
           )
         );
 
-        const data: ListAPIResponse[] = await Promise.all(
+        const data: List[] = await Promise.all(
           response.map((response) => response.json())
         );
-        const allResults = data.flatMap((response) => response.results);
-        setListDetails(allResults);
+        //const allResults = data.flatMap((response) => response);
+        setListDetails(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
     getList();
-  }, [listID, pageNum]);
+  }, [listID]);
 
   return { listDetails };
 };

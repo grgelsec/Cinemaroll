@@ -2,11 +2,8 @@
 import { useMemo, useState } from "react";
 import NavBar from "./navbar";
 import useMovies from "../hooks/fetchMovies";
-import useMultipleMovieData from "../hooks/fetchListInMultiple";
+import useMultipleMovieData from "../hooks/fetchListContainingMovieID";
 import useListDetails from "../hooks/fetchListDetails";
-
-//TODO: START SMALL get movie ID from Movies. Put the movie ID into List containing MovieID and snag the ID and store. Then find the list details and
-//TODO: Big picture: useMovies returns a list of movies => Store all of the movie ids on that page into an array => use promise.all to map each id to an API call that returns all of the lists that all of those movies appear in => Store the list id in an array => Map each list id to the api call that returns list details which can then be used to create the lists in the frontend.
 
 export default function BrowseLists() {
   //keeps track of page #
@@ -35,14 +32,20 @@ export default function BrowseLists() {
     [filmList]
   );
   console.log(movieIds);
-  const { multipleMovieLists } = useMultipleMovieData(movieIds, 1);
+
+  const { multipleMovieLists } = useMultipleMovieData(movieIds);
   const listIds: number[] = useMemo(
     () => multipleMovieLists.slice(0, 20).map((list) => list.id),
     [multipleMovieLists]
   );
+
   console.log(listIds);
-  const { listDetails } = useListDetails(listIds, 1);
-  const listInfo = useMemo(() => listDetails.slice(0, 20), [listDetails]);
+
+  const { listDetails } = useListDetails(listIds);
+  const listInfo = useMemo(
+    () => listDetails.map((listest) => listest),
+    [listDetails]
+  );
   console.log(listInfo);
 
   //problem fixed: first render, useMovies is called and results are saved to the state which triggers a re-render

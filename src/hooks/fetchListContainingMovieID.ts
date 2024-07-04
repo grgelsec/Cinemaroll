@@ -1,8 +1,5 @@
 import { useState, useEffect } from "react";
 
-//need to use promise.all to make a hook that runs movieids through a hook
-//TODO: Filer out the ones with a blank description?
-//each list contains id and name
 type List = {
   id: number;
 };
@@ -13,8 +10,7 @@ type ListAPIResponse = {
 };
 
 //hook that takes in an array of movie ids
-const useMultipleMovieData = (movieIds: number[], pageNum: number) => {
-  //const baseURL = "https://api.themoviedb.org/3/movie/";
+const useMultipleMovieData = (movieIds: number[]) => {
   const [multipleMovieLists, setMultipleMovieList] = useState<List[]>([]);
 
   useEffect(() => {
@@ -25,7 +21,7 @@ const useMultipleMovieData = (movieIds: number[], pageNum: number) => {
         const response = await Promise.all(
           movieIds.map((id) =>
             fetch(
-              `https://api.themoviedb.org/3/movie/${id}/lists?api_key=${apikey}&page=${pageNum}`
+              `https://api.themoviedb.org/3/movie/${id}/lists?api_key=${apikey}`
             )
           )
         );
@@ -41,7 +37,7 @@ const useMultipleMovieData = (movieIds: number[], pageNum: number) => {
       }
     };
     fetchAllMoviesData();
-  }, [movieIds, pageNum]);
+  }, [movieIds]);
   return { multipleMovieLists };
 };
 
