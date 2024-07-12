@@ -66,9 +66,22 @@ export default function BrowseLists() {
       <div className="flex col justify-center flex-wrap lg:px-40 md:px-40 sm:px-40 space-y-10 ring-white ring-2">
         <div className="flex">
           <div className="flex flex-wrap col justify-center p-10 space-y-5 ring-2 ring-red-500">
-            {listInfo.slice(0, 5).map((movie) => (
-              <div className="flex w-11/12 p-24 ring-green-500 ring-2">
-                <h1 className="font-monotext-white"></h1>
+            {listInfo.slice(0, 20).map((list) => (
+              <div className="flex flex-row w-8/12 p-24 space-x-24 rounded-xl bg-black bg-opacity-50 ring-white ring">
+                <div className="flex flex-col w-auto flex-wrap row ring-2 ">
+                  <h1 className="text-xl font-mono font-bold text-white">
+                    {list.name}
+                  </h1>
+                  <h3 className="text-lg font-mono text-white">
+                    Created by: {list.created_by}
+                  </h3>
+                  <h3 className="text-md font-mono font-light text-white">
+                    {list.item_count} movies
+                  </h3>
+                  <h3 className="text-md font-mono italic text-white">
+                    {list.description}
+                  </h3>
+                </div>
               </div>
             ))}
           </div>
