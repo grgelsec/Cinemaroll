@@ -34,6 +34,9 @@ export default function BrowseLists() {
   console.log(movieIds);
 
   const { multipleMovieLists } = useMultipleMovieData(movieIds);
+  // useMemo keeps this from re-calculating everytime something is change by remebering the results of the api call,
+  // and only re-calculating when the dependencies change
+  // so if the page number changes then this is recalled
   const listIds: number[] = useMemo(
     () => multipleMovieLists.slice(0, 20).map((list) => list.id),
     [multipleMovieLists]
@@ -53,28 +56,24 @@ export default function BrowseLists() {
   // the last re-render restarted the whole process which is why each repeated result returned the first data.
 
   return (
-    <>
+    <div className="hide-scrollbar">
       <NavBar></NavBar>
       <header className="flex ring-2 ring-white py-6 justify-center">
         <h1 className="text-whitePurp font-extrabold text-3xl border-b font-mono">
           Lists
         </h1>
       </header>
-      <div className="flex col flex-wrap lg:px-40 md:px-40 sm:px-40 space-y-10 ring-white ring-2">
-        <div>
-          <div className="flex row justify-center flex-wrap p-10 py-10 gap-3 ring-2 ring-white">
-            {filmList.slice(0, 1).map((movie) => (
-              <div>
-                <h1 className="font-mono text-white">{movie.title}</h1>
-                <img
-                  className="flex items-center rounded-xl lg:w-2/12 md:w-2/12 sm:w-2/12 xs:w-1/12 hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy mt-3"
-                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                ></img>
+      <div className="flex col justify-center flex-wrap lg:px-40 md:px-40 sm:px-40 space-y-10 ring-white ring-2">
+        <div className="flex">
+          <div className="flex flex-wrap col justify-center p-10 space-y-5 ring-2 ring-red-500">
+            {listInfo.slice(0, 5).map((movie) => (
+              <div className="flex w-11/12 p-24 ring-green-500 ring-2">
+                <h1 className="font-monotext-white"></h1>
               </div>
             ))}
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
