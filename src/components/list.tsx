@@ -67,7 +67,7 @@ export default function BrowseLists() {
         <div className="flex">
           <div className="flex flex-wrap col justify-center p-10 space-y-5 ring-2 ring-red-500">
             {listInfo.slice(0, 20).map((list) => (
-              <div className="flex flex-row w-8/12 p-24 space-x-24 rounded-xl bg-black bg-opacity-50 ring-white ring">
+              <div className="flex justify-center flex-row w-8/12 p-24 space-x-24 rounded-xl bg-black bg-opacity-50 ring-white ring">
                 <div className="flex flex-col w-auto flex-wrap row ring-2 ">
                   <h1 className="text-xl font-mono font-bold text-white">
                     {list.name}
