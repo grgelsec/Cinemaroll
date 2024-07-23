@@ -5,7 +5,7 @@ type List = {
   item_count: number;
   description: string;
   name: string;
-  items: [];
+  items: [backdrop_path: string];
 };
 /*
 Lesson Learned: Not every api url is going to have a results array in their JSON

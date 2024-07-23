@@ -1,6 +1,7 @@
 import { useState } from "react";
 import NavBar from "./navbar";
 import useMovies from "../hooks/fetchMovies";
+import { Link } from "react-router-dom";
 
 //TODO: Need buttons to change the page while simutaniusly chaging the fetched page
 
@@ -35,13 +36,18 @@ export default function Films() {
               <h1 className="py-1 font-extrabold"></h1>
               <div className="flex col flex-wrap justify-center gap-3 ">
                 {filmList.slice(0, 20).map((movie) => (
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                    className="flex items-center rounded-xl lg:w-2/12 md:w-3/12 sm:w-4/12 xs:w-1/12 hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy mt-3"
-                  ></img>
+                  <Link
+                    to={"/lists"}
+                    className="flex items-center lg:w-2/12 md:w-3/12 sm:w-4/12 xs:w-1/12 mt-3"
+                  >
+                    <img
+                      src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                      className="hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy rounded-xl"
+                    ></img>
+                  </Link>
                 ))}
               </div>
-              <div className="flex justify-center gap-2 space-y-3 mb-3 flex-wrap lg:w-1/12">
+              <div className="flex justify-center gap-5 space-y-3 mb-3 flex-wrap lg:w-1/12">
                 <div className="flex justify-center gap-2 space-y-3 w-8/12 lg:w-6/12 md:w-8/12 sm:w-10/12 xs:w-/12">
                   <button
                     className="flex p-2 bg-whitePurp mt-3 rounded-lg"

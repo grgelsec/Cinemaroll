@@ -58,17 +58,17 @@ export default function BrowseLists() {
   return (
     <div className="hide-scrollbar">
       <NavBar></NavBar>
-      <header className="flex ring-2 ring-white py-6 justify-center">
+      <header className="flex py-6 justify-center">
         <h1 className="text-whitePurp font-extrabold text-3xl border-b font-mono">
           Lists
         </h1>
       </header>
-      <div className="flex col justify-center flex-wrap lg:px-40 md:px-40 sm:px-40 space-y-10 ring-white ring-2">
+      <div className="flex col justify-center flex-wrap lg:px-40 md:px-40 sm:px-40 space-y-10">
         <div className="flex">
-          <div className="flex flex-wrap col justify-center p-10 space-y-5 ring-2 ring-red-500">
+          <div className="flex flex-wrap col justify-center  space-y-5">
             {listInfo.slice(0, 20).map((list) => (
-              <div className="flex justify-center flex-row w-8/12 p-24 space-x-24 rounded-xl bg-black bg-opacity-50 ring-white ring">
-                <div className="flex flex-col w-auto flex-wrap row ring-2 ">
+              <div className="flex justify-center flex-row w-8/12 p-24 space-x-24 rounded-xl bg-white bg-opacity-30 ring-white ring-2">
+                <div className="flex flex-col w-auto flex-wrap row">
                   <h1 className="text-xl font-mono font-bold text-white">
                     {list.name}
                   </h1>
