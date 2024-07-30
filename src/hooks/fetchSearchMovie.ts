@@ -21,13 +21,13 @@ type MovieAPIResponse = {
   results: Movie[];
 };
 
-const useSearchMovies = (movieID: number, pageNum: number) => {
+const useSearchMovies = (movie_id: number, pageNum: number) => {
   const [filmInfo, setFilmInfo] = useState<Movie[]>([]);
 
   useEffect(() => {
     const searchMovie = async () => {
       const apikey = import.meta.env.VITE_API_URL3;
-      const baseUrl = "https://api.themoviedb.org/3/movie/{movie_id}";
+      const baseUrl = `https://api.themoviedb.org/3/movie/${movie_id}`;
 
       try {
         const response = await fetch(
@@ -45,7 +45,7 @@ const useSearchMovies = (movieID: number, pageNum: number) => {
       }
     };
     searchMovie();
-  }, [movieID, pageNum]);
+  }, [movie_id, pageNum]);
 
   return { filmInfo };
 };

@@ -37,7 +37,7 @@ export default function Films() {
               <div className="flex col flex-wrap justify-center gap-3 ">
                 {filmList.slice(0, 20).map((movie) => (
                   <Link
-                    to="/film"
+                    to={`/film/${movie.id}`}
                     className="flex items-center lg:w-2/12 md:w-3/12 sm:w-4/12 xs:w-1/12 mt-3"
                   >
                     <img
