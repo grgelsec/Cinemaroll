@@ -37,11 +37,12 @@ export default function Films() {
               <div className="flex col flex-wrap justify-center gap-3 ">
                 {filmList.slice(0, 20).map((movie) => (
                   <Link
-                    to={"/lists"}
+                    to="/film"
                     className="flex items-center lg:w-2/12 md:w-3/12 sm:w-4/12 xs:w-1/12 mt-3"
                   >
                     <img
                       src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                      id={`${movie.title}`}
                       className="hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy rounded-xl"
                     ></img>
                   </Link>

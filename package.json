@@ -14,6 +14,7 @@
     "dotenv": "^16.4.5",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.4",
+    "node-fetch": "^2.7.0",
     "openai": "^4.47.1",
     "p-limit": "^5.0.0",
     "punycode": "^2.3.1",
