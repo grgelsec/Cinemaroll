@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import NavBar from "./navbar";
 import useMovies from "../hooks/fetchMovies";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 //TODO: Need buttons to change the page while simutaniusly chaging the fetched page
-
 export default function Films() {
   const [pageNum, setPage] = useState(1);
   const { filmList } = useMovies(pageNum);
@@ -18,6 +17,14 @@ export default function Films() {
   const incrementPage = () => {
     setPage((page) => page + 1);
   };
+
+  const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    const elementID = event.currentTarget.id;
+    return elementID;
+  };
+
+  const { id } = useParams();
+  console.log(id);
 
   return (
     <>
@@ -38,7 +45,9 @@ export default function Films() {
                 {filmList.slice(0, 20).map((movie) => (
                   <Link
                     to={`/film/${movie.id}`}
+                    id={`${movie.id}`}
                     className="flex items-center lg:w-2/12 md:w-3/12 sm:w-4/12 xs:w-1/12 mt-3"
+                    onClick={handleClick}
                   >
                     <img
                       src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
