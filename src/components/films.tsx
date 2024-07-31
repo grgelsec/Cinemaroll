@@ -1,7 +1,7 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import NavBar from "./navbar";
 import useMovies from "../hooks/fetchMovies";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 //TODO: Need buttons to change the page while simutaniusly chaging the fetched page
 export default function Films() {
@@ -18,13 +18,12 @@ export default function Films() {
     setPage((page) => page + 1);
   };
 
-  const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+  const useHandleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    const navigate = useNavigate();
     const elementID = event.currentTarget.id;
+    navigate(`/film/${elementID}`);
     return elementID;
   };
-
-  const { id } = useParams();
-  console.log(id);
 
   return (
     <>
@@ -47,7 +46,7 @@ export default function Films() {
                     to={`/film/${movie.id}`}
                     id={`${movie.id}`}
                     className="flex items-center lg:w-2/12 md:w-3/12 sm:w-4/12 xs:w-1/12 mt-3"
-                    onClick={handleClick}
+                    onClick={useHandleClick}
                   >
                     <img
                       src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
@@ -70,9 +69,9 @@ export default function Films() {
                       className="w-6 h-6"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M7.72 12.53a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 1 1 1.06 1.06L9.31 12l6.97 6.97a.75.75 0 1 1-1.06 1.06l-7.5-7.5Z"
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                       />
                     </svg>
                   </button>
