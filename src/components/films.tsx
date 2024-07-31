@@ -1,7 +1,7 @@
 import { useState } from "react";
 import NavBar from "./navbar";
 import useMovies from "../hooks/fetchMovies";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 //TODO: Need buttons to change the page while simutaniusly chaging the fetched page
 export default function Films() {
@@ -18,11 +18,11 @@ export default function Films() {
     setPage((page) => page + 1);
   };
 
-  const useHandleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    const navigate = useNavigate();
+  const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    //const navigate = useNavigate();
     const elementID = event.currentTarget.id;
-    navigate(`/film/${elementID}`);
-    return elementID;
+    //navigate(`/film/${elementID}`);
+    return <p className="text-white">{elementID}</p>;
   };
 
   return (
@@ -45,12 +45,12 @@ export default function Films() {
                   <Link
                     to={`/film/${movie.id}`}
                     id={`${movie.id}`}
+                    onClick={handleClick}
                     className="flex items-center lg:w-2/12 md:w-3/12 sm:w-4/12 xs:w-1/12 mt-3"
-                    onClick={useHandleClick}
                   >
                     <img
                       src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                      id={`${movie.title}`}
+                      id={`${movie.id}`}
                       className="hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy rounded-xl"
                     ></img>
                   </Link>
@@ -101,4 +101,10 @@ export default function Films() {
       </div>
     </>
   );
+}
+
+export function Film() {
+  const params = useParams();
+  console.log(params.movieID);
+  return <div className="text-white">penis</div>;
 }

@@ -1,11 +1,10 @@
 import Home from "./components/homepage";
-import Films from "./components/films";
+import Films, { Film } from "./components/films";
 import { Route, Routes } from "react-router-dom";
 import Create from "./components/createaccount";
 import SignIn from "./components/signin";
 import FilmLists from "./components/list";
 import Reccomend from "./components/reccomender";
-import Film from "./components/film";
 
 function App() {
   return (
@@ -17,7 +16,7 @@ function App() {
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/lists" element={<FilmLists />} />
         <Route path="/reccomender" element={<Reccomend />} />
-        <Route path="/film" element={<Film />} />
+        <Route path="/film/:movieID" element={<Film />} />
       </Routes>
     </body>
   );
