@@ -21,7 +21,7 @@ type MovieAPIResponse = {
   results: Movie[];
 };
 
-const useSearchMovies = (movie_id: number, pageNum: number) => {
+const useSearchMovies = (movie_id: string | undefined, pageNum: number) => {
   const [filmInfo, setFilmInfo] = useState<Movie[]>([]);
 
   useEffect(() => {

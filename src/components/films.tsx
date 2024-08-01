@@ -2,6 +2,7 @@ import { useState } from "react";
 import NavBar from "./navbar";
 import useMovies from "../hooks/fetchMovies";
 import { Link, useParams } from "react-router-dom";
+import useSearchMovies from "../hooks/fetchSearchMovie";
 
 //TODO: Need buttons to change the page while simutaniusly chaging the fetched page
 export default function Films() {
@@ -105,6 +106,18 @@ export default function Films() {
 
 export function Film() {
   const params = useParams();
-  console.log(params.movieID);
-  return <div className="text-white">penis</div>;
+  const scopedMovie = params.movieID;
+  const { filmInfo } = useSearchMovies(scopedMovie, 1);
+  const { filmList } = useMovies(1);
+  return (
+    <div className="text-white">
+      {filmInfo.map((movie) => (
+        <img
+          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+          id={`${movie.id}`}
+          className="hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy rounded-xl"
+        ></img>
+      ))}
+    </div>
+  );
 }
