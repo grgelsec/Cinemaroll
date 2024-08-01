@@ -17,35 +17,35 @@ type Movie = {
   adult: boolean;
 };
 
-type MovieAPIResponse = {
-  results: Movie[];
-};
+// type MovieAPIResponse = {
+//   results: Movie[];
+// };
 
-const useSearchMovies = (movie_id: string | undefined, pageNum: number) => {
+const useSearchMovies = (movie_id: string | undefined) => {
   const [filmInfo, setFilmInfo] = useState<Movie[]>([]);
 
   useEffect(() => {
     const searchMovie = async () => {
       const apikey = import.meta.env.VITE_API_URL3;
-      const baseUrl = `https://api.themoviedb.org/3/movie/${movie_id}`;
+      const baseUrl = `https://api.themoviedb.org/3/movie`;
 
       try {
         const response = await fetch(
-          `${baseUrl}?api_key=${apikey}&page=${pageNum}`
+          `${baseUrl}/${movie_id}?api_key=${apikey}`
         );
 
         if (!response.ok) {
           throw new Error(`HTTP error: ${response.status}`);
         }
 
-        const data: MovieAPIResponse = await response.json();
-        setFilmInfo(data.results);
+        const data: Movie[] = await response.json();
+        setFilmInfo(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
     searchMovie();
-  }, [movie_id, pageNum]);
+  }, [movie_id]);
 
   return { filmInfo };
 };

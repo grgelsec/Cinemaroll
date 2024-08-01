@@ -3,6 +3,7 @@ import NavBar from "./navbar";
 import useMovies from "../hooks/fetchMovies";
 import { Link, useParams } from "react-router-dom";
 import useSearchMovies from "../hooks/fetchSearchMovie";
+import Movies from "./trending";
 
 //TODO: Need buttons to change the page while simutaniusly chaging the fetched page
 export default function Films() {
@@ -20,9 +21,7 @@ export default function Films() {
   };
 
   const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    //const navigate = useNavigate();
     const elementID = event.currentTarget.id;
-    //navigate(`/film/${elementID}`);
     return <p className="text-white">{elementID}</p>;
   };
 
@@ -87,9 +86,9 @@ export default function Films() {
                       className="w-6 h-6"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                       />
                     </svg>
                   </button>
@@ -107,13 +106,14 @@ export default function Films() {
 export function Film() {
   const params = useParams();
   const scopedMovie = params.movieID;
-  const { filmInfo } = useSearchMovies(scopedMovie, 1);
-  const { filmList } = useMovies(1);
+  const { filmInfo } = useSearchMovies(scopedMovie);
+  const filmDetails = Object.values(filmInfo);
+  console.log(filmInfo);
   return (
-    <div className="text-white">
-      {filmInfo.map((movie) => (
+    <div className="">
+      {filmDetails.map((movie) => (
         <img
-          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+          src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
           id={`${movie.id}`}
           className="hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy rounded-xl"
         ></img>
