@@ -106,14 +106,26 @@ export default function Films() {
 export function Film() {
   const params = useParams();
   const scopedMovie = params.movieID;
+  //this is how you have to grab an endpoint if you are returning a single object
   const { filmInfo } = useSearchMovies(scopedMovie);
   console.log(filmInfo);
   return (
     <div className="">
-      <img
-        src={`https://image.tmdb.org/t/p/w500/${filmInfo?.poster_path}`}
-        className="hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy rounded-xl"
-      ></img>
+      <div className="flex relative justify-center w-screen h-screen">
+        <img
+          src={`https://image.tmdb.org/t/p/w500/${filmInfo?.backdrop_path}`}
+          className="w-screen absolute object-cover opacity-10"
+        />
+        <div>
+          <NavBar></NavBar>
+          <div>
+            <img
+              src={`https://image.tmdb.org/t/p/w500/${filmInfo?.poster_path}`}
+              className="hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy rounded-xl"
+            ></img>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
