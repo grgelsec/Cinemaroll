@@ -1,20 +1,24 @@
 import { useState, useEffect } from "react";
 
 type Movie = {
-  poster_path: string;
-  title: string;
-  vote_average: number;
-  vote_count: number;
-  genre_ids: number[];
-  popularity: number;
-  release_date: string;
-  id: number;
-  overview: string;
   backdrop_path: string;
+  belongs_to_collection: {
+    id: number;
+    name: string;
+    poster_path: string;
+    backdrop_path: string;
+  };
+  budget: number;
+  id: number;
+  origin_country: [string];
   original_language: string;
   original_title: string;
-  video: boolean;
-  adult: boolean;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: string;
+  revenue: number;
+  runtime: number;
 };
 
 // type MovieAPIResponse = {
@@ -22,7 +26,7 @@ type Movie = {
 // };
 
 const useSearchMovies = (movie_id: string | undefined) => {
-  const [filmInfo, setFilmInfo] = useState<Movie[]>([]);
+  const [filmInfo, setFilmInfo] = useState<Movie>();
 
   useEffect(() => {
     const searchMovie = async () => {
@@ -38,7 +42,7 @@ const useSearchMovies = (movie_id: string | undefined) => {
           throw new Error(`HTTP error: ${response.status}`);
         }
 
-        const data: Movie[] = await response.json();
+        const data: Movie = await response.json();
         setFilmInfo(data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -46,7 +50,6 @@ const useSearchMovies = (movie_id: string | undefined) => {
     };
     searchMovie();
   }, [movie_id]);
-
   return { filmInfo };
 };
 

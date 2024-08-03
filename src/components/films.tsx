@@ -107,17 +107,13 @@ export function Film() {
   const params = useParams();
   const scopedMovie = params.movieID;
   const { filmInfo } = useSearchMovies(scopedMovie);
-  const filmDetails = Object.values(filmInfo);
   console.log(filmInfo);
   return (
     <div className="">
-      {filmDetails.map((movie) => (
-        <img
-          src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
-          id={`${movie.id}`}
-          className="hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy rounded-xl"
-        ></img>
-      ))}
+      <img
+        src={`https://image.tmdb.org/t/p/w500/${filmInfo?.poster_path}`}
+        className="hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy rounded-xl"
+      ></img>
     </div>
   );
 }
