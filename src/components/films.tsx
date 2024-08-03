@@ -118,11 +118,20 @@ export function Film() {
         />
         <div>
           <NavBar></NavBar>
-          <div>
-            <img
-              src={`https://image.tmdb.org/t/p/w500/${filmInfo?.poster_path}`}
-              className="hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy rounded-xl"
-            ></img>
+          <div className="flex justify-center px-40 w-screen ring-2 mt-10">
+            <div className="flex w-screen justify-center ring-2">
+              <div className="flex justify-center col-2 space-x-5 w-6/12 ring-2">
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${filmInfo?.poster_path}`}
+                  className="w-8/12 rounded-xl ring-2 ring-green-500"
+                ></img>
+                <div className="flex items-center">
+                  <p className="text-white font-bold text-2xl ring-2 ring-white">
+                    {filmInfo?.original_title}
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
