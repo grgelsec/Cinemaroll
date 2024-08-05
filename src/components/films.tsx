@@ -110,7 +110,7 @@ export function Film() {
   const { filmInfo } = useSearchMovies(scopedMovie);
   console.log(filmInfo);
   return (
-    <div className="hide-scrollbar">
+    <div className="hide-scrollbar text-white font-mono">
       <div className="flex relative justify-center w-screen h-screen">
         <img
           src={`https://image.tmdb.org/t/p/w500/${filmInfo?.backdrop_path}`}
@@ -120,19 +120,35 @@ export function Film() {
           <NavBar></NavBar>
           <div className="flex justify-center px-40 w-screen ring-2 ring-white mt-10">
             <div className="flex flex-wrap w-screen justify-center ring-2 ring-green-500">
-              <div className="flex justify-center col-2 space-x-5 lg:w-3/12 md:w-3/12 sm:w-4/12 xs:w-1/12 ring-2">
+              <div className="flex justify-center space-x-5 lg:w-3/12 md:w-3/12 sm:w-4/12 xs:w-2/12 ring-2">
                 <img
                   src={`https://image.tmdb.org/t/p/w500/${filmInfo?.poster_path}`}
                   className="rounded-xl ring-2 ring-green-500"
                 ></img>
-                <div className="flex items-center">
-                  <p className="text-white font-bold lg:text-2xl md:text-lg sm:text-md ring-2 ring-white">
+              </div>
+              <div className="flex justify-center w-screen text-white ring-2 ring-red-500">
+                <div className="flex justify-center ring-2 w-6/12 p-10 ring-orange-500">
+                  <p className="flex text-white font-bold lg:text-2xl md:text-lg sm:text-md ring-2 ring-white">
                     {filmInfo?.original_title}
                   </p>
                 </div>
               </div>
-              <div className="flex justify-center w-screen text-white ring-2">
-                <div className="ring-2 w-6/12 p-10"></div>
+              <div className="flex justify-center ring-2 w-8/12 space-x-5 p-10 ring-blue-500">
+                <div className="flex col-2 w-1/2 p-10 ring-2 ring-white">
+                  <div className="flex flex-row flex-wrap justify-center p-10 w-full ring-2">
+                    <h1 className="flex p-5 w-full justify-center text-white text-lg ring-2">
+                      Description:
+                    </h1>
+                    <p className="w-full p-5 ring-2 ">{filmInfo?.overview}</p>
+                    <h1 className="flex p-2 w-full justify-center text-white text-lg ring-2">
+                      Release Date:
+                    </h1>
+                    <p className="flex justify-center w-full p-5 ring-2 ">
+                      {filmInfo?.release_date}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex col-2 w-1/2 p-10 ring-2 ring-white"></div>
               </div>
             </div>
           </div>
