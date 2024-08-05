@@ -110,26 +110,29 @@ export function Film() {
   const { filmInfo } = useSearchMovies(scopedMovie);
   console.log(filmInfo);
   return (
-    <div className="">
+    <div className="hide-scrollbar">
       <div className="flex relative justify-center w-screen h-screen">
         <img
           src={`https://image.tmdb.org/t/p/w500/${filmInfo?.backdrop_path}`}
-          className="w-screen absolute object-cover opacity-10"
+          className="w-screen h-screen absolute opacity-10"
         />
         <div>
           <NavBar></NavBar>
-          <div className="flex justify-center px-40 w-screen ring-2 mt-10">
-            <div className="flex w-screen justify-center ring-2">
-              <div className="flex justify-center col-2 space-x-5 w-6/12 ring-2">
+          <div className="flex justify-center px-40 w-screen ring-2 ring-white mt-10">
+            <div className="flex flex-wrap w-screen justify-center ring-2 ring-green-500">
+              <div className="flex justify-center col-2 space-x-5 lg:w-3/12 md:w-3/12 sm:w-4/12 xs:w-1/12 ring-2">
                 <img
                   src={`https://image.tmdb.org/t/p/w500/${filmInfo?.poster_path}`}
-                  className="w-8/12 rounded-xl ring-2 ring-green-500"
+                  className="rounded-xl ring-2 ring-green-500"
                 ></img>
                 <div className="flex items-center">
-                  <p className="text-white font-bold text-2xl ring-2 ring-white">
+                  <p className="text-white font-bold lg:text-2xl md:text-lg sm:text-md ring-2 ring-white">
                     {filmInfo?.original_title}
                   </p>
                 </div>
+              </div>
+              <div className="flex justify-center w-screen text-white ring-2">
+                <div className="ring-2 w-6/12 p-10"></div>
               </div>
             </div>
           </div>
