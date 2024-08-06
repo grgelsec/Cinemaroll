@@ -102,13 +102,14 @@ export default function Films() {
     </>
   );
 }
-
+//what if i make the sky blue ring's background codblack and then do a gradient
 export function Film() {
   const params = useParams();
   const scopedMovie = params.movieID;
   //this is how you have to grab an endpoint if you are returning a single object
   const { filmInfo } = useSearchMovies(scopedMovie);
   console.log(filmInfo);
+
   return (
     <div className="hide-scrollbar text-white font-mono">
       <div className="flex relative justify-center w-screen h-screen">
@@ -133,22 +134,37 @@ export function Film() {
                   </p>
                 </div>
               </div>
-              <div className="flex justify-center ring-2 w-8/12 space-x-5 p-10 ring-blue-500">
-                <div className="flex col-2 w-1/2 p-10 ring-2 ring-white">
+              <div className="flex justify-center ring-2 w-screen space-x-5 p-10 bg-codblack ring-blue-500">
+                <div className="flex col-2 w-1/2 p-10 rin-2 ring-white">
                   <div className="flex flex-row flex-wrap justify-center p-10 w-full ring-2">
-                    <h1 className="flex p-5 w-full justify-center text-white text-lg ring-2">
+                    <h1 className="flex p-5 w-full justify-left text-white text-lg ring-2">
                       Description:
                     </h1>
                     <p className="w-full p-5 ring-2 ">{filmInfo?.overview}</p>
-                    <h1 className="flex p-2 w-full justify-center text-white text-lg ring-2">
+                    <h1 className="flex p-2 w-full justify-left text-white text-lg ring-2">
                       Release Date:
                     </h1>
-                    <p className="flex justify-center w-full p-5 ring-2 ">
+                    <p className="flex justify-left w-full p-5 ring-2 ">
                       {filmInfo?.release_date}
                     </p>
                   </div>
                 </div>
-                <div className="flex col-2 w-1/2 p-10 ring-2 ring-white"></div>
+                <div className="flex col-2 w-1/2 p-10 ring-2 ring-white">
+                  <div className="flex flex-row flex-wrap justify-center p-10 w-full ring-2">
+                    <h1 className="flex w-full justify-left text-white text-lg ring-2">
+                      Runtime: {filmInfo?.runtime} min
+                    </h1>
+                    <h1 className="flex w-full justify-left text-white text-lg ring-2">
+                      Revenue: ${filmInfo?.revenue}
+                    </h1>
+                    <h1 className="flex w-full justify-left text-white text- ring-2">
+                      Original Language: {filmInfo?.original_language}
+                    </h1>
+                    <h1 className="flex w-full justify-left text-white text- ring-2">
+                      Origin Country: {filmInfo?.origin_country}
+                    </h1>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
