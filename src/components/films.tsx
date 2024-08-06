@@ -3,7 +3,7 @@ import NavBar from "./navbar";
 import useMovies from "../hooks/fetchMovies";
 import { Link, useParams } from "react-router-dom";
 import useSearchMovies from "../hooks/fetchSearchMovie";
-import Movies from "./trending";
+import useRecommended from "../hooks/fetchRecommended";
 
 //TODO: Need buttons to change the page while simutaniusly chaging the fetched page
 export default function Films() {
@@ -45,7 +45,6 @@ export default function Films() {
                   <Link
                     to={`/film/${movie.id}`}
                     id={`${movie.id}`}
-                    onClick={handleClick}
                     className="flex items-center lg:w-2/12 md:w-3/12 sm:w-4/12 xs:w-1/12 mt-3"
                   >
                     <img
@@ -108,6 +107,8 @@ export function Film() {
   const scopedMovie = params.movieID;
   //this is how you have to grab an endpoint if you are returning a single object
   const { filmInfo } = useSearchMovies(scopedMovie);
+  const { recommendedList } = useRecommended(scopedMovie);
+  console.log(recommendedList);
   console.log(filmInfo);
 
   return (
@@ -163,6 +164,21 @@ export function Film() {
                     <h1 className="flex w-full justify-left text-white text- ring-2">
                       Origin Country: {filmInfo?.origin_country}
                     </h1>
+                    <div className="flex col flex-wrap justify-center gap-3 ">
+                      {recommendedList.slice(0, 4).map((movie) => (
+                        <Link
+                          to={`/film/${movie.id}`}
+                          id={`${movie.id}`}
+                          className="flex items-center lg:w-2/12 md:w-3/12 sm:w-4/12 xs:w-1/12 mt-3"
+                        >
+                          <img
+                            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                            id={`${movie.id}`}
+                            className="hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy rounded-xl"
+                          ></img>
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>

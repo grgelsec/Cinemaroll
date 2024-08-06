@@ -31,7 +31,7 @@ const useRecommended = (movie_id: string | undefined) => {
 
       try {
         const response = await fetch(
-          `${baseUrl}/${movie_id}/recommendations?api_key=${apikey}`
+          `${baseUrl}${movie_id}/recommendations?api_key=${apikey}`
         );
 
         if (!response.ok) {
