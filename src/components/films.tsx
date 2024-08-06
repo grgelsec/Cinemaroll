@@ -120,68 +120,29 @@ export function Film() {
         />
         <div>
           <NavBar></NavBar>
-          <div className="flex justify-center px-40 w-screen ring-2 ring-white mt-10">
-            <div className="flex flex-wrap w-screen justify-center ring-2 ring-green-500">
-              <div className="flex justify-center space-x-5 lg:w-3/12 md:w-3/12 sm:w-4/12 xs:w-2/12 ring-2">
+          <div className="flex justify-center w-screen text-white ring-2 ring-red-500">
+            <div className="flex justify-center ring-2 w-6/12 p-5 ring-orange-500">
+              <p className="flex text-white font-bold lg:text-2xl md:text-lg sm:text-md ring-2 ring-white">
+                {filmInfo?.original_title}
+              </p>
+            </div>
+          </div>
+          <div className="flex justify-center px-20 w-screen ring-2 ring-white mt-10">
+            <div className="flex flex-wrap w-1/3 self-start justify-center ring-2 ring-green-500">
+              <div className="flex justify-center space-x-5 lg:w-8/12 md:w-3/12 sm:w-4/12 xs:w-2/12 ring-2">
                 <img
                   src={`https://image.tmdb.org/t/p/w500/${filmInfo?.poster_path}`}
                   className="rounded-xl ring-2 ring-green-500"
                 ></img>
               </div>
-              <div className="flex justify-center w-screen text-white ring-2 ring-red-500">
-                <div className="flex justify-center ring-2 w-6/12 p-10 ring-orange-500">
-                  <p className="flex text-white font-bold lg:text-2xl md:text-lg sm:text-md ring-2 ring-white">
-                    {filmInfo?.original_title}
-                  </p>
-                </div>
+            </div>
+            <div className="flex col-2 w-2/3 space-x-3 p-10 ring-2 ring-blue-600 text-white font-mono">
+              <div className="flex flex-wrap space-y-3 col w-2/3 p-10 ring-2">
+                <p className="justify-left text-white text-md ring-2">
+                  {filmInfo?.overview}
+                </p>
               </div>
-              <div className="flex justify-center ring-2 w-screen space-x-5 p-10 bg-codblack ring-blue-500">
-                <div className="flex col-2 w-1/2 p-10 rin-2 ring-white">
-                  <div className="flex flex-row flex-wrap justify-center p-10 w-full ring-2">
-                    <h1 className="flex p-5 w-full justify-left text-white text-lg ring-2">
-                      Description:
-                    </h1>
-                    <p className="w-full p-5 ring-2 ">{filmInfo?.overview}</p>
-                    <h1 className="flex p-2 w-full justify-left text-white text-lg ring-2">
-                      Release Date:
-                    </h1>
-                    <p className="flex justify-left w-full p-5 ring-2 ">
-                      {filmInfo?.release_date}
-                    </p>
-                  </div>
-                </div>
-                <div className="flex col-2 w-1/2 p-10 ring-2 ring-white">
-                  <div className="flex flex-row flex-wrap justify-center p-10 w-full ring-2">
-                    <h1 className="flex w-full justify-left text-white text-lg ring-2">
-                      Runtime: {filmInfo?.runtime} min
-                    </h1>
-                    <h1 className="flex w-full justify-left text-white text-lg ring-2">
-                      Revenue: ${filmInfo?.revenue}
-                    </h1>
-                    <h1 className="flex w-full justify-left text-white text- ring-2">
-                      Original Language: {filmInfo?.original_language}
-                    </h1>
-                    <h1 className="flex w-full justify-left text-white text- ring-2">
-                      Origin Country: {filmInfo?.origin_country}
-                    </h1>
-                    <div className="flex col flex-wrap justify-center gap-3 ">
-                      {recommendedList.slice(0, 4).map((movie) => (
-                        <Link
-                          to={`/film/${movie.id}`}
-                          id={`${movie.id}`}
-                          className="flex items-center lg:w-2/12 md:w-3/12 sm:w-4/12 xs:w-1/12 mt-3"
-                        >
-                          <img
-                            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                            id={`${movie.id}`}
-                            className="hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy rounded-xl"
-                          ></img>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <div className="flex col w-1/2 p-10 self-start ring-2"></div>
             </div>
           </div>
         </div>
