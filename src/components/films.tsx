@@ -120,29 +120,52 @@ export function Film() {
         />
         <div>
           <NavBar></NavBar>
-          <div className="flex justify-center w-screen text-white ring-2 ring-red-500">
-            <div className="flex justify-center ring-2 w-6/12 p-5 ring-orange-500">
+          <div className="flex justify-center w-screen text-white ring-2 ring-red-500 mt-10">
+            <div className="flex justify-center bg-white/10 backdrop-blur-md rounded-lg w-4/12 p-5">
               <p className="flex text-white font-bold lg:text-2xl md:text-lg sm:text-md ring-2 ring-white">
                 {filmInfo?.original_title}
               </p>
             </div>
           </div>
-          <div className="flex justify-center px-20 w-screen ring-2 ring-white mt-10">
-            <div className="flex flex-wrap w-1/3 self-start justify-center ring-2 ring-green-500">
-              <div className="flex justify-center space-x-5 lg:w-8/12 md:w-3/12 sm:w-4/12 xs:w-2/12 ring-2">
+          <div className="flex flex-col md:flex-row justify-center w-screen ring-2 ring-white mt-10">
+            <div className="flex flex-wrap self-start justify-center ring-2 ring-green-500">
+              <div className="flex justify-center space-x-5 lg:w-8/12 md:w-8/12 ring-2">
                 <img
                   src={`https://image.tmdb.org/t/p/w500/${filmInfo?.poster_path}`}
                   className="rounded-xl ring-2 ring-green-500"
                 ></img>
               </div>
             </div>
-            <div className="flex col-2 w-2/3 space-x-3 p-10 ring-2 ring-blue-600 text-white font-mono">
-              <div className="flex flex-wrap space-y-3 col w-2/3 p-10 ring-2">
-                <p className="justify-left text-white text-md ring-2">
-                  {filmInfo?.overview}
-                </p>
+            <div className="flex flex-col md:flex-row gap-8 w-2/3 p-10 text-white font-sans">
+              <div className="md:w-2/3 bg-white/10 backdrop-blur-md rounded-lg p-6 shadow-lg">
+                <h2 className="text-2xl font-semibold mb-4">Overview</h2>
+                <p className="text-gray-300">{filmInfo?.overview}</p>
               </div>
-              <div className="flex col w-1/2 p-10 self-start ring-2"></div>
+              <div className="md:w-1/2 bg-white/10 backdrop-blur-md rounded-lg p-6 shadow-lg">
+                <h2 className="text-2xl font-semibold mb-4">Details</h2>
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-purple-300 font-medium">Release Date</p>
+                    <p>{filmInfo?.release_date}</p>
+                  </div>
+                  <div>
+                    <p className="text-purple-300 font-medium">
+                      Original Language
+                    </p>
+                    <p>{filmInfo?.original_language}</p>
+                  </div>
+                  <div>
+                    <p className="text-purple-300 font-medium">
+                      Origin Country
+                    </p>
+                    <p>{filmInfo?.origin_country}</p>
+                  </div>
+                  <div>
+                    <p className="text-purple-300 font-medium">Runtime</p>
+                    <p>{filmInfo?.runtime} minutes</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
