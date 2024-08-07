@@ -112,11 +112,9 @@ export function Film() {
   console.log(filmInfo);
 
   return (
-    <div className="hide-scrollbar text-white font-mono">
+    <div className="hide-scrollbar">
       <div
-        className={
-          "bg-fixed bg-center bg-no-repeat bg-cover w-screen h-screen absolute "
-        }
+        className={"bg-fixed bg-center bg-no-repeat bg-cover w-screen absolute"}
         style={{
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://image.tmdb.org/t/p/w500/${filmInfo?.backdrop_path})`,
         }}
@@ -140,7 +138,7 @@ export function Film() {
               </div>
             </div>
             <div className="flex flex-col md:flex-row gap-8 w-2/3 p-10 text-white font-sans">
-              <div className="md:w-2/3 bg-white/10 backdrop-blur-md rounded-lg p-6 shadow-lg">
+              <div className="md:w-1/3 bg-white/10 backdrop-blur-md rounded-lg p-6 shadow-lg">
                 <h2 className="text-2xl font-semibold mb-4">Overview</h2>
                 <p className="text-gray-300">{filmInfo?.overview}</p>
               </div>
@@ -168,6 +166,28 @@ export function Film() {
                     <p>{filmInfo?.runtime} minutes</p>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+          <div className="flex justify-center w-screen p-5 ring-4 ring-green-500">
+            <div className="flex flex-wrap justify-center p-5 w-2/3 bg-white/10 backdrop-blur-md rounded-lg ring-2">
+              <h2 className="text-2xl text-white font-semibold mb-4">
+                If you like {filmInfo?.original_title}...
+              </h2>
+              <div className="flex flex-wrap flex-row justify-center space-x-5 ring-2">
+                {recommendedList.slice(0, 5).map((movie) => (
+                  <Link
+                    to={`/film/${movie.id}`}
+                    id={`${movie.id}`}
+                    className="flex items-center lg:w-2/12 md:w-2/12"
+                  >
+                    <img
+                      src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                      id={`${movie.id}`}
+                      className="hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy rounded-xl"
+                    ></img>
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
