@@ -113,14 +113,17 @@ export function Film() {
 
   return (
     <div className="hide-scrollbar text-white font-mono">
-      <div className="flex relative justify-center w-screen h-screen">
-        <img
-          src={`https://image.tmdb.org/t/p/w500/${filmInfo?.backdrop_path}`}
-          className="w-screen h-screen absolute opacity-10"
-        />
+      <div
+        className={
+          "bg-fixed bg-center bg-no-repeat bg-cover w-screen h-screen absolute "
+        }
+        style={{
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://image.tmdb.org/t/p/w500/${filmInfo?.backdrop_path})`,
+        }}
+      >
         <div>
           <NavBar></NavBar>
-          <div className="flex justify-center w-screen text-white ring-2 ring-red-500 mt-10">
+          <div className="flex justify-center w-screen text-white ring-2 ring-red-500 mt-5">
             <div className="flex justify-center bg-white/10 backdrop-blur-md rounded-lg w-4/12 p-5">
               <p className="flex text-white font-bold lg:text-2xl md:text-lg sm:text-md ring-2 ring-white">
                 {filmInfo?.original_title}
