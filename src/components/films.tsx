@@ -223,7 +223,7 @@ export function Film() {
                       {review.author_details.username} -{" "}
                       {review.author_details.rating}/10
                     </h2>
-                    <p className="flex- justify-center text-gray-300 w-full">
+                    <p className="flex justify-center text-gray-300 w-full">
                       {review.content}
                     </p>
                     <h2 className="flex justify-end text-sm text-lightPurp font-semibold w-full">
