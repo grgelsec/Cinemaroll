@@ -38,10 +38,10 @@ export default function Films() {
           </div>
         </header>
         <div className="">
-          <body className="flex col justify-center flex-wrap lg:px-40 md:px-20 sm:px-20 ring- ring-red-500">
-            <div className="flex col flex-wrap justify-center text-xl text-whitePurp w-11/12 ring- ring-white">
+          <body className="flex col justify-center flex-wrap mb-10">
+            <div className="flex col flex-wrap justify-center text-xl text-whitePurp w-2/3 bg-white/10 backdrop-blur-md rounded-lg">
               <h1 className="py-1 font-extrabold"></h1>
-              <div className="flex col flex-wrap justify-center gap-3 ">
+              <div className="flex col flex-wrap justify-center gap-3 p-5">
                 {filmList.slice(0, 20).map((movie) => (
                   <Link
                     to={`/film/${movie.id}`}
@@ -56,45 +56,51 @@ export default function Films() {
                   </Link>
                 ))}
               </div>
-              <div className="flex justify-center gap-5 space-y-3 mb-3 flex-wrap lg:w-1/12">
-                <div className="flex justify-center gap-2 space-y-3 w-8/12 lg:w-6/12 md:w-8/12 sm:w-10/12 xs:w-/12">
-                  <button
-                    className="flex p-2 bg-whitePurp mt-3 rounded-lg"
-                    onClick={() => decrementPage()}
+            </div>
+            <div className="w-full p-3 ring mt-4">
+              <div className="flex justify-center space-x-2 text-white">
+                <button
+                  onClick={() => decrementPage()}
+                  className="hover:text-lightPurp p-1"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    className="size-4"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="black"
-                      className="w-6 h-6"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M7.72 12.53a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 1 1 1.06 1.06L9.31 12l6.97 6.97a.75.75 0 1 1-1.06 1.06l-7.5-7.5Z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </button>
-                  <button
-                    className="flex p-2 bg-whitePurp rounded-lg"
-                    onClick={() => incrementPage()}
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M15.75 19.5 8.25 12l7.5-7.5"
+                    />
+                  </svg>
+                </button>
+                <button
+                  onClick={() => incrementPage()}
+                  className="hover:text-lightPurp p-1"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    className="size-4"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="black"
-                      className="w-6 h-6"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </button>
-                </div>
-                <h3 className="flex font-mono text-sm">Page {pageNum}</h3>
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m8.25 4.5 7.5 7.5-7.5 7.5"
+                    />
+                  </svg>
+                </button>
               </div>
+              <h3 className="flex justify-center text-white font-mono text-xs mt-3">
+                Page {pageNum}
+              </h3>
             </div>
           </body>
         </div>
@@ -219,7 +225,7 @@ export function Film() {
               <div className="flex flex-wrap justify-center w-full p-5">
                 {reviewList.slice(0, 10).map((review) => (
                   <div className="flex flex-wrap w-full p-5 space-y-4 border-b justify-start text-white">
-                    <h2 className="flex justif-start text-xl text-lightPurp font-semibold w-full">
+                    <h2 className="flex justif-start text-xl text-lightPurp  w-full">
                       {review.author_details.username} -{" "}
                       {review.author_details.rating}/10
                     </h2>

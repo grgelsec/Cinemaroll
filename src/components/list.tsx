@@ -54,14 +54,14 @@ export default function BrowseLists() {
   // the last re-render restarted the whole process which is why each repeated result returned the first data.
 
   return (
-    <div className="hide-scrollbar">
+    <div className="hide-scrollbar mb-10">
       <NavBar></NavBar>
       <header className="flex py-6 justify-center">
         <h1 className="text-whitePurp font-extrabold text-3xl border-b font-mono">
           Lists
         </h1>
       </header>
-      <div className="flex justify-center flex-wrap w-screen ring space-x-5">
+      <div className="flex justify-center col-2-start flex-wrap w-screen ring space-x-5">
         <div className="flex flex-wrap col justify-center w-1/3 ring space-y-4">
           {listInfo.slice(0, 20).map((list) => (
             <Link
@@ -116,48 +116,51 @@ export default function BrowseLists() {
             </div>
           </div>
         </div>
-        <div className="w-full p-3 ring mt-4">
-          <div className="flex justify-center space-x-2 text-white">
-            <button
-              onClick={() => decrementPage()}
-              className="hover:text-lightPurp p-1"
+      </div>
+      <div className="w-full p-3 ring mt-4">
+        <div className="flex justify-center space-x-2 text-white">
+          <button
+            onClick={() => decrementPage()}
+            className="hover:text-lightPurp p-1"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              className="size-4"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                className="size-4"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15.75 19.5 8.25 12l7.5-7.5"
-                />
-              </svg>
-            </button>
-            <button
-              onClick={() => incrementPage()}
-              className="hover:text-lightPurp p-1"
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.75 19.5 8.25 12l7.5-7.5"
+              />
+            </svg>
+          </button>
+          <button
+            onClick={() => incrementPage()}
+            className="hover:text-lightPurp p-1"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              className="size-4"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                className="size-4"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="m8.25 4.5 7.5 7.5-7.5 7.5"
-                />
-              </svg>
-            </button>
-          </div>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m8.25 4.5 7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </button>
         </div>
+        <h3 className="flex justify-center text-white font-mono text-xs mt-3">
+          Page {pageNum}
+        </h3>
       </div>
     </div>
   );
