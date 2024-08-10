@@ -66,10 +66,11 @@ export default function BrowseLists() {
         <div className="flex flex-wrap col justify-center w-1/3 space-y-4">
           {listInfo.slice(0, 10).map((list) => (
             <Link
-              className="flex flex-row w-full bg-white/10 backdrop-blur-md shadow-lg rounded-lg p-5 space-x-3 self-start"
+              className="flex flex-row w-full bg-white/10 backdrop-blur-md shadow-lg rounded-lg p-5 space-x-3 self-starthover:opacity-50 
+              hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy"
               to={`/list/${list.id}`}
             >
-              <div className="flex flex-wrap w-full space-y-2 border-b">
+              <div className="flex flex-wrap w-full space-y-2 border-b =">
                 <p className="w-full text-lightPurp font-semibold">
                   {list.created_by}
                 </p>
@@ -173,41 +174,50 @@ export function ListPage() {
   console.log(scopedList);
   const { singleListDetails } = useSinlgeListDetails(scopedList);
   console.log(singleListDetails);
-  console.log(singleListDetails?.items.result?.map((movie) => movie));
-
+  console.log(
+    singleListDetails?.items.slice(0, 20).map((movie) => movie.poster_path)
+  );
   return (
     <>
       <NavBar></NavBar>
-      <div className="flex w-full justify-center py-10 ring mt-5">
+      <div className="flex w-full justify-center py-10 mt-5">
         <h2 className="flex w-fill p-5 justify-center text-white font-semibold text-2xl bg-white/10 backdrop-blur-md shadow-lg rounded-lg">
           {singleListDetails?.name}
         </h2>
       </div>
-      <div className="flex justify-center w-full p-5 ring space-x-5">
-        <div className="flex justify-center w-1/3 ring p-5 py-10 bg-white/10 backdrop-blur-md shadow-lg rounded-lg space-x-2">
-          <p className="text-lightPurp">Description:</p>
-          <p className="text-white"> {singleListDetails?.description}</p>
+      <div className="flex justify-center w-full p-5 space-x-5">
+        <div className="flex justify-center w-1/3 p-5 py-10 bg-white/10 backdrop-blur-md shadow-lg rounded-lg space-x-2 font-mono">
+          <p className="text-lightPurp text-xl">Description:</p>
+          <div className="text-white">
+            {(() => {
+              if (singleListDetails?.description == "") {
+                return <p>empty</p>;
+              } else {
+                return <p>{singleListDetails?.description}</p>;
+              }
+            })()}
+          </div>
         </div>
-        <div className="flex justify-center w-2/3 ring py-10 p-5 bg-white/10 backdrop-blur-md shadow-lg rounded-lg space-x-3">
-          <div className="flex justify-center text-xl w-1/3 ring space-x-2">
+        <div className="flex justify-center w-2/3 py-10 p-5 bg-white/10 backdrop-blur-md shadow-lg rounded-lg space-x-3 font-mono">
+          <div className="flex justify-center text-xl w-1/3 space-x-2">
             <p className="text-lightPurp">Created by:</p>
             <p className="text-white">{singleListDetails?.created_by}</p>
           </div>
-          <p className="flex justify-center text-white text-xl w-1/3 ring">
+          <p className="flex justify-center text-white text-xl w-1/3">
             {singleListDetails?.item_count} Movies
           </p>
-          <p className="flex justify-center text-white text-xl w-1/3 ring">
+          <p className="flex justify-center text-white text-xl w-1/3">
             {singleListDetails?.total_pages} Pages
           </p>
         </div>
       </div>
-      <div className="flex justify-center w-full p-5 ring">
-        <div className="flex justify-items-center w-2/3 ring p-5 bg-white/10 backdrop-blur-md rounded-lg">
-          {/* {filmList.slice(0, 18).map((movie) => (
+      <div className="flex justify-center w-full p-5">
+        <div className="flex justify-center flex-wrap w-2/3 space-x-5 p-5 bg-white/10 backdrop-blur-md rounded-lg">
+          {singleListDetails?.items.slice(0, 20).map((movie) => (
             <Link
               to={`/film/${movie.id}`}
               id={`${movie.id}`}
-              className="flex lg:w-3/12 md:w-2/12 mt-3"
+              className="flex lg:w-2/12 md:w-2/12 mt-3"
             >
               <img
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
@@ -215,7 +225,7 @@ export function ListPage() {
                 className="hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy rounded-xl"
               ></img>
             </Link>
-          ))} */}
+          ))}
         </div>
       </div>
     </>
