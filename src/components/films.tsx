@@ -57,7 +57,7 @@ export default function Films() {
                 ))}
               </div>
             </div>
-            <div className="w-full p-3 ring mt-4">
+            <div className="w-full p-3 mt-4">
               <div className="flex justify-center space-x-2 text-white">
                 <button
                   onClick={() => decrementPage()}

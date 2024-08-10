@@ -5,6 +5,7 @@ import NavBar from "./navbar";
 import useMovies from "../hooks/fetchMovies";
 import useMultipleMovieData from "../hooks/fetchListContainingMovieID";
 import useListDetails from "../hooks/fetchListDetails";
+import useSinlgeListDetails from "../hooks/fetchSingleListDetails";
 
 export default function BrowseLists() {
   //keeps track of page #
@@ -39,7 +40,7 @@ export default function BrowseLists() {
   // and only re-calculating when the dependencies change
   // so if the page number changes then this is recalled
   const listIds: number[] = useMemo(
-    () => multipleMovieLists.slice(0, 20).map((list) => list.id),
+    () => multipleMovieLists.slice(0, 10).map((list) => list.id),
     [multipleMovieLists]
   );
 
@@ -61,11 +62,11 @@ export default function BrowseLists() {
           Lists
         </h1>
       </header>
-      <div className="flex justify-center col-2-start flex-wrap w-screen ring space-x-5">
-        <div className="flex flex-wrap col justify-center w-1/3 ring space-y-4">
-          {listInfo.slice(0, 20).map((list) => (
+      <div className="flex justify-center col-2-start flex-wrap w-screen space-x-5">
+        <div className="flex flex-wrap col justify-center w-1/3 space-y-4">
+          {listInfo.slice(0, 10).map((list) => (
             <Link
-              className="flex flex-row w-full bg-white/10 backdrop-blur-md shadow-lg rounded-lg ring-2 p-5 space-x-3 self-start"
+              className="flex flex-row w-full bg-white/10 backdrop-blur-md shadow-lg rounded-lg p-5 space-x-3 self-start"
               to={`/list/${list.id}`}
             >
               <div className="flex flex-wrap w-full space-y-2 border-b">
@@ -85,21 +86,21 @@ export default function BrowseLists() {
             </Link>
           ))}
         </div>
-        <div className="flex flex-wrap col justify-center w-1/3 ring space-y-4 self-start">
+        <div className="flex flex-wrap col justify-center w-1/3 space-y-4 self-start">
           <div className="w-full justify-center bg-whitePurp backdrop-blur-md rounded-lg p-5">
-            <h2 className="flex justify-center text-lightPurp text-2xl font-semibold mb-4 w-full ring">
+            <h2 className="flex justify-center text-lightPurp text-2xl font-semibold mb-4 w-full">
               What are Lists?
             </h2>
-            <p className="flex justify-center font-mono text-black ring ">
+            <p className="flex justify-center font-mono text-black">
               Lists are a way for you to show what you have been watching or
               make groups of films that you think go together.
             </p>
           </div>
           <div className="w-full justify-center bg-white/10 backdrop-blur-md shadow-lg rounded-lg p-5">
-            <h2 className="flex justify-center text-lightPurp text-2xl font-semibold mb-4 w-full ring">
+            <h2 className="flex justify-center text-lightPurp text-2xl font-semibold mb-4 w-full">
               Trending Movies
             </h2>
-            <div className="flex flex-wrap justify-center space-x-2 w-full ring">
+            <div className="flex flex-wrap justify-center space-x-2 w-full">
               {filmList.slice(0, 18).map((movie) => (
                 <Link
                   to={`/film/${movie.id}`}
@@ -117,7 +118,7 @@ export default function BrowseLists() {
           </div>
         </div>
       </div>
-      <div className="w-full p-3 ring mt-4">
+      <div className="w-full p-3 mt-4">
         <div className="flex justify-center space-x-2 text-white">
           <button
             onClick={() => decrementPage()}
@@ -163,5 +164,40 @@ export default function BrowseLists() {
         </h3>
       </div>
     </div>
+  );
+}
+
+export function ListPage() {
+  const params = useParams();
+  const scopedList = params.listID;
+  console.log(scopedList);
+  const { singleListDetails } = useSinlgeListDetails(scopedList);
+  console.log(singleListDetails);
+
+  return (
+    <>
+      <NavBar></NavBar>
+      <div className="flex w-full justify-center py-10 ring mt-5">
+        <h2 className="flex w-fill p-5 justify-center text-white font-semibold text-2xl bg-white/10 backdrop-blur-md shadow-lg rounded-lg">
+          {singleListDetails?.name}
+        </h2>
+      </div>
+      <div className="flex justify-center w-full p-5 ring space-x-5">
+        <div className="flex justify-center w-1/3 ring p-5 py-10 bg-white/10 backdrop-blur-md shadow-lg rounded-lg self-start">
+          <p className="text-white">{singleListDetails?.description}</p>
+        </div>
+        <div className="flex justify-center w-2/3 ring py-10 p-5 bg-white/10 backdrop-blur-md shadow-lg rounded-lg space-x-3">
+          <p className="flex justify-center text-white text-xl w-1/3 ring">
+            Created by: {singleListDetails?.created_by}
+          </p>
+          <p className="flex justify-center text-white text-xl w-1/3 ring">
+            {singleListDetails?.item_count} Movies
+          </p>
+          <p className="flex justify-center text-white text-xl w-1/3 ring">
+            {singleListDetails?.total_pages} Pages
+          </p>
+        </div>
+      </div>
+    </>
   );
 }
