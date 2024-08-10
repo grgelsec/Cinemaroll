@@ -173,6 +173,7 @@ export function ListPage() {
   console.log(scopedList);
   const { singleListDetails } = useSinlgeListDetails(scopedList);
   console.log(singleListDetails);
+  console.log(singleListDetails?.items.result?.map((movie) => movie));
 
   return (
     <>
@@ -183,19 +184,38 @@ export function ListPage() {
         </h2>
       </div>
       <div className="flex justify-center w-full p-5 ring space-x-5">
-        <div className="flex justify-center w-1/3 ring p-5 py-10 bg-white/10 backdrop-blur-md shadow-lg rounded-lg self-start">
-          <p className="text-white">{singleListDetails?.description}</p>
+        <div className="flex justify-center w-1/3 ring p-5 py-10 bg-white/10 backdrop-blur-md shadow-lg rounded-lg space-x-2">
+          <p className="text-lightPurp">Description:</p>
+          <p className="text-white"> {singleListDetails?.description}</p>
         </div>
         <div className="flex justify-center w-2/3 ring py-10 p-5 bg-white/10 backdrop-blur-md shadow-lg rounded-lg space-x-3">
-          <p className="flex justify-center text-white text-xl w-1/3 ring">
-            Created by: {singleListDetails?.created_by}
-          </p>
+          <div className="flex justify-center text-xl w-1/3 ring space-x-2">
+            <p className="text-lightPurp">Created by:</p>
+            <p className="text-white">{singleListDetails?.created_by}</p>
+          </div>
           <p className="flex justify-center text-white text-xl w-1/3 ring">
             {singleListDetails?.item_count} Movies
           </p>
           <p className="flex justify-center text-white text-xl w-1/3 ring">
             {singleListDetails?.total_pages} Pages
           </p>
+        </div>
+      </div>
+      <div className="flex justify-center w-full p-5 ring">
+        <div className="flex justify-items-center w-2/3 ring p-5 bg-white/10 backdrop-blur-md rounded-lg">
+          {/* {filmList.slice(0, 18).map((movie) => (
+            <Link
+              to={`/film/${movie.id}`}
+              id={`${movie.id}`}
+              className="flex lg:w-3/12 md:w-2/12 mt-3"
+            >
+              <img
+                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                id={`${movie.id}`}
+                className="hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy rounded-xl"
+              ></img>
+            </Link>
+          ))} */}
         </div>
       </div>
     </>
