@@ -6,6 +6,7 @@ import SignIn from "./components/signin";
 import FilmLists from "./components/list";
 import Reccomend from "./components/reccomender";
 import { ListPage } from "./components/list";
+import Profile from "./components/profile";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/reccomender" element={<Reccomend />} />
         <Route path="/film/:movieID" element={<Film />} />
         <Route path="/list/:listID" element={<ListPage />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </body>
   );
