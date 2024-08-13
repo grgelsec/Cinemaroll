@@ -29,12 +29,9 @@ export default function NavBar() {
         </Link>
         <div className="">
           <ul className="flex row space-x-3">
-            <li
-              key={"signin"}
-              className="text-white font-medium p-3 hover:opacity-100 rounded-xl opacity-70 transition duration-300 ease-in-out"
-            >
+            <li className="text-white font-medium p-3 hover:opacity-100 rounded-xl opacity-70 transition duration-300 ease-in-out">
               <Link
-                to={`https://www.themoviedb.org/authenticate/${requestToken?.request_token}?redirect_to=http://localhost:5173`}
+                to={`https://www.themoviedb.org/authenticate/${requestToken?.request_token}?redirect_to=http://localhost:5173/continue`}
               >
                 Sign In
               </Link>
