@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import useRequestToken from "../hooks/fetchRequestToken";
 
 export default function NavBar() {
+  const { requestToken } = useRequestToken();
+  console.log(requestToken);
   return (
     <header className="w-screen font-mono">
       <nav className="flex row w-full lg:w-full items-center justify-center mt-5 gap-x-10">
@@ -30,7 +33,11 @@ export default function NavBar() {
               key={"signin"}
               className="text-white font-medium p-3 hover:opacity-100 rounded-xl opacity-70 transition duration-300 ease-in-out"
             >
-              <Link to={"/sign-in"}>Sign In</Link>
+              <Link
+                to={`https://www.themoviedb.org/authenticate/${requestToken?.request_token}?redirect_to=http://localhost:5173`}
+              >
+                Sign In
+              </Link>
             </li>
             <li
               key={"films"}
