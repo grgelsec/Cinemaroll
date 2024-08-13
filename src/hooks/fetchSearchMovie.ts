@@ -19,7 +19,7 @@ type Movie = {
   release_date: string;
   revenue: number;
   runtime: number;
-  vote_average: number;
+  vote_average: number | undefined;
 };
 
 // type MovieAPIResponse = {

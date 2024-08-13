@@ -1,8 +1,8 @@
 import useMovies from "../hooks/fetchMovies";
 
 export default function Movies() {
- const {filmList} = useMovies(1)
-  
+  const { filmList } = useMovies(1);
+
   return (
     <div className="flex items-center flex-col lg:px-40 md:px-40 sm:px-40 py-10">
       <header className="text-whitePurp font-semibold opacity-70 p-3 divide-x-4 border-b w-8/12 hover:opacity-100 hover:outline-none transition-sexy">

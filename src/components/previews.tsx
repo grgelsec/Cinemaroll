@@ -2,9 +2,8 @@ import { useRef } from "react";
 import useMovies from "../hooks/fetchMovies";
 
 export default function UserFeatures() {
-
-// this is completely unrelated, i was just learning ts generics
-/*
+  // this is completely unrelated, i was just learning ts generics
+  /*
 interface Animal {
   name: string
 }
@@ -25,16 +24,16 @@ export const getDisplayName = <TItem extends Animal | Human>(
 }
 */
 
-    //type for refs 
-    type refType = HTMLDivElement | null;
+  //type for refs
+  type refType = HTMLDivElement | null;
 
-    //React hook, allows you to reference the DOM without rerenders 
-    //useRef allows you to set a reference to something in the dom and manipulate it w/o rerenders
-    const eye = useRef<HTMLDivElement>(null)
-    const star = useRef<HTMLDivElement>(null)
-    const heart = useRef<HTMLDivElement>(null)
-    const list = useRef<HTMLDivElement>(null)
-    const flames = useRef<HTMLDivElement>(null)
+  //React hook, allows you to reference the DOM without rerenders
+  //useRef allows you to set a reference to something in the dom and manipulate it w/o rerenders
+  const eye = useRef<HTMLDivElement>(null);
+  const star = useRef<HTMLDivElement>(null);
+  const heart = useRef<HTMLDivElement>(null);
+  const list = useRef<HTMLDivElement>(null);
+  const flames = useRef<HTMLDivElement>(null);
 
   const buttonIcons = [
     {
@@ -125,8 +124,8 @@ export const getDisplayName = <TItem extends Animal | Human>(
   const { filmList } = useMovies(1);
 
   //function that scrolls smoothly to ref
-  const scrollToRef = (ref: React.RefObject<refType> ) => {
-    ref.current?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToRef = (ref: React.RefObject<refType>) => {
+    ref.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -134,15 +133,20 @@ export const getDisplayName = <TItem extends Animal | Human>(
       <div className="flex justify-center px-40 py-10">
         <nav className="flex justify-center space-x-3 lg:w-5/12 2xl:w-4/12 md:w-7/12 sm:w-11/12 xs-w-6/12 py-2 rounded-xl bg-lightPurp overflow-x-scroll hide-scrollbar">
           {buttonIcons.map((x) => (
-            <button className="flex row items-start rounded-xl p-5 border-white hover:bg-indigo-600 transition-sexy"
-            onClick={() => scrollToRef(x.reference)}>
+            <button
+              className="flex row items-start rounded-xl p-5 border-white hover:bg-indigo-600 transition-sexy"
+              onClick={() => scrollToRef(x.reference)}
+            >
               {x.icon}
             </button>
           ))}
         </nav>
       </div>
       <div className="flex col flex-wrap justify-center lg:px-40 md:px-20 sm:px-20 space-y-10">
-        <div className="flex col flex-wrap justify-center text-whitePurp font-semibold py-2 w-8/12" ref={eye}>
+        <div
+          className="flex col flex-wrap justify-center text-whitePurp font-semibold py-2 w-8/12"
+          ref={eye}
+        >
           <h1 className="py-2">What have you watched?</h1>
           <p className="flex flex-wrap justify-center text-center text-whitePurp border-t opacity-70 font-sans font-light left-0 py-3">
             Let us know what you've seen! Cinemaroll allows you to keep track of
@@ -158,7 +162,10 @@ export const getDisplayName = <TItem extends Animal | Human>(
             ))}
           </div>
         </div>
-        <div className="flex col flex-wrap justify-center text-whitePurp font-semibold py-2 w-8/12" ref={star}>
+        <div
+          className="flex col flex-wrap justify-center text-whitePurp font-semibold py-2 w-8/12"
+          ref={star}
+        >
           <h1 className="py-2">What would you rate it?</h1>
           <p className="flex flex-wrap justify-center text-center text-whitePurp border-t opacity-70 font-sans font-light left-0 py-3">
             Rate each film to record how you feel about it! While you're at it,
@@ -213,7 +220,10 @@ export const getDisplayName = <TItem extends Animal | Human>(
             </h1>
           </div>
         </div>
-        <div className="flex col flex-wrap justify-center text-whitePurp font-semibold py-2 w-8/12" ref={heart}>
+        <div
+          className="flex col flex-wrap justify-center text-whitePurp font-semibold py-2 w-8/12"
+          ref={heart}
+        >
           <h1 className="py-2">Did you love it it?</h1>
           <p className="flex flex-wrap justify-center text-center text-whitePurp border-t opacity-70 font-sans font-light left-0 py-3 ">
             With each film you watch, take the opportunity to show us that you
@@ -239,7 +249,10 @@ export const getDisplayName = <TItem extends Animal | Human>(
             </div>
           </div>
         </div>
-        <div className="flex col flex-wrap justify-center text-whitePurp font-semibold py-2 w-8/12" ref={list}>
+        <div
+          className="flex col flex-wrap justify-center text-whitePurp font-semibold py-2 w-8/12"
+          ref={list}
+        >
           <h1 className="py-2">Don't know what to watch?</h1>
           <p className="flex flex-wrap justify-center text-center text-whitePurp border-t opacity-70 font-sans font-light left-0 py-3">
             Ever have those times where you don't know what to watch? Lists
@@ -277,7 +290,10 @@ export const getDisplayName = <TItem extends Animal | Human>(
             ))}
           </div>
         </div>
-        <div className="flex col flex-wrap justify-center text-whitePurp font-semibold py-2 w-8/12" ref={flames}>
+        <div
+          className="flex col flex-wrap justify-center text-whitePurp font-semibold py-2 w-8/12"
+          ref={flames}
+        >
           <h1 className="py-2">Have any hot takes?</h1>
           <p className="flex flex-wrap justify-center text-center text-whitePurp border-t opacity-70 font-sans font-light left-0 py-3 ">
             Do you have any hills you want to die on? Maybe you have some wild
