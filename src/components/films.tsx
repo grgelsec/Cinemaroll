@@ -6,7 +6,6 @@ import useSearchMovies from "../hooks/fetchSearchMovie";
 import useRecommended from "../hooks/fetchRecommended";
 import useReviews from "../hooks/fetchReviews";
 
-//TODO: Need buttons to change the page while simutaniusly chaging the fetched page
 export default function Films() {
   const [pageNum, setPage] = useState(1);
   const { filmList } = useMovies(pageNum);
@@ -19,11 +18,6 @@ export default function Films() {
 
   const incrementPage = () => {
     setPage((page) => page + 1);
-  };
-
-  const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    const elementID = event.currentTarget.id;
-    return <p className="text-white">{elementID}</p>;
   };
 
   return (
