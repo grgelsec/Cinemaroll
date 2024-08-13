@@ -33,12 +33,6 @@ export default function NavBar() {
               <Link to={"/sign-in"}>Sign In</Link>
             </li>
             <li
-              key={"createaccount"}
-              className="text-white font-medium p-3 hover:opacity-100 rounded-xl opacity-70 transition duration-300 ease-in-out"
-            >
-              <Link to={"/createaccount"}>Create Account</Link>
-            </li>
-            <li
               key={"films"}
               className="text-white font-medium p-3 hover:opacity-100 rounded-xl opacity-70 transition duration-300 ease-in-out"
             >
