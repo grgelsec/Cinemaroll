@@ -1,17 +1,13 @@
-import createSessionID from "../hooks/postSessionID";
+import CreateSessionID from "../hooks/postSessionID";
 import useRequestToken from "../hooks/fetchRequestToken";
 import { Link } from "react-router-dom";
 
 export default function SignIn() {
-  const { requestToken } = useRequestToken();
-  console.log(requestToken);
-
-  //createSessionID(requestToken);
   return (
     <>
       <div className="">
         <Link
-          to={`https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=http://localhost:5173/sign-in/auth-page`}
+          to={`/sign-in/continue-to-auth`}
           className="flex flex-wrap p-3 text-white bg-mediumPurp font-mono rounded-lg"
         >
           Sign In
@@ -21,10 +17,46 @@ export default function SignIn() {
   );
 }
 
+export function ContinueToAuth() {
+  const { requestToken } = useRequestToken();
+  console.log(requestToken);
+  return (
+    <>
+      <div className="flex justify-center items-center w-full h-screen">
+        <div className="flex justify-center flex-wrap w-1/3 space-y-4">
+          <div className="flex justify-center w-full text-white font-mono">
+            Ready to Continue?
+          </div>
+          <div className="flex justify-center w-full">
+            <Link
+              to={`https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=http://localhost:5173/sign-in/auth-page`}
+              className="flex justify-center w-2/12 py-3 rounded-xl bg-mediumPurp"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="size-6"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M16.72 7.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1 0 1.06l-3.75 3.75a.75.75 0 1 1-1.06-1.06l2.47-2.47H3a.75.75 0 0 1 0-1.5h16.19l-2.47-2.47a.75.75 0 0 1 0-1.06Z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
 export function AuthPage() {
   const urlParams = new URLSearchParams(window.location.search);
   const requestToken: string | null = urlParams.get("request_token");
   console.log(requestToken);
+
   return (
     <>
       <div className="flex justify-center items-center w-full h-screen">
@@ -44,13 +76,13 @@ export function AuthPage() {
             </svg>
           </div>
           <div className="flex justify-center w-full text-white font-mono">
-            Ready to Continue?
+            Authorized!
           </div>
           <div className="flex justify-center w-full">
             <Link
               to={"http://localhost:5173"}
               className="flex justify-center w-2/12 py-3 rounded-xl bg-mediumPurp"
-              onClick={() => createSessionID(requestToken)}
+              onClick={() => CreateSessionID(requestToken)}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -67,6 +99,21 @@ export function AuthPage() {
             </Link>
           </div>
         </div>
+      </div>
+    </>
+  );
+}
+
+export function Logout() {
+  return (
+    <>
+      <div className="">
+        <Link
+          to={`/sign-in/continue-to-auth`}
+          className="flex flex-wrap p-3 text-white bg-mediumPurp font-mono rounded-lg"
+        >
+          Log Out
+        </Link>
       </div>
     </>
   );

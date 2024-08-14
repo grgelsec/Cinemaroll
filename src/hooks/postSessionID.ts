@@ -1,11 +1,11 @@
 //need to write a post request that takes in params, this post request will be called in the authorized page
 //need to use useParams to grab the params from the url and put them into the post request to receive the needed sessionID
 
-// type Request = {
-//   request_token: string;
-// };
-
-const createSessionID = async (requestToken: string | null) => {
+type session = {
+  success: boolean;
+  session_id: string;
+};
+const CreateSessionID = async (requestToken: string | null) => {
   const apikey = import.meta.env.VITE_API_URL3;
   try {
     const response = await fetch(
@@ -22,7 +22,12 @@ const createSessionID = async (requestToken: string | null) => {
     );
 
     if (response.ok) {
-      const data = await response.json();
+      const data: session = await response.json();
+      const userStatus = data.success;
+      const sessionID = data.session_id;
+      sessionStorage.setItem("sessionID", sessionID);
+      sessionStorage.setItem("userStatus", JSON.stringify(userStatus));
+      console.log("Session ID:", sessionID);
       console.log(data);
     } else {
       console.log(response.status);
@@ -31,4 +36,5 @@ const createSessionID = async (requestToken: string | null) => {
     console.log("Error occoured", error);
   }
 };
-export default createSessionID;
+
+export default CreateSessionID;

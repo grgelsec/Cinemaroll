@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import SignIn from "./signin";
+import useLoginStatus from "../hooks/fetchLoginStatus";
 
 export default function NavBar() {
+  const { loginStatus } = useLoginStatus();
+  console.log(loginStatus);
   return (
     <header className="w-screen font-mono">
       <nav className="flex row w-full lg:w-full items-center justify-center mt-5 gap-x-10">
@@ -87,6 +90,11 @@ export default function NavBar() {
             </svg>
           </button>
         </form>
+        {/* {(() => {
+          if (loginStatus == false) {
+            return <SignIn />;
+          }
+        })()} */}
         <SignIn />
       </nav>
     </header>
