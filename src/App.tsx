@@ -6,7 +6,8 @@ import FilmLists from "./components/list";
 import Reccomend from "./components/reccomender";
 import { ListPage } from "./components/list";
 import Profile from "./components/profile";
-import AuthPage from "./components/authorizedpage";
+import SignIn from "./components/signin";
+import { AuthPage } from "./components/signin";
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
         <Route path="/film/:movieID" element={<Film />} />
         <Route path="/list/:listID" element={<ListPage />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/continue" element={<AuthPage />} />
+        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/sign-in/auth-page" element={<AuthPage />} />
       </Routes>
     </body>
   );

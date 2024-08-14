@@ -1,13 +1,11 @@
 import { useState, useEffect } from "react";
 
 type Request = {
-  success: boolean;
-  expires_at: string;
   request_token: string;
 };
 
 const useRequestToken = () => {
-  const [requestToken, setToken] = useState<Request>();
+  const [requestToken, setToken] = useState<string>();
 
   useEffect(() => {
     const getRequestToken = async () => {
@@ -22,7 +20,7 @@ const useRequestToken = () => {
         }
 
         const data: Request = await response.json();
-        setToken(data);
+        setToken(data.request_token);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
