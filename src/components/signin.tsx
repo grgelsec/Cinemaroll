@@ -1,10 +1,15 @@
 import CreateSessionID from "../hooks/postSessionID";
 import useRequestToken from "../hooks/fetchRequestToken";
+import useLoginStatus from "../hooks/fetchLoginStatus";
+//import deleteSessionID from "../hooks/deleteSessionID";
 import { Link } from "react-router-dom";
 
 export default function SignIn() {
-  return (
-    <>
+  const loginStatus = useLoginStatus();
+  console.log(loginStatus);
+
+  if (loginStatus == false) {
+    return (
       <div className="">
         <Link
           to={`/sign-in/continue-to-auth`}
@@ -13,8 +18,8 @@ export default function SignIn() {
           Sign In
         </Link>
       </div>
-    </>
-  );
+    );
+  }
 }
 
 export function ContinueToAuth() {
@@ -80,7 +85,7 @@ export function AuthPage() {
           </div>
           <div className="flex justify-center w-full">
             <Link
-              to={"http://localhost:5173"}
+              to={"http://localhost:5173/home"}
               className="flex justify-center w-2/12 py-3 rounded-xl bg-mediumPurp"
               onClick={() => CreateSessionID(requestToken)}
             >
@@ -99,21 +104,6 @@ export function AuthPage() {
             </Link>
           </div>
         </div>
-      </div>
-    </>
-  );
-}
-
-export function Logout() {
-  return (
-    <>
-      <div className="">
-        <Link
-          to={`/sign-in/continue-to-auth`}
-          className="flex flex-wrap p-3 text-white bg-mediumPurp font-mono rounded-lg"
-        >
-          Log Out
-        </Link>
       </div>
     </>
   );

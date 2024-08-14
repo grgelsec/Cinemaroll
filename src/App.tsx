@@ -1,4 +1,4 @@
-import Home from "./components/homepage";
+import Landing from "./components/homepage";
 import Films, { Film } from "./components/films";
 import { Route, Routes } from "react-router-dom";
 import Create from "./components/createaccount";
@@ -7,12 +7,14 @@ import { ListPage } from "./components/list";
 import Profile from "./components/profile";
 import SignIn, { ContinueToAuth } from "./components/signin";
 import { AuthPage } from "./components/signin";
+import Home from "./components/home";
 
 function App() {
   return (
     <body className="">
       <Routes>
-        <Route key={"home"} path="/" element={<Home />} />
+        <Route path="/" element={<Landing />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/films" element={<Films />} />
         <Route path="/createaccount" element={<Create />} />
         <Route path="/lists" element={<FilmLists />} />

@@ -3,13 +3,12 @@ import SignIn from "./signin";
 import useLoginStatus from "../hooks/fetchLoginStatus";
 
 export default function NavBar() {
-  const { loginStatus } = useLoginStatus();
-  console.log(loginStatus);
+  const loginStatus = useLoginStatus();
   return (
     <header className="w-screen font-mono">
       <nav className="flex row w-full lg:w-full items-center justify-center mt-5 gap-x-10">
         <Link
-          to="/"
+          to="/home"
           className="flex row items-center text-white text-3xl gap-x-1 font-semibold ring-4 ring-indigo-500 rounded-xl p-2 hover:shadow-lg hover:shadow-white transition-sexy"
         >
           <svg
@@ -30,6 +29,9 @@ export default function NavBar() {
         </Link>
         <div className="">
           <ul className="flex row space-x-3">
+            <li className="text-white font-medium p-3 hover:opacity-100 rounded-xl opacity-70 transition duration-300 ease-in-out">
+              <Link to={"/home"}>Home</Link>
+            </li>
             <li
               key={"films"}
               className="text-white font-medium p-3 hover:opacity-100 rounded-xl opacity-70 transition duration-300 ease-in-out"
@@ -41,27 +43,6 @@ export default function NavBar() {
               className="text-white font-medium p-3 hover:opacity-100 rounded-xl opacity-70 transition duration-300 ease-in-out"
             >
               <Link to={"/lists"}>Lists</Link>
-            </li>
-            <li
-              key={"profile"}
-              className="text-white font-medium p-3 hover:opacity-100 rounded-xl opacity-70 transition duration-300 ease-in-out"
-            >
-              <Link to={"/profile"}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  className="size-6"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-                  />
-                </svg>
-              </Link>
             </li>
           </ul>
         </div>
@@ -90,11 +71,28 @@ export default function NavBar() {
             </svg>
           </button>
         </form>
-        {/* {(() => {
-          if (loginStatus == false) {
-            return <SignIn />;
-          }
-        })()} */}
+        {loginStatus ? (
+          <div className="text-white font-medium rounded-lg bg-mediumPurp p-2">
+            <Link to={"/profile"}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                className="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+                />
+              </svg>
+            </Link>
+          </div>
+        ) : (
+          <></>
+        )}
         <SignIn />
       </nav>
     </header>

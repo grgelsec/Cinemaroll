@@ -4,7 +4,7 @@ import HomeHeader from "./welcome";
 import UserFeatures from "./previews";
 import { Outlet } from "react-router-dom";
 
-export default function Home() {
+export default function Landing() {
   return (
     <div>
       <>

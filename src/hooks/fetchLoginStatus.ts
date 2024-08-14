@@ -11,7 +11,7 @@ const useLoginStatus = () => {
     setLoginStatus(userStatus);
   }, []);
 
-  return { loginStatus };
+  return loginStatus;
 };
 
 export default useLoginStatus;
