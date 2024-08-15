@@ -25,8 +25,8 @@ const CreateSessionID = async (requestToken: string | null) => {
       const data: SessionResponse = await response.json();
       const sessionID = data.session_id;
       const success = data.success;
-      console.log(success);
       sessionStorage.setItem("sessionID", sessionID);
+      console.log(success);
       console.log("Session ID:", sessionID);
       console.log(data);
       return sessionID;

@@ -6,7 +6,6 @@ import { useSession } from "./SessionContext";
 export default function SignIn() {
   const { sessionId, signOut } = useSession();
   const { requestToken } = useRequestToken();
-  console.log(requestToken);
 
   if (sessionId) {
     return (
@@ -14,7 +13,7 @@ export default function SignIn() {
         <Link
           to={`http://localhost:5173/`}
           className="flex flex-wrap p-3 text-white bg-mediumPurp font-mono rounded-lg"
-          onClick={() => signOut}
+          onClick={() => signOut()}
         >
           Log Out
         </Link>

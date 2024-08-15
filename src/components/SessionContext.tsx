@@ -19,6 +19,7 @@ export const SessionProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   const [sessionId, setSessionId] = useState<string | null>(null);
 
+  //checks if there is a sessionId when the app initially loads
   useEffect(() => {
     const storedSessionId = sessionStorage.getItem("sessionID");
     if (storedSessionId) {
@@ -28,11 +29,13 @@ export const SessionProvider: React.FC<{ children: ReactNode }> = ({
 
   const signIn = (newSessionId: string): void => {
     sessionStorage.setItem("sessionID", newSessionId);
+    //updates state and causes a re-render
     setSessionId(newSessionId);
   };
 
   const signOut = (): void => {
     sessionStorage.removeItem("sessionID");
+    //updates state and causes a re-render
     setSessionId(null);
   };
 
