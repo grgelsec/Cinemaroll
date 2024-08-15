@@ -5,7 +5,7 @@ import Create from "./components/createaccount";
 import FilmLists from "./components/list";
 import { ListPage } from "./components/list";
 import Profile from "./components/profile";
-import SignIn, { ContinueToAuth } from "./components/signin";
+import SignIn from "./components/signin";
 import { AuthPage } from "./components/signin";
 import Home from "./components/home";
 
@@ -23,7 +23,6 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-in/auth-page" element={<AuthPage />} />
-        <Route path="/sign-in/continue-to-auth" element={<ContinueToAuth />} />
       </Routes>
     </body>
   );

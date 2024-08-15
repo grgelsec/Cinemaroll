@@ -1,7 +1,7 @@
 //need to write a post request that takes in params, this post request will be called in the authorized page
 //need to use useParams to grab the params from the url and put them into the post request to receive the needed sessionID
 
-type session = {
+type SessionResponse = {
   success: boolean;
   session_id: string;
 };
@@ -22,13 +22,14 @@ const CreateSessionID = async (requestToken: string | null) => {
     );
 
     if (response.ok) {
-      const data: session = await response.json();
-      const userStatus = data.success;
+      const data: SessionResponse = await response.json();
       const sessionID = data.session_id;
+      const success = data.success;
+      console.log(success);
       sessionStorage.setItem("sessionID", sessionID);
-      sessionStorage.setItem("userStatus", JSON.stringify(userStatus));
       console.log("Session ID:", sessionID);
       console.log(data);
+      return sessionID;
     } else {
       console.log(response.status);
     }
