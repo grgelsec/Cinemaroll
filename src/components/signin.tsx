@@ -1,7 +1,7 @@
 import CreateSessionID from "../hooks/postSessionID";
 import useRequestToken from "../hooks/fetchRequestToken";
 import { Link, useNavigate } from "react-router-dom";
-import { useSession } from "./SessionContext";
+import { useSession } from "../context/SessionContext";
 
 export default function SignIn() {
   const { sessionId, signOut } = useSession();

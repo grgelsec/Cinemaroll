@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import SignIn from "./signin";
-import { useSession } from "./SessionContext";
+import { useSession } from "../context/SessionContext";
 
 export default function NavBar() {
   const { sessionId } = useSession();
