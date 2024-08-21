@@ -1,10 +1,10 @@
 import NavBar from "./navbar";
-import CreateMovieReview from "../hooks/postReview";
+import SignIn from "./signin";
 
 export default function Profile() {
   // const handleMovieReview = async () => {
-  const review = CreateMovieReview("Great Movie!", 718821);
-  console.log(review);
+  // const review = CreateMovieReview(718821);
+  // console.log(review);
   //};
   return (
     <div>
@@ -19,6 +19,10 @@ export default function Profile() {
           </button>
         </div>
       </div>
+      <div className="w-full py-10"></div>
+      <footer className="flex justify-center items-center w-full">
+        <SignIn />
+      </footer>
     </div>
   );
 }

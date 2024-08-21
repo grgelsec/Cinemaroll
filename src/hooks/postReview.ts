@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useSession } from "../context/SessionContext";
 
-const CreateMovieReview = async (review: string, movie_id: number) => {
+const CreateMovieReview = async (movie_id: number) => {
   //const [movieReview, setReview] = useState(review);
   const api_key = import.meta.env.VITE_API_URL3;
+  const { sessionId } = useSession();
+  console.log(sessionId);
   try {
     const response = await fetch(
       `
@@ -13,7 +15,7 @@ https://api.themoviedb.org/3/movie/${movie_id}/rating?api_key=${api_key}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          movie_review: review,
+          value: 5,
         }),
       }
     );

@@ -9,15 +9,13 @@ export default function SignIn() {
 
   if (sessionId) {
     return (
-      <div className="">
-        <Link
-          to={`http://localhost:5173/`}
-          className="flex flex-wrap p-3 text-white bg-mediumPurp font-mono rounded-lg"
-          onClick={() => signOut()}
-        >
-          Log Out
-        </Link>
-      </div>
+      <Link
+        to={`http://localhost:5173/`}
+        className="flex flex-wrap justify-center py-3 px-2 text-white bg-mediumPurp font-mono rounded-lg ring self-start"
+        onClick={() => signOut()}
+      >
+        Log Out
+      </Link>
     );
   }
 
