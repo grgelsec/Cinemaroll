@@ -11,7 +11,7 @@ export default function SignIn() {
     return (
       <Link
         to={`http://localhost:5173/`}
-        className="flex flex-wrap justify-center py-3 px-2 text-white bg-mediumPurp font-mono rounded-lg ring self-start"
+        className="flex flex-wrap justify-center p-1 md:p-2 lg:p-2 text-xs lg:text-lg text-white bg-mediumPurp font-mono rounded-lg"
         onClick={() => signOut()}
       >
         Log Out

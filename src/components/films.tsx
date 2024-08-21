@@ -32,15 +32,15 @@ export default function Films() {
           </div>
         </header>
         <div className="">
-          <body className="flex col justify-center flex-wrap mb-10">
+          <body className="flex col justify-center flex-wrap">
             <div className="flex col flex-wrap justify-center text-xl text-whitePurp w-2/3 bg-white/10 backdrop-blur-md rounded-lg">
-              <h1 className="py-1 font-extrabold"></h1>
-              <div className="flex col flex-wrap justify-center gap-3 p-5">
+              <h1 className="font-extrabold"></h1>
+              <div className="flex flex-wrap justify-center gap-3 p-6">
                 {filmList.slice(0, 20).map((movie) => (
                   <Link
                     to={`/film/${movie.id}`}
                     id={`${movie.id}`}
-                    className="flex items-center lg:w-2/12 md:w-3/12 sm:w-4/12 xs:w-1/12 mt-3"
+                    className="flex items-center w-3/12 md:w-3/12 lg:w-2/12"
                   >
                     <img
                       src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
@@ -144,16 +144,16 @@ export function Film() {
               </p>
             </div>
           </div>
-          <div className="flex flex-col md:flex-row justify-center w-screen my-10">
-            <div className="flex flex-wrap self-start justify-center">
-              <div className="flex justify-center space-x-5 lg:w-8/12 md:w-8/12">
+          <div className="flex flex-col md:flex-row justify-center w-full mt-5 ring p-5">
+            <div className="flex flex-wrap self-start justify-center ring">
+              <div className="flex justify-center space-x-5 w-10/12 md:w-8/12 lg:w-8/12 ring">
                 <img
                   src={`https://image.tmdb.org/t/p/w500/${filmInfo?.poster_path}`}
                   className="rounded-xl"
                 ></img>
               </div>
             </div>
-            <div className="flex flex-col md:flex-row gap-8 w-2/3 p-10 text-white font-sans">
+            <div className="flex flex-col items-start md:flex-row gap-8 w-2/3 p-5 text-white font-sans ring">
               <div className="md:w-1/3 bg-white/10 backdrop-blur-md rounded-lg p-6 shadow-lg">
                 <h2 className="text-2xl font-semibold mb-4">Details</h2>
                 <div className="space-y-4">
@@ -191,15 +191,15 @@ export function Film() {
           </div>
           <div className="flex justify-center w-screen p-5 space-x-5">
             <div className="flex flex-wrap justify-center p-5 w-2/3 bg-white/10 backdrop-blur-md rounded-lg">
-              <h2 className="text-2xl text-white font-semibold mb-4">
+              <h2 className="text-2xl text-white font-semibold">
                 If you like {filmInfo?.original_title}...
               </h2>
-              <div className="flex flex-wrap flex-row justify-center space-x-5">
-                {recommendedList.slice(0, 5).map((movie) => (
+              <div className="flex flex-wrap justify-center ring gap-3 mt-3">
+                {recommendedList.slice(0, 6).map((movie) => (
                   <Link
                     to={`/film/${movie.id}`}
                     id={`${movie.id}`}
-                    className="flex items-center lg:w-2/12 md:w-2/12 mt-3"
+                    className="flex justify-center mt-1 w-5/12 md:w-3/12 lg:w-3/12"
                   >
                     <img
                       src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
@@ -219,7 +219,7 @@ export function Film() {
               <div className="flex flex-wrap justify-center w-full p-5">
                 {reviewList.slice(0, 10).map((review) => (
                   <div className="flex flex-wrap w-full p-5 space-y-4 border-b justify-start text-white">
-                    <h2 className="flex justif-start text-xl text-lightPurp  w-full">
+                    <h2 className="flex justify-start text-md text-lightPurp  w-full">
                       {review.author_details.username} -{" "}
                       {review.author_details.rating}/10
                     </h2>

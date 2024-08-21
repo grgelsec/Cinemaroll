@@ -38,7 +38,6 @@ const useAccountDetails = () => {
 
         const data: account = await response.json();
         setAccountInfo(data);
-        console.log(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
