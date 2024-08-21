@@ -11,7 +11,7 @@ export default function NavBar() {
       <nav className="flex w-full md:w-full lg:w-2/3 p-5 items-center justify-center mt-5 space-x-3 font-mono ring ring-green-500">
         <Link
           to="/home"
-          className="flex row justify-center items-center w-4/12 md:w-3/12 lg:w-4/12 text-white p-2 space-x-2 ring-4 ring-indigo-500 rounded-xl hover:shadow-lg hover:shadow-white transition-sexy"
+          className="flex row justify-center items-center w-4/12 md:w-3/12 lg:w-3/12 text-white p-2 space-x-2 ring-4 ring-indigo-500 rounded-xl hover:shadow-lg hover:shadow-white transition-sexy"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -29,7 +29,7 @@ export default function NavBar() {
           </svg>
           <p className="text-xs md:text-lg lg:text-xl">Cinemaroll</p>
         </Link>
-        <ul className="flex justify-center text-sm md:text-lg w-full md:w-6/12 lg:w-8/12 space-x-1 md:space-x-12 lg:space-x-12 ring">
+        <ul className="flex justify-center text-sm md:text-lg w-full sm:w-4/12 md:w-6/12 lg:w-6/12 space-x-1 md:space-x-12 lg:space-x-12 ring">
           <li className="flex navbar-buttons">
             <Link to={"/home"}>Home</Link>
           </li>
@@ -40,8 +40,8 @@ export default function NavBar() {
             <Link to={"/lists"}>Lists</Link>
           </li>
         </ul>
-        <form className="flex justify-center w-full md:w-1/12 lg:w-1/12">
-          <button className="flex justify-center md:p-2 bg-white border rounded-lg opacity-70 hover:opacity-100 hover:ring-4 hover:outline-none hover:border-transparent hover:ring-indigo-500 transition-sexy">
+        <form className="flex justify-center w-full sm:w-1/12 md:w-1/12 lg:w-1/12">
+          <button className="flex justify-center p-1 sm:p-1 md:p-2 bg-white border rounded-lg opacity-70 hover:opacity-100 hover:ring-4 hover:outline-none hover:border-transparent hover:ring-indigo-500 transition-sexy">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -61,7 +61,7 @@ export default function NavBar() {
         {sessionId ? (
           <Link
             to={"/profile"}
-            className="flex flex-wrap justify-center items-center text-white font-medium rounded-lg bg-mediumPurp p-1 w-full md:w-1/12 md:p-2 lg:w-1/12"
+            className="flex flex-wrap justify-center items-center text-white font-medium rounded-lg bg-mediumPurp p-1 w-full sm:w-1/12 md:w-1/12 md:p-2 lg:w-1/12"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -82,7 +82,7 @@ export default function NavBar() {
           <></>
         )}
       </nav>
-      <div className="flex justify-center w-full md:w-1/12 mt-5 ring">
+      <div className="flex justify-center w-full sm:w-1/12 md:w-2/12 lg:w-1/12 mt-5 ring">
         <SignIn />
       </div>
     </div>

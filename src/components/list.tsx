@@ -62,8 +62,8 @@ export default function BrowseLists() {
           Lists
         </h1>
       </header>
-      <div className="flex justify-center col-2-start flex-wrap w-screen space-x-5">
-        <div className="flex flex-wrap col justify-center w-1/3 space-y-4">
+      <div className="flex justify-center col-2-start flex-wrap w-full space-x-5 p-5">
+        <div className="flex flex-wrap justify-center w-2/3 md:w-1/3 space-y-4 mb-5">
           {listInfo.slice(0, 10).map((list) => (
             <Link
               className="flex flex-row w-full bg-white/10 backdrop-blur-md shadow-lg rounded-lg p-5 space-x-3 self-starthover:opacity-50 
@@ -87,9 +87,9 @@ export default function BrowseLists() {
             </Link>
           ))}
         </div>
-        <div className="flex flex-wrap col justify-center w-1/3 space-y-4 self-start">
+        <div className="flex flex-wrap col justify-center w-2/3 md:w-1/3 space-y-4 self-start">
           <div className="w-full justify-center bg-whitePurp backdrop-blur-md rounded-lg p-5">
-            <h2 className="flex justify-center text-lightPurp text-2xl font-semibold mb-4 w-full">
+            <h2 className="flex justify-center text-lightPurp text-xl font-semibold mb-4 w-full">
               What are Lists?
             </h2>
             <p className="flex justify-center font-mono text-black">
@@ -98,15 +98,15 @@ export default function BrowseLists() {
             </p>
           </div>
           <div className="w-full justify-center bg-white/10 backdrop-blur-md shadow-lg rounded-lg p-5">
-            <h2 className="flex justify-center text-lightPurp text-2xl font-semibold mb-4 w-full">
+            <h2 className="flex justify-center text-lightPurp text-xl font-semibold mb-4 w-full">
               Trending Movies
             </h2>
             <div className="flex flex-wrap justify-center space-x-2 w-full">
-              {filmList.slice(0, 18).map((movie) => (
+              {filmList.slice(0, 12).map((movie) => (
                 <Link
                   to={`/film/${movie.id}`}
                   id={`${movie.id}`}
-                  className="flex lg:w-3/12 md:w-2/12 mt-3"
+                  className="flex sm:w-1/12 md:w-2/12 lg:w-3/12 mt-3"
                 >
                   <img
                     src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
@@ -180,52 +180,56 @@ export function ListPage() {
   return (
     <>
       <NavBar></NavBar>
-      <div className="flex w-full justify-center py-10 mt-5">
-        <h2 className="flex w-fill p-5 justify-center text-white font-semibold text-2xl bg-white/10 backdrop-blur-md shadow-lg rounded-lg">
+      <div className="flex w-full justify-center my-5">
+        <h2 className="flex w-1/3 p-5 justify-center text-white font-semibold text-2xl bg-white/10 backdrop-blur-md shadow-lg rounded-lg">
           {singleListDetails?.name}
         </h2>
       </div>
-      <div className="flex justify-center w-full p-5 space-x-5">
-        <div className="flex justify-center w-1/3 p-5 py-10 bg-white/10 backdrop-blur-md shadow-lg rounded-lg space-x-2 font-mono">
-          <p className="text-lightPurp text-xl">Description:</p>
-          <div className="text-white">
-            {(() => {
-              if (singleListDetails?.description == "") {
-                return <p>empty</p>;
-              } else {
-                return <p>{singleListDetails?.description}</p>;
-              }
-            })()}
+      <div className="flex justify-center flex-wrap">
+        <div className="flex justify-center w-full md:w-2/3 p-2 space-x-5 ring">
+          <div className="flex justify-center items-center flex-wrap w-1/3 p-5 bg-white/10 backdrop-blur-md shadow-lg rounded-lg space-x-2 font-mono ring">
+            <p className="text-lightPurp text-sm">Description:</p>
+            <div className="text-white">
+              {(() => {
+                if (singleListDetails?.description == "") {
+                  return <p>empty</p>;
+                } else {
+                  return <p>{singleListDetails?.description}</p>;
+                }
+              })()}
+            </div>
+          </div>
+          <div className="flex justify-center items-center w-2/3 bg-white/10 backdrop-blur-md shadow-lg rounded-lg space-x-3 md:space-x-10 font-mono text-xs">
+            <div className="flex justify-center flex-wrap space-x-1">
+              <p className="text-lightPurp">Created by:</p>
+              <p className="text-white">{singleListDetails?.created_by}</p>
+            </div>
+            <div className="flex justify-center flex-wrap space-x-1">
+              <p className="text-lightPurp">Movies:</p>
+              <p className="text-white">{singleListDetails?.item_count}</p>
+            </div>
+            <div className="flex justify-center flex-wrap space-x-1">
+              <p className="text-lightPurp">Pages:</p>
+              <p className="text-white">{singleListDetails?.total_pages}</p>
+            </div>
           </div>
         </div>
-        <div className="flex justify-center w-2/3 py-10 p-5 bg-white/10 backdrop-blur-md shadow-lg rounded-lg space-x-3 font-mono">
-          <div className="flex justify-center text-xl w-1/3 space-x-2">
-            <p className="text-lightPurp">Created by:</p>
-            <p className="text-white">{singleListDetails?.created_by}</p>
-          </div>
-          <p className="flex justify-center text-white text-xl w-1/3">
-            {singleListDetails?.item_count} Movies
-          </p>
-          <p className="flex justify-center text-white text-xl w-1/3">
-            {singleListDetails?.total_pages} Pages
-          </p>
-        </div>
-      </div>
-      <div className="flex justify-center w-full p-5">
-        <div className="flex justify-center flex-wrap w-2/3 space-x-5 p-5 bg-white/10 backdrop-blur-md rounded-lg">
-          {singleListDetails?.items.slice(0, 20).map((movie) => (
-            <Link
-              to={`/film/${movie.id}`}
-              id={`${movie.id}`}
-              className="flex lg:w-2/12 md:w-2/12 mt-3"
-            >
-              <img
-                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+        <div className="flex justify-center w-full md:w-2/3 p-5">
+          <div className="flex justify-center flex-wrap gap-3 p-5 bg-white/10 backdrop-blur-md rounded-lg">
+            {singleListDetails?.items.slice(0, 20).map((movie) => (
+              <Link
+                to={`/film/${movie.id}`}
                 id={`${movie.id}`}
-                className="hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy rounded-xl"
-              ></img>
-            </Link>
-          ))}
+                className="w-4/12 md:w-2/12 lg:w-2/12"
+              >
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                  id={`${movie.id}`}
+                  className="hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy rounded-xl"
+                ></img>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </>

@@ -144,16 +144,20 @@ export function Film() {
               </p>
             </div>
           </div>
-          <div className="flex flex-col md:flex-row justify-center w-full mt-5 ring p-5">
-            <div className="flex flex-wrap self-start justify-center ring">
-              <div className="flex justify-center space-x-5 w-10/12 md:w-8/12 lg:w-8/12 ring">
+          <div className="flex flex-col md:flex-row justify-center w-full mt-5  p-5">
+            <div className="flex flex-wrap self-start justify-center ">
+              <div className="flex justify-center space-x-5 w-10/12 md:w-8/12 lg:w-8/12 ">
                 <img
                   src={`https://image.tmdb.org/t/p/w500/${filmInfo?.poster_path}`}
                   className="rounded-xl"
                 ></img>
               </div>
             </div>
-            <div className="flex flex-col items-start md:flex-row gap-8 w-2/3 p-5 text-white font-sans ring">
+            <div className="flex flex-col items-center md:flex-row gap-8 w-2/3 p-5 text-white font-sans ">
+              <div className="md:w-2/3 bg-white/10 backdrop-blur-md rounded-lg p-6 shadow-lg ">
+                <h2 className="text-2xl font-semibold mb-4">Overview</h2>
+                <p className="text-gray-300">{filmInfo?.overview}</p>
+              </div>
               <div className="md:w-1/3 bg-white/10 backdrop-blur-md rounded-lg p-6 shadow-lg">
                 <h2 className="text-2xl font-semibold mb-4">Details</h2>
                 <div className="space-y-4">
@@ -183,10 +187,6 @@ export function Film() {
                   </div>
                 </div>
               </div>
-              <div className="md:w-2/3 bg-white/10 backdrop-blur-md rounded-lg p-6 shadow-lg ">
-                <h2 className="text-2xl font-semibold mb-4">Overview</h2>
-                <p className="text-gray-300">{filmInfo?.overview}</p>
-              </div>
             </div>
           </div>
           <div className="flex justify-center w-screen p-5 space-x-5">
@@ -194,7 +194,7 @@ export function Film() {
               <h2 className="text-2xl text-white font-semibold">
                 If you like {filmInfo?.original_title}...
               </h2>
-              <div className="flex flex-wrap justify-center ring gap-3 mt-3">
+              <div className="flex flex-wrap justify-center gap-3 mt-3">
                 {recommendedList.slice(0, 6).map((movie) => (
                   <Link
                     to={`/film/${movie.id}`}
