@@ -1,12 +1,9 @@
-import useAccountDetails from "../hooks/fetchAccountInfo";
+import useAccountDetails from "../hooks/accountInfo/fetchAccountInfo";
 import NavBar from "./navbar";
-//import usePremadeLists from "../hooks/fetchUpcomingFilms";
 
 export default function Home() {
   const { accountInfo } = useAccountDetails();
-  //this aint gon work chief
-  // const { upcomingFilms } = usePremadeLists();
-  // console.log(upcomingFilms);
+  console.log(accountInfo);
   return (
     <>
       <NavBar />

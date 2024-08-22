@@ -8,7 +8,7 @@ const CreateMovieReview = async (movie_id: number) => {
   try {
     const response = await fetch(
       `
-https://api.themoviedb.org/3/movie/${movie_id}/rating?api_key=${api_key}`,
+https://api.themoviedb.org/3/movie/${movie_id}/rating?session_id=${sessionId}&api_key=${api_key}`,
       {
         method: "POST",
         headers: {
