@@ -16,6 +16,7 @@ type Movie = {
   original_title: string;
   video: boolean;
   adult: boolean;
+  rating: number;
 };
 
 type MovieAPIResponse = {
