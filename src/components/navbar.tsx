@@ -8,7 +8,7 @@ export default function NavBar() {
   //const { accountInfo } = useAccountDetails();
   return (
     <div className="flex justify-center items-center w-full ring-white space-x-2 p-5">
-      <nav className="flex w-full md:w-full lg:w-2/3 p-5 items-center justify-center mt-5 space-x-3 font-mono ring ring-green-500">
+      <nav className="flex w-full md:w-full lg:w-2/3 p-5 items-center justify-center mt-5 space-x-3 font-mono  ring-green-500">
         <Link
           to="/home"
           className="flex row justify-center items-center w-4/12 md:w-3/12 lg:w-3/12 text-white p-2 space-x-2 ring-4 ring-indigo-500 rounded-xl hover:shadow-lg hover:shadow-white transition-sexy"
@@ -29,7 +29,7 @@ export default function NavBar() {
           </svg>
           <p className="text-xs md:text-lg lg:text-xl">Cinemaroll</p>
         </Link>
-        <ul className="flex justify-center text-sm md:text-lg w-full sm:w-4/12 md:w-6/12 lg:w-6/12 space-x-1 md:space-x-12 lg:space-x-12 ring">
+        <ul className="flex justify-center text-sm md:text-lg w-full sm:w-4/12 md:w-6/12 lg:w-6/12 space-x-1 md:space-x-12 lg:space-x-12">
           <li className="flex navbar-buttons">
             <Link to={"/home"}>Home</Link>
           </li>
@@ -82,7 +82,7 @@ export default function NavBar() {
           <></>
         )}
       </nav>
-      <div className="flex justify-center w-full sm:w-1/12 md:w-2/12 lg:w-1/12 mt-5 ring">
+      <div className="flex justify-center w-full sm:w-1/12 md:w-2/12 lg:w-1/12 mt-5 ">
         <SignIn />
       </div>
     </div>
