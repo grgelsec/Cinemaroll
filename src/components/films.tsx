@@ -33,7 +33,7 @@ export default function Films() {
         </header>
         <div className="">
           <body className="flex col justify-center flex-wrap">
-            <div className="flex col flex-wrap justify-center text-xl text-whitePurp w-2/3 bg-white/10 backdrop-blur-md rounded-lg">
+            <div className="flex col flex-wrap justify-center text-xl text-whitePurp w-2/3 bg-white/10 backdrop-blur-md rounded-lg ring-2 ring-lightPurp">
               <h1 className="font-extrabold"></h1>
               <div className="flex flex-wrap justify-center gap-3 p-6">
                 {filmList.slice(0, 20).map((movie) => (

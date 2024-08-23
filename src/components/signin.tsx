@@ -11,7 +11,7 @@ export default function SignIn() {
     return (
       <Link
         to={`http://localhost:5173/`}
-        className="flex flex-wrap justify-center p-1 md:p-2 lg:p-2 text-xs lg:text-lg text-white bg-mediumPurp font-mono rounded-lg"
+        className="flex flex-wrap justify-center p-1 md:p-2 lg:p-2 text-xs lg:text-md text-codBlack bg-white font-mono rounded-lg"
         onClick={() => signOut()}
       >
         Log Out
@@ -23,7 +23,7 @@ export default function SignIn() {
     <div className="">
       <Link
         to={`https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=http://localhost:5173/sign-in/auth-page`}
-        className="flex flex-wrap p-3 text-white bg-mediumPurp font-mono rounded-lg"
+        className="flex flex-wrap justify-center p-1 md:p-2 lg:p-2 text-xs lg:text-md text-codBlack bg-white font-mono rounded-lg"
       >
         Sign In
       </Link>

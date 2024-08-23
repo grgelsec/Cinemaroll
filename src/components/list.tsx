@@ -66,8 +66,8 @@ export default function BrowseLists() {
         <div className="flex flex-wrap justify-center w-2/3 md:w-1/3 space-y-4 mb-5">
           {listInfo.slice(0, 10).map((list) => (
             <Link
-              className="flex flex-row w-full bg-white/10 backdrop-blur-md shadow-lg rounded-lg p-5 space-x-3 self-starthover:opacity-50 
-              hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy"
+              className="flex flex-row w-full bg-white/10 backdrop-blur-md shadow-lg rounded-lg p-5 space-x-3 self-start hover:opacity-60 
+              ring-2 ring-lightPurp transition-sexy"
               to={`/list/${list.id}`}
             >
               <div className="flex flex-wrap w-full space-y-2 border-b =">
@@ -88,7 +88,7 @@ export default function BrowseLists() {
           ))}
         </div>
         <div className="flex flex-wrap col justify-center w-2/3 md:w-1/3 space-y-4 self-start">
-          <div className="w-full justify-center bg-whitePurp backdrop-blur-md rounded-lg p-5">
+          <div className="w-full justify-center bg-whitePurp backdrop-blur-md rounded-lg p-5 ring-2 ring-lightPurp">
             <h2 className="flex justify-center text-lightPurp text-xl font-semibold mb-4 w-full">
               What are Lists?
             </h2>
@@ -97,7 +97,7 @@ export default function BrowseLists() {
               make groups of films that you think go together.
             </p>
           </div>
-          <div className="w-full justify-center bg-white/10 backdrop-blur-md shadow-lg rounded-lg p-5">
+          <div className="w-full justify-center bg-white/10 backdrop-blur-md shadow-lg rounded-lg p-5 ring-2 ring-lightPurp">
             <h2 className="flex justify-center text-lightPurp text-xl font-semibold mb-4 w-full">
               Trending Movies
             </h2>
@@ -106,7 +106,7 @@ export default function BrowseLists() {
                 <Link
                   to={`/film/${movie.id}`}
                   id={`${movie.id}`}
-                  className="flex sm:w-1/12 md:w-2/12 lg:w-3/12 mt-3"
+                  className="flex sm:w-1/12 md:w-4/12 lg:w-3/12 mt-3"
                 >
                   <img
                     src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
