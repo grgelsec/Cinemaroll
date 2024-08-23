@@ -19,37 +19,27 @@ export default function Search() {
     setInputValue("");
   };
 
-  const decrementPage = () => {
-    if (pageNum > 0) {
-      setPage((page) => page - 1);
-    }
-  };
-
-  const incrementPage = () => {
-    setPage((page) => page + 1);
-  };
-
   const { filmList } = useMultiSearch(submittedValue, pageNum);
   console.log(filmList);
 
   return (
-    <div className="">
+    <div className="max-w-screen max-h-screen">
       <NavBar></NavBar>
-      <div className="flex w-full ring py-10">
+      <div className="flex w-full py-10">
         <div className="flex justify-center w-full">
           <div className="flex justify-center items-center max-w-3xl w-full rounded-full bg-lightPurp">
             <form
               className="flex row justify-center w-full rounded-full p-3 space-x-2"
               onSubmit={handleSubmit}
             >
-              <button className="flex justify-center items-center w-1/12 p-4 rounded-full bg-white text-lightPurp hover:cursor-pointer">
+              <button className="flex justify-center items-center w-1/12 p-4 rounded-full bg-white text-codBlack hover:cursor-pointer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
                   stroke="currentColor"
-                  className="w-4 h-4"
+                  className="w-5 h-5"
                 >
                   <path
                     strokeLinecap="round"
@@ -58,10 +48,10 @@ export default function Search() {
                   />
                 </svg>
               </button>
-              <div className="flex justify-center items-center w-10/12 rounded-full bg-white p-3">
+              <div className="flex justify-center items-center w-10/12 rounded-full font-mono text-codBlack bg-white p-3">
                 <input
                   type="text"
-                  className="flex w-full border-b border-lightPurp hover:cursor-pointer"
+                  className="flex w-full hover:cursor-pointer"
                   onChange={handleInputChange}
                   value={inputValue}
                   placeholder="Search"
@@ -98,51 +88,6 @@ export default function Search() {
               </div>
             </Link>
           ))}
-          <div className="w-full p-3 mt-4">
-            <div className="flex justify-center space-x-2 text-white">
-              <button
-                onClick={() => decrementPage()}
-                className="hover:text-lightPurp p-1"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  className="size-4"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M15.75 19.5 8.25 12l7.5-7.5"
-                  />
-                </svg>
-              </button>
-              <button
-                onClick={() => incrementPage()}
-                className="hover:text-lightPurp p-1"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  className="size-4"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="m8.25 4.5 7.5 7.5-7.5 7.5"
-                  />
-                </svg>
-              </button>
-            </div>
-            <h3 className="flex justify-center text-white font-mono text-xs mt-3">
-              Page {pageNum}
-            </h3>
-          </div>
         </div>
       </div>
     </div>

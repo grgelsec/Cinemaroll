@@ -58,7 +58,7 @@ export const RatedFilms = () => {
     <div className="flex flex-wrap justify-center w-full space-y-5">
       <div className="flex justify-center w-full">
         <Link
-          className="flex justify-center w-1/12 bg-green-500 rounded-xl p-4"
+          className="flex justify-center w-0.5/12 bg-green-500 rounded-xl p-3"
           to={"/add-rating"}
         >
           <svg
@@ -67,7 +67,7 @@ export const RatedFilms = () => {
             viewBox="0 0 24 24"
             strokeWidth="1.5"
             stroke="currentColor"
-            className="size-8"
+            className="size-6"
           >
             <path
               strokeLinecap="round"
@@ -77,7 +77,7 @@ export const RatedFilms = () => {
           </svg>
         </Link>
       </div>
-      <div className="flex flex-wrap justify-start w-3/3 p-5 bg-white/10 rounded-lg gap-3">
+      <div className="flex flex-wrap justify-start w-2/3 p-5 bg-white/10 rounded-lg gap-3">
         {accountRatings.slice(0, 6).map((movie) => (
           <Link
             to={`/film/${movie.id}`}
