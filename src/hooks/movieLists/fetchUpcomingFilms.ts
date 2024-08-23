@@ -21,7 +21,7 @@ type MovieAPIResponse = {
   results: Movie[];
 };
 
-const usePremadeLists = () => {
+const useUpcomingFilms = () => {
   //pml being pre-made lists
   const [upcomingFilms, setUpcomingFilms] = useState<Movie[] | undefined>();
 
@@ -48,4 +48,4 @@ const usePremadeLists = () => {
   }, []);
   return { upcomingFilms };
 };
-export default usePremadeLists;
+export default useUpcomingFilms;
