@@ -3,6 +3,7 @@ import CreateMovieReview from "../hooks/postReview";
 import useAccountRatings from "../hooks/accountInfo/fetchAccountRatings";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import useDeleteMovie from "../hooks/accountInfo/deleteAccountRating";
 export default function Profile() {
   const review = CreateMovieReview(1079091);
   console.log(review);
@@ -11,6 +12,8 @@ export default function Profile() {
   const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(event.target.value);
   };
+
+  useDeleteMovie(1079091);
 
   return (
     <div>

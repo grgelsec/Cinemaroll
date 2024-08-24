@@ -25,6 +25,7 @@ type MovieAPIResponse = {
 
 const useAccountRatings = () => {
   const [accountRatings, setRatings] = useState<Movie[]>([]);
+  //const [ratingsArray, setRatingsArray] = useState<Movie[]>([]);
   const sessionId = useSession();
   const sessionString = sessionId.sessionId;
 
