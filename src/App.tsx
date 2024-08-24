@@ -8,7 +8,6 @@ import Profile from "./components/profile";
 import SignIn from "./components/signin";
 import { AuthPage } from "./components/signin";
 import Home from "./components/home";
-import { CreateRating } from "./components/profile";
 import Search from "./components/search";
 
 function App() {
@@ -25,7 +24,6 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-in/auth-page" element={<AuthPage />} />
-        <Route path="/add-rating" element={<CreateRating />} />
         <Route path="/search" element={<Search />} />
       </Routes>
     </body>

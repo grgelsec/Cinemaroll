@@ -3,7 +3,8 @@ import CreateMovieReview from "../hooks/postReview";
 import useAccountRatings from "../hooks/accountInfo/fetchAccountRatings";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import useDeleteMovie from "../hooks/accountInfo/deleteAccountRating";
+import DeleteMovieRating from "../hooks/accountInfo/deleteAccountRating";
+import useMultiSearch from "../hooks/search/fetchStringSearch";
 export default function Profile() {
   const review = CreateMovieReview(1079091);
   console.log(review);
@@ -13,7 +14,7 @@ export default function Profile() {
     setSelectedOption(event.target.value);
   };
 
-  useDeleteMovie(1079091);
+  //DeleteMovieRating(1079091);
 
   return (
     <div>
@@ -57,56 +58,107 @@ export default function Profile() {
 export const RatedFilms = () => {
   const { accountRatings } = useAccountRatings();
   console.log(accountRatings);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
   return (
-    <div className="flex flex-wrap justify-center w-full space-y-5">
-      <div className="flex justify-center w-full">
-        <Link
-          className="flex justify-center w-0.5/12 bg-green-500 rounded-xl p-3"
-          to={"/add-rating"}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="size-6"
+    <>
+      <div className="flex flex-wrap justify-center w-full space-y-5">
+        <div className="flex justify-center w-full">
+          <button
+            className="flex justify-center w-0.5/12 bg-green-500 rounded-xl p-3"
+            onClick={openModal}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M12 4.5v15m7.5-7.5h-15"
-            />
-          </svg>
-        </Link>
-      </div>
-      <div className="flex flex-wrap justify-start w-2/3 p-5 bg-white/10 rounded-lg gap-3">
-        {accountRatings.slice(0, 6).map((movie) => (
-          <Link
-            to={`/film/${movie.id}`}
-            id={`${movie.id}`}
-            className="flex flex-wrap justify-center w-5/12 md:w-2/12 lg:w-2/12 rounded-tl-xl rounded-tr-xl hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy"
-          >
-            <img
-              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="size-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 4.5v15m7.5-7.5h-15"
+              />
+            </svg>
+          </button>
+        </div>
+        <div className="flex flex-wrap justify-start w-2/3 p-5 bg-white/10 rounded-lg gap-3">
+          {accountRatings.slice(0, 6).map((movie) => (
+            <Link
+              to={`/film/${movie.id}`}
               id={`${movie.id}`}
-              className="rounded-tl-xl rounded-tr-xl"
-            ></img>
-            <p className="flex justify-center py-2 font-mono text-white w-full bg-mediumPurp rounded-bl-xl rounded-br-xl">
-              {movie.rating}/10
-            </p>
-          </Link>
-        ))}
+              className="flex flex-wrap justify-center w-5/12 md:w-2/12 lg:w-2/12 rounded-tl-xl rounded-tr-xl hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy"
+            >
+              <img
+                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                id={`${movie.id}`}
+                className="rounded-tl-xl rounded-tr-xl"
+              ></img>
+              <p className="flex justify-center py-2 font-mono text-white w-full bg-mediumPurp rounded-bl-xl rounded-br-xl">
+                {movie.rating}/10
+              </p>
+            </Link>
+          ))}
+        </div>
       </div>
-    </div>
+      <CreateRatingModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+      ></CreateRatingModal>
+    </>
   );
 };
 
-export const CreateRating = () => {
+export const CreateRatingModal = (isOpen: boolean, onClose: () => void) => {
+  const [searchInput, setSearchInput] = useState("");
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchInput(event.target.value);
+  };
+
+  const { filmList } = useMultiSearch(searchInput, 1);
+
+  if (!isOpen) return null;
   return (
     <>
-      <div className="flex items-center justify-center w-full h-screen">
-        <div className="flex justify-center w-2/3 ring py-20"></div>
+      <div className="fixed inset-0 bg-gray-300 bg-opacity-30" />
+      <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+        <div className="flex min-h-full items-center justify-center p-4">
+          <div className="w-full max-w-md">
+            <div className="flex flex-col bg-gray-500 rounded-lg shadow-xl ring-2 ring-white">
+              <form className="p-4">
+                <input
+                  type="text"
+                  value={searchInput}
+                  onChange={handleInputChange}
+                  placeholder="Search Movies"
+                  className="w-full rounded-lg font-mono p-2 border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                />
+              </form>
+              <div className="max-h-60 overflow-y-auto p-2 space-y-3  ">
+                {filmList.slice(0, 5).map((movie) => (
+                  <>
+                    <div className="flex flex-wrap w-full  rounded-xl bg-codBlack hover:opacity-60 transition-sexy p-2">
+                      <div className="w-2/12">
+                        <img
+                          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                          alt={movie.title}
+                          className="w-full h-auto hover:opacity-50 hover:ring-4 hover:ring-indigo-500 transition-all duration-300 rounded-xl"
+                        />
+                      </div>
+                      <p className="flex justify-center items-center text-md w-10/12 text-white font-mono ">
+                        {movie.title}
+                      </p>
+                    </div>
+                  </>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

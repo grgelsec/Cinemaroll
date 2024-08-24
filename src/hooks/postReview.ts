@@ -15,7 +15,7 @@ https://api.themoviedb.org/3/movie/${movie_id}/rating?session_id=${sessionId}&ap
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          value: 5,
+          value: 8,
         }),
       }
     );
