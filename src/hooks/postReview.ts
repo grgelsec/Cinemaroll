@@ -1,9 +1,6 @@
 import { useSession } from "../context/SessionContext";
 
-const CreateMovieReview = async (
-  movie_id: number | undefined,
-  rating: number | undefined
-) => {
+const CreateMovieReview = async (movie_id: number | undefined, rating) => {
   //const [movieReview, setReview] = useState(review);
   const api_key = import.meta.env.VITE_API_URL3;
   const { sessionId } = useSession();
@@ -18,7 +15,7 @@ https://api.themoviedb.org/3/movie/${movie_id}/rating?session_id=${sessionId}&ap
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          value: 7,
+          value: rating,
         }),
       }
     );

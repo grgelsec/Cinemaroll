@@ -185,16 +185,22 @@ export const RateMovie = () => {
   const params = useParams();
   const movie_id = params.movieID;
   const { filmInfo } = useSearchMovies(movie_id);
+  const [submit, SetSubmit] = useState<string>();
 
   const handleSetRating = (event) => {
     setRating(event.target.value);
   };
 
-  const movieIdInt = Number(movie_id);
-  const ratingInt = Number(rating);
-  const handlePostReview = () => {
-    CreateMovieReview(movieIdInt, ratingInt);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    SetSubmit(rating);
+    setRating("");
   };
+
+  const movieIdInt = Number(movie_id);
+  // const submitInt = Number(submit);
+
+  CreateMovieReview(movieIdInt, submit);
 
   console.log(filmInfo);
   return (
@@ -232,7 +238,7 @@ export const RateMovie = () => {
                 className="flex justify-center w-4/12 ring mt-10 p-3 bg-green-500 rounded-xl"
                 to={`/profile`}
               >
-                <button className="" onClick={() => handlePostReview}>
+                <button className="" onClick={handleSubmit}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -248,6 +254,12 @@ export const RateMovie = () => {
                     />
                   </svg>
                 </button>
+              </Link>
+              <Link
+                className="flex justify-center w-4/12 ring mt-10 p-3 bg-green-500 rounded-xl text-black"
+                to={`/profile`}
+              >
+                Go Back
               </Link>
             </div>
           </div>
