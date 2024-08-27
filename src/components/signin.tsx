@@ -36,7 +36,6 @@ export function AuthPage() {
   const navigate = useNavigate();
   const urlParams = new URLSearchParams(window.location.search);
   const requestToken: string | null = urlParams.get("request_token");
-  console.log(requestToken);
 
   const handleCreateSession = async () => {
     if (requestToken) {

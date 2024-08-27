@@ -9,6 +9,7 @@ import SignIn from "./components/signin";
 import { AuthPage } from "./components/signin";
 import Home from "./components/home";
 import Search from "./components/search";
+import { RateMovie } from "./components/profile";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-in/auth-page" element={<AuthPage />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/rate/:movieID" element={<RateMovie />} />
       </Routes>
     </body>
   );
