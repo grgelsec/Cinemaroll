@@ -86,12 +86,12 @@ export const RatedFilms = () => {
             </svg>
           </button>
         </div>
-        <div className="flex flex-wrap justify-start w-2/3 p-5 bg-white/10 rounded-lg gap-3">
+        <div className="flex flex-wrap justify-start w-2/3 ring p-5 bg-white/10 rounded-lg gap-3">
           {accountRatings.slice(0, 6).map((movie) => (
             <Link
               to={`/film/${movie.id}`}
               id={`${movie.id}`}
-              className="flex flex-wrap justify-center w-5/12 md:w-2/12 lg:w-2/12 rounded-tl-xl rounded-tr-xl hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy"
+              className="flex flex-wrap justify-center w-5/12 md:w-2/12 lg:w-2/12 rounded-xl hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy"
             >
               <img
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
@@ -134,10 +134,10 @@ export const SearchMoviesModal = ({ isOpen, onClose }) => {
     <>
       <div className="fixed inset-0 bg-codBlack bg-opacity-70" />
       <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-        <div className="flex min-h-full items-center justify-center p-4">
+        <div className="flex min-h-full items-center justify-center p-">
           <div className="w-full max-w-md">
             <div className="flex flex-col bg-lightPurp rounded-lg shadow-xl ring-2 ring-white">
-              <form className="p-4">
+              <form className="flex p-4 mt-3">
                 <input
                   type="text"
                   value={searchInput}
