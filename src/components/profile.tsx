@@ -6,53 +6,68 @@ import { Link, useParams } from "react-router-dom";
 import DeleteMovieRating from "../hooks/accountInfo/deleteAccountRating";
 import useMultiSearch from "../hooks/search/fetchStringSearch";
 import useSearchMovies from "../hooks/fetchSearchMovie";
+import useAccountDetails from "../hooks/accountInfo/fetchAccountInfo";
 export default function Profile() {
-  const review = CreateMovieReview(438631);
-  console.log(review);
   const [selectedOption, setSelectedOption] = useState<string>("films");
 
   const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(event.target.value);
   };
 
-  //DeleteMovieRating(1079091);
+  const { accountInfo } = useAccountDetails();
+  console.log(accountInfo);
 
   return (
-    <div>
+    <html>
       <NavBar></NavBar>
-      <div className="flex flex-wrap justify-center w-full ring-white mt-5">
-        <div className="flex justify-center w-2/12 rounded-full space-x-2 font-mono text-lightPurp bg-white/10 transition-sexy py-2">
-          <label className="radio flex items-center justify-center rounded-lg p-1 cursor-pointer">
-            <input
-              type="radio"
-              value="films"
-              className="peer hidden"
-              checked={selectedOption === "films"}
-              onChange={handleOptionChange}
-            />
-            <span className="tracking-widest peer-checked:bg-mediumPurp text-white font-mono p-2 rounded-xl transition-sexy">
-              Films
-            </span>
-          </label>
-          <label className="radio flex items-center justify-center rounded-xl p-1 cursor-pointer">
-            <input
-              type="radio"
-              value="lists"
-              className="peer hidden"
-              checked={selectedOption === "lists"}
-              onChange={handleOptionChange}
-            />
-            <span className="tracking-widest peer-checked:bg-mediumPurp text-white font-mono p-2 rounded-xl transition-sexy">
-              Lists
-            </span>
-          </label>
+      <body className="flex flex-col space-y-12">
+        <div className="flex flex-wrap justify-center w-full ring-white mt-5">
+          <img
+            src={`https://image.tmdb.org/t/p/w200/${accountInfo?.avatar.tmdb.avatar_path}`}
+            className="w-2/12 rounded-3xl ring-4 ring-lightPurp"
+          ></img>
         </div>
-      </div>
-      <div className="w-full py-10">
-        {selectedOption === "films" && <RatedFilms />}
-        {selectedOption === "lists" && <CreatedLists />}
-      </div>
-    </div>
+        <div className="flex flex-wrap justify-center w-full ring-white">
+          <div className="flex justify-center ring-2 ring-lightPurp w-9/12 md:w-4/12 lg:w-3/12 bg-white/10 backdrop-blur-md rounded-lg py-5 shadow-xl shadow-lightPurp">
+            <p className="flex justify-center font-mono text-lightPurp text-xl sm:text-nowrap">
+              {accountInfo?.username}
+            </p>
+          </div>
+        </div>
+        <div className="flex flex-wrap justify-center w-full ring-white">
+          <div className="flex justify-center w-2/12 rounded-full space-x-2 font-mono text-lightPurp bg-white/10 transition-sexy py-2 mt">
+            <label className="radio flex items-center justify-center rounded-lg p-1 cursor-pointer">
+              <input
+                type="radio"
+                value="films"
+                className="peer hidden"
+                checked={selectedOption === "films"}
+                onChange={handleOptionChange}
+              />
+              <span className="tracking-widest peer-checked:bg-mediumPurp text-white font-mono p-2 rounded-xl transition-sexy">
+                Films
+              </span>
+            </label>
+            <label className="radio flex items-center justify-center rounded-xl p-1 cursor-pointer">
+              <input
+                type="radio"
+                value="lists"
+                className="peer hidden"
+                checked={selectedOption === "lists"}
+                onChange={handleOptionChange}
+              />
+              <span className="tracking-widest peer-checked:bg-mediumPurp text-white font-mono p-2 rounded-xl transition-sexy">
+                Lists
+              </span>
+            </label>
+          </div>
+        </div>
+        <div className="w-full">
+          {selectedOption === "films" && <RatedFilms />}
+          {selectedOption === "lists" && <CreatedLists />}
+        </div>
+      </body>
+    </html>
   );
 }
 
@@ -86,21 +101,40 @@ export const RatedFilms = () => {
             </svg>
           </button>
         </div>
-        <div className="flex justify-center flex-wrap w-2/3 ring p-5 bg-white/10 rounded-lg gap-3">
+        <div className="flex justify-center flex-wrap w-2/3 p-5 bg-white/10 rounded-lg gap-3">
           {accountRatings.slice(0, 20).map((movie) => (
             <Link
               to={`/film/${movie.id}`}
               id={`${movie.id}`}
-              className="flex flex-wrap justify-center w-5/12 md:w-2/12 lg:w-2/12 rounded-xl hover:opacity-50 hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy"
+              className="flex flex-wrap justify-center w-5/12 md:w-2/12 lg:w-2/12 rounded-xl hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-sexy"
             >
               <img
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                 id={`${movie.id}`}
                 className="rounded-tl-xl rounded-tr-xl"
               ></img>
-              <p className="flex justify-center py-2 font-mono text-white w-full bg-mediumPurp rounded-bl-xl rounded-br-xl">
-                {movie.rating}/10
-              </p>
+              <div className="flex justify-center py-2 font-mono text-white w-full bg-mediumPurp rounded-bl-xl rounded-br-xl space-x-12 text-sm">
+                <p>{movie.rating}/10</p>
+                <Link
+                  className="flex justify-center items-center"
+                  to={`/rate/${movie.id}`}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    className="size-5 hover:opacity-65"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+                    />
+                  </svg>
+                </Link>
+              </div>
             </Link>
           ))}
         </div>
@@ -191,52 +225,61 @@ export const RateMovie = () => {
     setRating(event.target.value);
   };
 
+  const movieIdInt = Number(movie_id);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     SetSubmit(rating);
     setRating("");
   };
 
-  const movieIdInt = Number(movie_id);
-  // const submitInt = Number(submit);
-
   CreateMovieReview(movieIdInt, submit);
 
   console.log(filmInfo);
   return (
-    <>
+    <html>
       <div
         className={"bg-fixed bg-center bg-no-repeat bg-cover w-screen absolute"}
         style={{
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://image.tmdb.org/t/p/w500/${filmInfo?.backdrop_path})`,
         }}
       >
-        <div className="flex justify-center items-center w-full h-screen">
-          <div className="flex justify-center items-center w-2/3 ring p-5 space-x-5 bg-white/10 backdrop-blur-md rounded-xl">
-            <div className="flex flex-wrap justify-center items-end w-1/2 ring space-y-3">
+        <div className="flex justify-center items-center w-screen h-screen sm:p-10">
+          <div className="flex flex-wrap justify-center ring sm:w-1/3 lg:w-1/3 bg-white/10 backdrop-blur-md p-3 rounded-xl text-lightPurp font-mono space-y-5">
+            <div className="flex flex-wrap justify-center w-full ring">
               <img
+                className="w-1/2 rounded-xl mb-5"
                 src={`https://image.tmdb.org/t/p/w500/${filmInfo?.poster_path}`}
-                className="w-full rounded-xl"
               ></img>
-              <div className="w-full ring ring-white">
-                <p className="flex justify-center text-lightPurp font-mono">
-                  {filmInfo?.original_title} ({filmInfo?.release_date})
-                </p>
+              <p className="flex justify-center w-full ring">
+                {filmInfo?.original_title}
+              </p>
+              <p className="flex justify-center w-full ring">
+                ({filmInfo?.release_date})
+              </p>
+            </div>
+            <div className="flex flex-wrap justify-center items-center w-full ring space-x-5">
+              <p>Rating:</p>
+              <input
+                className="flex items-center justify-center bg-white/10 backdrop-blur-md rounded-md p-1 w-2/12"
+                type="text"
+                value={rating}
+                onChange={handleSetRating}
+                placeholder="1-10"
+              ></input>
+              <div className="flex justify-center w-full">
+                <button
+                  className="flex justify-center w-2/12 ring p-2 bg-green-500 text-codBlack rounded-xl mt-3"
+                  onClick={handleSubmit}
+                >
+                  Save
+                </button>
               </div>
             </div>
-            <div className="flex flex-wrap justify-center w-1/2 font-mono text-lightPurp space-x-3 ring p-5">
-              <div className="flex justify-center items-center space-x-3 w-full ring text-2xl">
-                <p>Rating:</p>
-                <input
-                  className="flex items-center justify-center bg-white/10 backdrop-blur-md rounded-md p-1 ring-2 ring-white w-2/12"
-                  type="text"
-                  value={rating}
-                  onChange={handleSetRating}
-                ></input>
-              </div>
-              <button
-                className="flex justify-center w-4/12 ring mt-10 p-3 bg-green-500 rounded-xl"
-                onClick={() => handleSubmit}
+            <div className="flex justify-end w-full ring p-3">
+              <Link
+                className="flex justify-center sm:w-2/12 lg:w-3/12 ring p-3 bg-green-500 rounded-full text-black"
+                to={`/profile`}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -252,18 +295,12 @@ export const RateMovie = () => {
                     d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
                   />
                 </svg>
-              </button>
+              </Link>
             </div>
-            <Link
-              className="flex justify-center w-4/12 ring mt-10 p-3 bg-green-500 rounded-xl text-black"
-              to={`/profile`}
-            >
-              Go Back
-            </Link>
           </div>
         </div>
       </div>
-    </>
+    </html>
   );
 };
 
