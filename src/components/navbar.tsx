@@ -50,9 +50,13 @@ export default function NavBar() {
             </div>
           )}
           <ul className="flex justify-center text-md font-mono w-full sm:w-4/12 md:w-6/12 lg:w-6/12 space-x-1 md:space-x-12 lg:space-x-12">
-            <li className="flex navbar-buttons">
-              <Link to={"/home"}>Home</Link>
-            </li>
+            {sessionId ? (
+              <li className="flex navbar-buttons">
+                <Link to={"/home"}>Home</Link>
+              </li>
+            ) : (
+              <></>
+            )}
             <li key={"films"} className="flex navbar-buttons">
               <Link to={"/films"}>Films</Link>
             </li>
