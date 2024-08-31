@@ -86,8 +86,8 @@ export const RatedFilms = () => {
             </svg>
           </button>
         </div>
-        <div className="flex flex-wrap justify-start w-2/3 ring p-5 bg-white/10 rounded-lg gap-3">
-          {accountRatings.slice(0, 6).map((movie) => (
+        <div className="flex justify-center flex-wrap w-2/3 ring p-5 bg-white/10 rounded-lg gap-3">
+          {accountRatings.slice(0, 20).map((movie) => (
             <Link
               to={`/film/${movie.id}`}
               id={`${movie.id}`}
@@ -225,7 +225,7 @@ export const RateMovie = () => {
               </div>
             </div>
             <div className="flex flex-wrap justify-center w-1/2 font-mono text-lightPurp space-x-3 ring p-5">
-              <div className="flex justify-center items-center space-x-3 w-full ring">
+              <div className="flex justify-center items-center space-x-3 w-full ring text-2xl">
                 <p>Rating:</p>
                 <input
                   className="flex items-center justify-center bg-white/10 backdrop-blur-md rounded-md p-1 ring-2 ring-white w-2/12"
@@ -234,34 +234,32 @@ export const RateMovie = () => {
                   onChange={handleSetRating}
                 ></input>
               </div>
-              <Link
+              <button
                 className="flex justify-center w-4/12 ring mt-10 p-3 bg-green-500 rounded-xl"
-                to={`/profile`}
+                onClick={() => handleSubmit}
               >
-                <button className="" onClick={handleSubmit}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="text-black size-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-                    />
-                  </svg>
-                </button>
-              </Link>
-              <Link
-                className="flex justify-center w-4/12 ring mt-10 p-3 bg-green-500 rounded-xl text-black"
-                to={`/profile`}
-              >
-                Go Back
-              </Link>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="text-black size-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                  />
+                </svg>
+              </button>
             </div>
+            <Link
+              className="flex justify-center w-4/12 ring mt-10 p-3 bg-green-500 rounded-xl text-black"
+              to={`/profile`}
+            >
+              Go Back
+            </Link>
           </div>
         </div>
       </div>
