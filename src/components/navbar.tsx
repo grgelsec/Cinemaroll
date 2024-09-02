@@ -7,7 +7,7 @@ export default function NavBar() {
 
   return (
     <div className="flex justify-center w-full p-4">
-      <nav className="bg-mediumPurp rounded-xl shadow-md px-6 py-4 max-w-3xl w-full">
+      <nav className="bg-mediumPurp rounded-xl shadow-md px-6 py-4 max-w-4xl w-full">
         <div className="flex items-center justify-between">
           {sessionId ? (
             <Link
