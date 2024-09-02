@@ -10,7 +10,7 @@ export default function SignIn() {
   if (sessionId) {
     return (
       <Link
-        to={`http://localhost:5173/`}
+        to={`/`}
         className="flex flex-wrap justify-center p-1 md:p-2 lg:p-2 text-xs lg:text-md text-codBlack bg-white font-mono rounded-lg"
         onClick={() => signOut()}
       >
@@ -22,7 +22,7 @@ export default function SignIn() {
   return (
     <div className="">
       <Link
-        to={`https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=http://localhost:5173/sign-in/auth-page`}
+        to={`https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=https://cinemaroll.vercel.app/sign-in/auth-page`}
         className="flex flex-wrap justify-center p-1 md:p-2 lg:p-2 text-xs lg:text-md text-codBlack bg-white font-mono rounded-lg"
       >
         Sign In
@@ -74,7 +74,7 @@ export function AuthPage() {
           </div>
           <div className="flex justify-center w-full">
             <Link
-              to={"http://localhost:5173/home"}
+              to={`home`}
               className="flex justify-center w-2/12 py-3 rounded-xl bg-mediumPurp"
               onClick={handleCreateSession}
             >
