@@ -183,7 +183,7 @@ export function Film() {
                   </div>
                   <div>
                     <p className="text-purple-300 font-medium">Rating</p>
-                    <p>{Math.floor(filmInfo?.vote_average)}/10</p>
+                    <p>{Math.floor(filmInfo!.vote_average)}/10</p>
                   </div>
                 </div>
               </div>
