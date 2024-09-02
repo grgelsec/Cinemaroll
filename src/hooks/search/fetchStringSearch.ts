@@ -12,7 +12,7 @@ type SearchResults = {
   results: Movie[];
 };
 
-const useMultiSearch = (search: string, pageNum: number) => {
+const useMultiSearch = (search: string) => {
   const [filmList, setFilmList] = useState<Movie[]>([]);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const useMultiSearch = (search: string, pageNum: number) => {
       const apikey = import.meta.env.VITE_API_URL3;
       try {
         const response = await fetch(
-          `https://api.themoviedb.org/3/search/movie?query=${search}&api_key=${apikey}&page=${pageNum}`
+          `https://api.themoviedb.org/3/search/movie?query=${search}&api_key=${apikey}`
         );
 
         if (!response.ok) {
@@ -35,7 +35,7 @@ const useMultiSearch = (search: string, pageNum: number) => {
     };
 
     getFilms();
-  }, [search, pageNum]);
+  }, [search]);
 
   return { filmList };
 };

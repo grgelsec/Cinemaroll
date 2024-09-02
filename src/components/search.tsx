@@ -6,20 +6,19 @@ import useMultiSearch from "../hooks/search/fetchStringSearch";
 export default function Search() {
   const [inputValue, setInputValue] = useState("");
   const [submittedValue, setSubmittedValue] = useState("");
-  const [pageNum, setPage] = useState(1);
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
     console.log(inputValue);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault();
     setSubmittedValue(inputValue);
     setInputValue("");
   };
 
-  const { filmList } = useMultiSearch(submittedValue, pageNum);
+  const { filmList } = useMultiSearch(submittedValue);
   console.log(filmList);
 
   return (
@@ -28,11 +27,11 @@ export default function Search() {
       <div className="flex w-full py-10">
         <div className="flex justify-center w-full">
           <div className="flex justify-center items-center max-w-3xl w-full rounded-full bg-lightPurp">
-            <form
-              className="flex row justify-center w-full rounded-full p-3 space-x-2"
-              onSubmit={handleSubmit}
-            >
-              <button className="flex justify-center items-center w-1/12 p-4 rounded-full bg-white text-codBlack hover:cursor-pointer">
+            <form className="flex row justify-center w-full rounded-full p-3 space-x-2">
+              <button
+                className="flex justify-center items-center w-1/12 p-4 rounded-full bg-white text-codBlack hover:cursor-pointer"
+                onClick={handleSubmit}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

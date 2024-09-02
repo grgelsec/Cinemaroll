@@ -1,6 +1,9 @@
 import { useSession } from "../context/SessionContext";
 
-const CreateMovieReview = async (movie_id: number | undefined, rating) => {
+const CreateMovieReview = async (
+  movie_id: number | undefined,
+  rating: number
+) => {
   //const [movieReview, setReview] = useState(review);
   const api_key = import.meta.env.VITE_API_URL3;
   const { sessionId } = useSession();
