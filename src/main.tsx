@@ -17,11 +17,3 @@ if (rootElement) {
     </SessionProvider>
   );
 }
-
-// ReactDOM.createRoot(document.getElementById("root")!).render(
-//   <SessionProvider>
-//     <BrowserRouter>
-//       <App />
-//     </BrowserRouter>
-//   </SessionProvider>
-// );
