@@ -1,4 +1,5 @@
 import NavBar from "./navbar";
+import { supabase } from "../db/supabaseClient";
 import CreateMovieReview from "../hooks/postReview";
 import useAccountRatings from "../hooks/accountInfo/fetchAccountRatings";
 import { useState } from "react";
@@ -16,6 +17,28 @@ export default function Profile() {
 
   const { accountInfo } = useAccountDetails();
   console.log(accountInfo);
+
+  //need to create a file for db functions
+  //post review feeds in current movie on page, review, account id
+  //view review will be its down is play, link o page with backdrop, rating, and review
+  //need to add a button for delete movie rating and delete moview review (possible one button).
+
+  const saveUserText = async (
+    userId: number | undefined,
+    movieId: number,
+    reviewText: string
+  ) => {
+    const { data, error } = await supabase
+      .from("movie_reviews")
+      .insert([
+        { user_id: userId, movie_id: movieId, movie_review: reviewText },
+      ]);
+
+    if (error) throw error;
+    return data;
+  };
+
+  saveUserText(accountInfo?.id, 123, "test test test");
 
   return (
     <html>
@@ -306,7 +329,7 @@ export const RateMovie = () => {
 export const CreatedLists = () => {
   return (
     <div className="flex justify-center w-full">
-      <div className="w-1/3 py-10 bg-white/10">no penis</div>
+      <div className="w-1/3 py-10 bg-white/10">no</div>
     </div>
   );
 };
