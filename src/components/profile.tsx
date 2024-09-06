@@ -2,7 +2,7 @@ import NavBar from "./navbar";
 import { supabase } from "../db/supabaseClient";
 import CreateMovieReview from "../hooks/postReview";
 import useAccountRatings from "../hooks/accountInfo/fetchAccountRatings";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 //import DeleteMovieRating from "../hooks/accountInfo/deleteAccountRating";
 import useMultiSearch from "../hooks/search/fetchStringSearch";
@@ -23,27 +23,46 @@ export default function Profile() {
   //view review will be its down is play, link o page with backdrop, rating, and review
   //need to add a button for delete movie rating and delete moview review (possible one button).
 
-  const saveUserText = async (
-    userId: number | undefined,
-    movieId: number,
-    reviewText: string
-  ) => {
-    const { data, error } = await supabase
-      .from("movie_reviews")
-      .insert([
-        { user_id: userId, movie_id: movieId, movie_review: reviewText },
-      ]);
+  interface MovieReview {
+    user_id: number | undefined;
+    movie_id: number;
+    movie_review: string;
+  }
 
-    if (error) throw error;
-    return data;
+  const [dataToInsert, setDataToInsert] = useState<MovieReview | null>(null);
+
+  useEffect(() => {
+    const insertData = async () => {
+      if (dataToInsert) {
+        try {
+          const { data, error } = await supabase
+            .from("movie_reviews")
+            .insert([dataToInsert]);
+
+          if (error) throw error;
+
+          console.log("Data inserted successfully:", data);
+          setDataToInsert(null);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    };
+    insertData();
+  }, [dataToInsert]);
+
+  const handleInsert = () => {
+    setDataToInsert({
+      user_id: accountInfo?.id,
+      movie_id: 123,
+      movie_review: "test test test",
+    });
   };
-
-  saveUserText(accountInfo?.id, 123, "test test test");
 
   return (
     <html>
       <NavBar></NavBar>
-      <div className="flex flex-col space-y-12">
+      <div className="flex flex-col space-y-12 mb-10">
         <div className="flex flex-wrap justify-center w-full ring-white mt-5">
           <img
             src={`https://image.tmdb.org/t/p/w200/${accountInfo?.avatar.tmdb.avatar_path}`}
@@ -90,6 +109,10 @@ export default function Profile() {
           {selectedOption === "lists" && <CreatedLists />}
         </div>
       </div>
+      <button
+        className="w-1/12 bg-green-500 ring py-10"
+        onClick={handleInsert}
+      ></button>
     </html>
   );
 }
@@ -329,7 +352,9 @@ export const RateMovie = () => {
 export const CreatedLists = () => {
   return (
     <div className="flex justify-center w-full">
-      <div className="w-1/3 py-10 bg-white/10">no</div>
+      <div className="w-1/3 py-10 bg-white/10 rounded-xl text-white font-mono font-bold">
+        Coming soon!
+      </div>
     </div>
   );
 };
