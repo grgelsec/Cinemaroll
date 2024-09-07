@@ -224,7 +224,7 @@ export const RateMovie = () => {
   const params = useParams();
   const movieId = params.movieID;
   const { filmInfo } = useSearchMovies(movieId);
-  //const [submitRating, SetSubmitRating] = useState<string>();
+  const [submitRating, SetSubmitRating] = useState<string>();
   //const [submitReview, SetSubmitReview] = useState<string>();
 
   interface MovieReview {
@@ -266,6 +266,8 @@ export const RateMovie = () => {
   const handleSubmit = async (event: React.MouseEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    SetSubmitRating(rating);
+
     try {
       const { error } = await supabase.from("movie_reviews").insert([
         {
@@ -276,14 +278,12 @@ export const RateMovie = () => {
       ]);
 
       if (error) throw error;
-
-      //CreateMovieReview(Number(movieId), Number(rating));
     } catch (error) {
       console.error("Error while inserting:", error);
     }
   };
 
-  CreateMovieReview(Number(movieId), Number(rating));
+  CreateMovieReview(Number(movieId), Number(submitRating));
 
   // const handleInsert = () => {
   //   setDataToInsert({
