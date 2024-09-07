@@ -22,7 +22,7 @@ export default function SignIn() {
   return (
     <div className="">
       <Link
-        to={`https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=http://localhost:5173/sign-in/auth-page`}
+        to={`https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=https://cinemaroll.vercel.app/sign-in/auth-page`}
         className="flex flex-wrap justify-center p-1 md:p-2 lg:p-2 text-xs lg:text-md text-codBlack bg-white font-mono rounded-lg"
       >
         Sign In
