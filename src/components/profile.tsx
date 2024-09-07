@@ -8,7 +8,6 @@ import DeleteMovieRating from "../hooks/accountInfo/deleteAccountRating";
 import useMultiSearch from "../hooks/search/fetchStringSearch";
 import useSearchMovies from "../hooks/fetchSearchMovie";
 import useAccountDetails from "../hooks/accountInfo/fetchAccountInfo";
-import { error } from "console";
 export default function Profile() {
   const [selectedOption, setSelectedOption] = useState<string>("films");
 
