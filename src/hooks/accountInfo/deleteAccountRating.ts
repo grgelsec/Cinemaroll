@@ -1,6 +1,6 @@
 import { useSession } from "../../context/SessionContext";
 
-const DeleteMovieRating = async (movie_id: number) => {
+const DeleteMovieRating = async (movie_id: number | undefined) => {
   const sessionId = useSession();
   const sessionString = sessionId.sessionId;
 

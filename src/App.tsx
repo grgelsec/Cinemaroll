@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import Create from "./components/createaccount";
 import FilmLists from "./components/list";
 import { ListPage } from "./components/list";
-import Profile from "./components/profile";
+import Profile, { ViewReview } from "./components/profile";
 import SignIn from "./components/signin";
 import { AuthPage } from "./components/signin";
 import Home from "./components/home";
@@ -27,6 +27,7 @@ function App() {
         <Route path="/sign-in/auth-page" element={<AuthPage />} />
         <Route path="/search" element={<Search />} />
         <Route path="/rate/:movieID" element={<RateMovie />} />
+        <Route path="/view-rating/:movieID/:rating" element={<ViewReview />} />
       </Routes>
     </body>
   );
