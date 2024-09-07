@@ -8,6 +8,7 @@ import DeleteMovieRating from "../hooks/accountInfo/deleteAccountRating";
 import useMultiSearch from "../hooks/search/fetchStringSearch";
 import useSearchMovies from "../hooks/fetchSearchMovie";
 import useAccountDetails from "../hooks/accountInfo/fetchAccountInfo";
+import { error } from "console";
 export default function Profile() {
   const [selectedOption, setSelectedOption] = useState<string>("films");
 
@@ -110,7 +111,6 @@ export const RatedFilms = () => {
         <div className="flex justify-center flex-wrap w-full max-w-screen-xl p-5 bg-white/10 rounded-lg gap-3">
           {accountRatings.slice(0, 20).map((movie) => (
             <Link
-              key={movie.id}
               to={`/view-rating/${movie.id}/${movie.rating}`}
               className="flex flex-col w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 rounded-xl overflow-hidden hover:outline-none hover:border-transparent hover:ring-4 hover:ring-indigo-500 transition-all duration-300"
             >
@@ -223,10 +223,10 @@ export const RateMovie = () => {
   const [rating, setRating] = useState<string>();
   const [review, setReview] = useState<string | undefined>();
   const params = useParams();
-  const movie_id = params.movieID;
-  const { filmInfo } = useSearchMovies(movie_id);
-  const [submitRating, SetSubmitRating] = useState<string>();
-  const [submitReview, SetSubmitReview] = useState<string>();
+  const movieId = params.movieID;
+  const { filmInfo } = useSearchMovies(movieId);
+  //const [submitRating, SetSubmitRating] = useState<string>();
+  //const [submitReview, SetSubmitReview] = useState<string>();
 
   interface MovieReview {
     user_id: number | undefined;
@@ -261,30 +261,38 @@ export const RateMovie = () => {
   };
 
   const handleSetReview = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const value = event.target.value;
-    setReview(value);
+    setReview(event.target.value);
   };
 
-  const handleSubmit = (event: React.MouseEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.MouseEvent<HTMLFormElement>) => {
     event.preventDefault();
-    SetSubmitRating(rating);
-    SetSubmitReview(review);
-    if (review != "") {
-      handleInsert();
+
+    try {
+      const { error } = await supabase.from("movie_reviews").insert([
+        {
+          user_id: accountInfo?.id,
+          movie_id: movieId,
+          movie_review: review,
+        },
+      ]);
+
+      if (error) throw error;
+
+      //CreateMovieReview(Number(movieId), Number(rating));
+    } catch (error) {
+      console.error("Error while inserting:", error);
     }
   };
 
-  CreateMovieReview(Number(movie_id), Number(rating));
+  CreateMovieReview(Number(movieId), Number(rating));
 
-  const handleInsert = () => {
-    setDataToInsert({
-      user_id: accountInfo?.id,
-      movie_id: Number(movie_id),
-      movie_review: review,
-    });
-  };
-
-  console.log(review);
+  // const handleInsert = () => {
+  //   setDataToInsert({
+  //     user_id: accountInfo?.id,
+  //     movie_id: Number(movie_id),
+  //     movie_review: review,
+  //   });
+  // };
 
   return (
     <html>
@@ -386,7 +394,7 @@ export const ViewReview = () => {
   console.log(accountRatings);
 
   const readRow = async (
-    userId: number | undefined,
+    userId: bigint | number | undefined,
     movieId: number | undefined
   ) => {
     try {
